@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="3000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.Main.MainUIControl">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="3000.0" style="-fx-background-color: white;" stylesheets="@MainCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.Main.MainUIControl">
    <children>
       <GridPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
@@ -15,15 +16,49 @@
           <ColumnConstraints fx:id="rightCol" hgrow="SOMETIMES" minWidth="10.0" prefWidth="832.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints fx:id="topRow" prefHeight="50.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="topRow" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="centreRow" prefHeight="400.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="downRow" prefHeight="220.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Pane style="-fx-background-color: #7f7cf8;" />
             <Pane style="-fx-background-color: #7f7cf8;" GridPane.rowIndex="1" />
             <Pane style="-fx-background-color: #7f7cf8;" GridPane.rowIndex="2" />
-            <Pane style="-fx-background-color: red;" GridPane.columnIndex="1" />
+            <Pane fx:id="test" style="-fx-background-color: red;" GridPane.columnIndex="1" />
+            <Pane style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <GridPane style="-fx-background-color: #f5f5f5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                  <ColumnConstraints fx:id="inputChatLeftCol" hgrow="SOMETIMES" prefWidth="52.0" />
+                <ColumnConstraints fx:id="inputChatCentreCol" hgrow="SOMETIMES" prefWidth="739.0" />
+                  <ColumnConstraints fx:id="inputChatRightCol" hgrow="SOMETIMES" prefWidth="42.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fx:id="inputChatTopRow" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="inputChatCentreRow" prefHeight="134.0" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="inputChatDownRow" prefHeight="12.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane fx:id="inputChatAnchor" prefHeight="149.0" prefWidth="739.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <JFXButton fx:id="sendButton" buttonType="RAISED" layoutX="674.0" layoutY="60.0" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="↑" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                           <font>
+                              <Font name="Microsoft YaHei Bold" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <TextArea id="inputTextCss" fx:id="inputText" prefHeight="149.0" prefWidth="597.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="Microsoft YaHei Bold" size="25.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor></TextArea>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </children>

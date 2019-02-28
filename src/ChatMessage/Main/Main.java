@@ -19,9 +19,8 @@ public class Main extends Application {
         Dimension sceenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Parent root = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
         primaryStage.setTitle("群聊");
-
-
         Scene scene = new Scene(root,sceenSize.width * 0.8,sceenSize.height*0.8);
+        scene.getStylesheets().add(getClass().getResource("MainCss.css").toExternalForm());
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(scene);
         DragUtil.addDragListener(primaryStage, root);
