@@ -23,9 +23,7 @@
           <RowConstraints fx:id="downRow" prefHeight="220.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane style="-fx-background-color: #7f7cf8;" />
             <Pane style="-fx-background-color: #7f7cf8;" GridPane.rowIndex="2" />
-            <Pane style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <GridPane style="-fx-background-color: #f5f5f5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columnConstraints>
                   <ColumnConstraints fx:id="inputChatLeftCol" hgrow="SOMETIMES" prefWidth="52.0" />
@@ -60,7 +58,7 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <AnchorPane prefHeight="100.0" prefWidth="832.0" GridPane.columnIndex="1">
+            <AnchorPane prefHeight="100.0" prefWidth="832.0" style="-fx-background-color: blue;" GridPane.columnIndex="1">
                <children>
                   <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="753.0" layoutY="25.0" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="20.0">
                      <font>
@@ -80,7 +78,29 @@
                   </JFXButton>
                </children>
             </AnchorPane>
-            <JFXListView fx:id="contactsList" GridPane.rowIndex="1" />
+            <JFXListView fx:id="contactsList" style="-fx-background-color: #7f7cf8;" GridPane.rowIndex="1" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7f7cf8;">
+               <children>
+                  <Label layoutX="26.0" layoutY="58.0" text="当前在线群聊用户" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints fx:id="showMessagesLeftCol" hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="52.0" />
+                <ColumnConstraints fx:id="showMessagesCentreCol" hgrow="SOMETIMES" maxWidth="792.0" minWidth="10.0" prefWidth="737.0" />
+                  <ColumnConstraints fx:id="showMessagesRightCol" hgrow="SOMETIMES" maxWidth="792.0" minWidth="10.0" prefWidth="44.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </children>

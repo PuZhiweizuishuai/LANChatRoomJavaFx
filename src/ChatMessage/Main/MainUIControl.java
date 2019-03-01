@@ -12,7 +12,6 @@ import java.awt.Toolkit;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.scene.paint.Paint;
@@ -83,6 +82,18 @@ public class MainUIControl implements Initializable {
     private TextArea inputText;
 
     /**
+     * 消息显示界面
+     * */
+    @FXML
+    private ColumnConstraints showMessagesLeftCol;
+
+    @FXML
+    private ColumnConstraints showMessagesCentreCol;
+
+    @FXML
+    private ColumnConstraints showMessagesRightCol;
+
+    /**
      * 左侧联系人
      * */
     @FXML
@@ -134,6 +145,11 @@ public class MainUIControl implements Initializable {
         inputText.setWrapText(true);
         inputText.setPrefWidth(inputSceenWidth * 0.72);
 
+        // 聊天界面
+        showMessagesLeftCol.setPrefWidth(inputSceenWidth * 0.05);
+        showMessagesCentreCol.setPrefWidth(inputSceenWidth * 0.9);
+        showMessagesRightCol.setPrefWidth(inputSceenWidth * 0.05);
+
         // 按钮
         double buttonHight = (sceenHeight * 0.1) / 2 - 25;
         closeButton.setLayoutY(buttonHight);
@@ -146,7 +162,9 @@ public class MainUIControl implements Initializable {
         label.getStyleClass().add("MainCss");
         //contactsList.setPrefHeight(sceenHeight * 0.75);
         contactsList.getItems().add(label);
-        contactsList.getItems().add(new Label("Lable2"));
+        for(int i = 0; i < 30; i++) {
+            contactsList.getItems().add(new Label("Item  " + i));
+        }
         System.out.println(rootPane.getPrefHeight() + "         " + rootPane.getPrefWidth());
         System.out.println(rightCol.getPrefWidth() + "          " + leftCol.getPrefWidth());
         System.out.println(closeButton.getLayoutX());
