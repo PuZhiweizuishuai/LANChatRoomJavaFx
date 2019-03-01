@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
@@ -22,9 +24,7 @@
         </rowConstraints>
          <children>
             <Pane style="-fx-background-color: #7f7cf8;" />
-            <Pane style="-fx-background-color: #7f7cf8;" GridPane.rowIndex="1" />
             <Pane style="-fx-background-color: #7f7cf8;" GridPane.rowIndex="2" />
-            <Pane fx:id="test" style="-fx-background-color: red;" GridPane.columnIndex="1" />
             <Pane style="-fx-background-color: black;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <GridPane style="-fx-background-color: #f5f5f5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columnConstraints>
@@ -40,7 +40,7 @@
                <children>
                   <AnchorPane fx:id="inputChatAnchor" prefHeight="149.0" prefWidth="739.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <JFXButton fx:id="sendButton" buttonType="RAISED" layoutX="674.0" layoutY="60.0" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="↑" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                        <JFXButton fx:id="sendButton" buttonType="RAISED" layoutX="674.0" layoutY="60.0" onAction="#sendMessages" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="↑" textFill="WHITE" AnchorPane.rightAnchor="10.0">
                            <font>
                               <Font name="Microsoft YaHei Bold" size="20.0" />
                            </font>
@@ -57,8 +57,30 @@
                            </cursor></TextArea>
                      </children>
                   </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1" />
                </children>
             </GridPane>
+            <AnchorPane prefHeight="100.0" prefWidth="832.0" GridPane.columnIndex="1">
+               <children>
+                  <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="753.0" layoutY="25.0" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="20.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="minimizeButton" buttonType="RAISED" layoutX="687.0" layoutY="25.0" onAction="#minimize" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #41caf6;-fx-background-radius: 90px;" text="-" textFill="WHITE" AnchorPane.rightAnchor="90.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <JFXListView fx:id="contactsList" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

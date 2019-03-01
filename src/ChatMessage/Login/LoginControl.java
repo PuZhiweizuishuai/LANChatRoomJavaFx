@@ -1,11 +1,11 @@
 package ChatMessage.Login;
 
-import ChatMessage.SignIn.SignIn;
+import ChatMessage.Main.Main;
+import ChatMessage.SignUp.SignUp;
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -52,6 +52,13 @@ public class LoginControl implements Initializable {
         String name = userName.getText();
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
+            Main main = new Main();
+            try {
+                Stage thisStage = (Stage) rootBox.getScene().getWindow();
+                thisStage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             errorLabel.setVisible(false);
         } else {
             errorLabel.setText("请输入账号和密码！");
@@ -65,7 +72,7 @@ public class LoginControl implements Initializable {
      * */
     @FXML
     public void clickSignUpButton(ActionEvent event) {
-        SignIn signIn = new SignIn();
+        SignUp signUp = new SignUp();
         try {
             Stage thisStage = (Stage) rootBox.getScene().getWindow();
             thisStage.close();
@@ -80,6 +87,7 @@ public class LoginControl implements Initializable {
      * */
     @FXML
     public void close(ActionEvent event) {
+        //TODO
         System.exit(0);
     }
 

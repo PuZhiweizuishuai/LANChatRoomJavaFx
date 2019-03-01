@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="signInStage" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #7f7cf8;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.SignIn.SignInControl">
+<AnchorPane fx:id="signInStage" prefHeight="540.0" prefWidth="960.0" style="-fx-background-color: #7f7cf8;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.SignUp.SignUpControl">
     <children>
         <Pane layoutX="55.0" layoutY="45.0" prefHeight="450.0" prefWidth="850.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
             <children>

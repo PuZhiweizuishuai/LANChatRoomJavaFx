@@ -5,7 +5,6 @@ import java.lang.Exception;
 
 import ChatMessage.Login.DragUtil;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +12,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
+    public Main() {
+        try {
+            Stage stage = new Stage();
+            start(stage);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // 获取屏幕大小

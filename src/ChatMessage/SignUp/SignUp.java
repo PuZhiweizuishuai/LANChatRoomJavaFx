@@ -1,4 +1,4 @@
-package ChatMessage.SignIn;
+package ChatMessage.SignUp;
 
 import ChatMessage.Login.DragUtil;
 import javafx.application.Application;
@@ -8,10 +8,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class SignIn extends Application {
+public class SignUp extends Application {
     //private Stage stage = new Stage();
 
-    public SignIn() {
+    public SignUp() {
         try {
             Stage stage = new Stage();
             start(stage);
@@ -26,7 +26,7 @@ public class SignIn extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SignInUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SignUpUI.fxml"));
         primaryStage.setTitle("Chat Message注册");
         Scene scene = new Scene(root,960,540);
         primaryStage.setScene(scene);

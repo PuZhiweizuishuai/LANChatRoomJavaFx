@@ -1,7 +1,6 @@
-package ChatMessage.SignIn;
+package ChatMessage.SignUp;
 
 import ChatMessage.Login.LoginMain;
-import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -9,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 
 
-public class SignInControl {
+public class SignUpControl {
     @FXML
     private AnchorPane signInStage;
 
@@ -44,6 +43,7 @@ public class SignInControl {
      * */
     @FXML
     public void close(ActionEvent event) {
+        //TODO
         System.exit(0);
     }
 

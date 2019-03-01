@@ -1,3 +1,7 @@
 #inputTextCss {
     -fx-background-color: transparent;
 }
+#TestLable {
+    -fx-font-size: 30px;
+    -fx-font-family: Microsoft YaHei Bold;
+}
