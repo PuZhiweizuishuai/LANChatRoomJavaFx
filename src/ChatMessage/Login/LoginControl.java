@@ -7,11 +7,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import mycontrol.popup.PopUpUI;
+
 
 /**
  * @author Pu Zhiwei
@@ -26,8 +27,6 @@ public class LoginControl implements Initializable {
     @FXML
     private  PasswordField userPassword;
 
-    @FXML
-    private Label errorLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
@@ -59,10 +58,8 @@ public class LoginControl implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            errorLabel.setVisible(false);
         } else {
-            errorLabel.setText("请输入账号和密码！");
-            errorLabel.setVisible(true);
+            new PopUpUI("提示:", "请输入用户名和密码!");
         }
         //TODO
     }
@@ -72,7 +69,7 @@ public class LoginControl implements Initializable {
      * */
     @FXML
     public void clickSignUpButton(ActionEvent event) {
-        SignUp signUp = new SignUp();
+        new SignUp();
         try {
             Stage thisStage = (Stage) rootBox.getScene().getWindow();
             thisStage.close();

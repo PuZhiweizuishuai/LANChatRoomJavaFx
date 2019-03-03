@@ -11,6 +11,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * @author PuZhiwei
+ * 默认群聊主界面
+ * */
 public class Main extends Application {
     public Main() {
         try {

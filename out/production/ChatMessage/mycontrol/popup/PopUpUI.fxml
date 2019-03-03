@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mycontrol.popup.PopUpUIControl">
+   <children>
+      <JFXButton layoutX="266.0" layoutY="329.0" onAction="#close" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 20px;" text="确认" AnchorPane.bottomAnchor="20.0">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label fx:id="titleLab" layoutX="53.0" layoutY="53.0" prefHeight="58.0" prefWidth="123.0" text="提示:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="textLab" layoutX="41.0" layoutY="123.0" text="请输入用户名和密码!" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="20.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

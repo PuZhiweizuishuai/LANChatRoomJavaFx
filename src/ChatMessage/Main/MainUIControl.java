@@ -114,44 +114,44 @@ public class MainUIControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         // 获取屏幕大小用于自适应窗口
-        Dimension sceenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double sceenWidth = sceenSize.width * 0.8;
-        double sceenHeight = sceenSize.height * 0.8;
+        Dimension sceneSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double sceneWidth = sceneSize.width * 0.8;
+        double sceneHeight = sceneSize.height * 0.8;
 
         // 外部界面大小
-        rootPane.setPrefWidth(sceenWidth);
-        rootPane.setPrefHeight(sceenHeight);
-        rightCol.setPrefWidth(sceenWidth * 0.65);
-        leftCol.setPrefWidth(sceenWidth - (sceenWidth * 0.65));
-        topRow.setPrefHeight(sceenHeight * 0.1);
-        centreRow.setPrefHeight(sceenHeight * 0.65);
-        downRow.setPrefHeight(sceenHeight * 0.25);
+        rootPane.setPrefWidth(sceneWidth);
+        rootPane.setPrefHeight(sceneHeight);
+        rightCol.setPrefWidth(sceneWidth * 0.65);
+        leftCol.setPrefWidth(sceneWidth - (sceneWidth * 0.65));
+        topRow.setPrefHeight(sceneHeight * 0.1);
+        centreRow.setPrefHeight(sceneHeight * 0.65);
+        downRow.setPrefHeight(sceneHeight * 0.25);
 
         // 文本输入界面
-        double inputSceenWidth = sceenWidth * 0.65;
-        double inputSceenHight = sceenHeight * 0.25;
-        inputChatLeftCol.setPrefWidth(inputSceenWidth * 0.05);
-        inputChatCentreCol.setPrefWidth(inputSceenWidth * 0.9);
-        inputChatRightCol.setPrefWidth(inputSceenWidth * 0.05);
+        double inputSceneWidth = sceneWidth * 0.65;
+        double inputSceneHight = sceneHeight * 0.25;
+        inputChatLeftCol.setPrefWidth(inputSceneWidth * 0.05);
+        inputChatCentreCol.setPrefWidth(inputSceneWidth * 0.9);
+        inputChatRightCol.setPrefWidth(inputSceneWidth * 0.05);
 
-        inputChatTopRow.setPrefHeight(inputSceenHight * 0.25);
-        inputChatCentreRow.setPrefHeight(inputSceenHight * 0.6);
-        inputChatDownRow.setPrefHeight(inputSceenHight * 0.15);
+        inputChatTopRow.setPrefHeight(inputSceneHight * 0.25);
+        inputChatCentreRow.setPrefHeight(inputSceneHight * 0.6);
+        inputChatDownRow.setPrefHeight(inputSceneHight * 0.15);
 
-        inputChatAnchor.setPrefSize(inputSceenWidth * 0.9, inputSceenHight * 0.6);
+        inputChatAnchor.setPrefSize(inputSceneWidth * 0.9, inputSceneHight * 0.6);
 
-        sendButton.setPrefSize(inputSceenWidth * 0.15, inputSceenHight * 0.3);
+        sendButton.setPrefSize(inputSceneWidth * 0.15, inputSceneHight * 0.3);
         // 自动换行
         inputText.setWrapText(true);
-        inputText.setPrefWidth(inputSceenWidth * 0.72);
+        inputText.setPrefWidth(inputSceneWidth * 0.72);
 
         // 聊天界面
-        showMessagesLeftCol.setPrefWidth(inputSceenWidth * 0.05);
-        showMessagesCentreCol.setPrefWidth(inputSceenWidth * 0.9);
-        showMessagesRightCol.setPrefWidth(inputSceenWidth * 0.05);
+        showMessagesLeftCol.setPrefWidth(inputSceneWidth * 0.05);
+        showMessagesCentreCol.setPrefWidth(inputSceneWidth * 0.9);
+        showMessagesRightCol.setPrefWidth(inputSceneWidth * 0.05);
 
         // 按钮
-        double buttonHight = (sceenHeight * 0.1) / 2 - 25;
+        double buttonHight = (sceneHeight * 0.1) / 2 - 25;
         closeButton.setLayoutY(buttonHight);
         minimizeButton.setLayoutY(buttonHight);
 

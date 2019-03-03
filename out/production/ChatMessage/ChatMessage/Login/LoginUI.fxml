@@ -70,11 +70,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <Label fx:id="errorLabel" layoutX="498.0" layoutY="189.0" prefHeight="40.0" prefWidth="300.0" text="要输入账号和密码才能登陆哦！" textFill="#fb4f4f" visible="false">
-               <font>
-                  <Font name="Microsoft YaHei Bold" size="18.0" />
-               </font>
-            </Label>
          </children>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
