@@ -52,7 +52,7 @@
                         <Image url="@../../images/userPassword.png" />
                     </image>
                 </ImageView>
-                <JFXButton fx:id="signUpButton" buttonType="RAISED" layoutX="548.0" layoutY="352.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 90px; -fx-background-color: #5178d9;" text="注册" textFill="WHITE">
+                <JFXButton fx:id="signUpButton" buttonType="RAISED" layoutX="548.0" layoutY="352.0" onAction="#clickSignInButtion" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 90px; -fx-background-color: #5178d9;" text="注册" textFill="WHITE">
                     <font>
                         <Font name="Microsoft YaHei Bold" size="15.0" />
                     </font>

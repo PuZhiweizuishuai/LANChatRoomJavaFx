@@ -28,10 +28,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // 获取屏幕大小
-        Dimension sceenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension sceneSize = Toolkit.getDefaultToolkit().getScreenSize();
         Parent root = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
         primaryStage.setTitle("群聊");
-        Scene scene = new Scene(root,sceenSize.width * 0.8,sceenSize.height*0.8);
+        Scene scene = new Scene(root,sceneSize.width * 0.8,sceneSize.height*0.8);
         scene.getStylesheets().add(getClass().getResource("MainCss.css").toExternalForm());
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(scene);

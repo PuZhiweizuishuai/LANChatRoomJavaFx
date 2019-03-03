@@ -1,11 +1,14 @@
 package ChatMessage.user;
 
-public class UserInformation {
+import java.io.Serializable;
+
+public class UserInformation implements Serializable {
+    private static final long serialVersionUID = 0000000000L;
     private String userName;
     private String userEmail;
     private String userPassword;
 
-    public UserInformation(String userName, String userEmail, String userPassword) {
+    public UserInformation(String userEmail, String userName, String userPassword) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userPassword = userPassword;

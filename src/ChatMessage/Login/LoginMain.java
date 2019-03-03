@@ -13,7 +13,6 @@ import javafx.stage.StageStyle;
  * */
 public class LoginMain extends Application {
     private Stage stage = new Stage();
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("LoginUI.fxml"));
@@ -28,6 +27,8 @@ public class LoginMain extends Application {
         DragUtil.addDragListener(primaryStage, root);
         primaryStage.show();
     }
+
+
 
     public void showWindow() {
         try {

@@ -2,6 +2,8 @@ package ChatMessage.Login;
 
 import ChatMessage.Main.Main;
 import ChatMessage.SignUp.SignUp;
+import ChatMessage.user.SaveUser;
+import ChatMessage.user.UserInformation;
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +32,13 @@ public class LoginControl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        //TODO
+        UserInformation user;
+        try {
+            user = SaveUser.userDeserialize();
+            userName.setText(user.getUserName());
+        } catch (Exception e) {
+            userName.setText("");
+        }
     }
 
     /**

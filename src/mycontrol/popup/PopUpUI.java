@@ -43,11 +43,12 @@ public class PopUpUI extends Application {
         // 设置界面一直在最上面显示
         primaryStage.setAlwaysOnTop(true);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
-        DragUtil.addDragListener(primaryStage, root);
+        // 窗口移动DragUtil.addDragListener(primaryStage, root);
         PopUpUIControl popUpUIControl = fxmlLoader.getController();
         popUpUIControl.setText(title, text);
         primaryStage.show();
     }
+
 
     public static void main(String[] args) {
         launch(args);

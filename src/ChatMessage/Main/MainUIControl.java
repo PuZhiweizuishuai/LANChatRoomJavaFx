@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+
 /**
  * @author PuZhiwei
  * */
@@ -99,6 +100,10 @@ public class MainUIControl implements Initializable {
     @FXML
     private JFXListView contactsList;
 
+    @FXML
+    private Pane ceshiyixai;
+
+
     /**
      * socket网络发送消息
      * */
@@ -129,26 +134,26 @@ public class MainUIControl implements Initializable {
 
         // 文本输入界面
         double inputSceneWidth = sceneWidth * 0.65;
-        double inputSceneHight = sceneHeight * 0.25;
+        double inputSceneHeight = sceneHeight * 0.25;
         inputChatLeftCol.setPrefWidth(inputSceneWidth * 0.05);
         inputChatCentreCol.setPrefWidth(inputSceneWidth * 0.9);
         inputChatRightCol.setPrefWidth(inputSceneWidth * 0.05);
 
-        inputChatTopRow.setPrefHeight(inputSceneHight * 0.25);
-        inputChatCentreRow.setPrefHeight(inputSceneHight * 0.6);
-        inputChatDownRow.setPrefHeight(inputSceneHight * 0.15);
+        inputChatTopRow.setPrefHeight(inputSceneHeight * 0.25);
+        inputChatCentreRow.setPrefHeight(inputSceneHeight * 0.6);
+        inputChatDownRow.setPrefHeight(inputSceneHeight * 0.15);
 
-        inputChatAnchor.setPrefSize(inputSceneWidth * 0.9, inputSceneHight * 0.6);
+        inputChatAnchor.setPrefSize(inputSceneWidth * 0.9, inputSceneHeight * 0.6);
 
-        sendButton.setPrefSize(inputSceneWidth * 0.15, inputSceneHight * 0.3);
+        sendButton.setPrefSize(inputSceneWidth * 0.15, inputSceneHeight * 0.3);
         // 自动换行
         inputText.setWrapText(true);
         inputText.setPrefWidth(inputSceneWidth * 0.72);
 
         // 聊天界面
-        showMessagesLeftCol.setPrefWidth(inputSceneWidth * 0.05);
-        showMessagesCentreCol.setPrefWidth(inputSceneWidth * 0.9);
-        showMessagesRightCol.setPrefWidth(inputSceneWidth * 0.05);
+        showMessagesLeftCol.setPrefWidth(inputSceneWidth * 0.025);
+        showMessagesCentreCol.setPrefWidth(inputSceneWidth * 0.95);
+        showMessagesRightCol.setPrefWidth(inputSceneWidth * 0.025);
 
         // 按钮
         double buttonHight = (sceneHeight * 0.1) / 2 - 25;
@@ -160,14 +165,12 @@ public class MainUIControl implements Initializable {
         label.setId("TestLable");
         label.setTextFill(Paint.valueOf("blue"));
         label.getStyleClass().add("MainCss");
-        //contactsList.setPrefHeight(sceenHeight * 0.75);
+
         contactsList.getItems().add(label);
-        for(int i = 0; i < 30; i++) {
+        for(int i = 0; i < 20; i++) {
             contactsList.getItems().add(new Label("Item  " + i));
         }
-        System.out.println(rootPane.getPrefHeight() + "         " + rootPane.getPrefWidth());
-        System.out.println(rightCol.getPrefWidth() + "          " + leftCol.getPrefWidth());
-        System.out.println(closeButton.getLayoutX());
+        contactsList.expandedProperty().set(true);
     }
 
     /**
