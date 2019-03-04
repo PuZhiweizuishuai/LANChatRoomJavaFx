@@ -27,7 +27,7 @@ import mycontrol.userlist.UserListUI;
 public class MainUIControl implements Initializable {
     /**
      * 按钮
-     * */
+     */
     @FXML
     private JFXButton closeButton;
 
@@ -36,7 +36,7 @@ public class MainUIControl implements Initializable {
 
     /**
      * 外部界面
-     * */
+     */
     @FXML
     private GridPane rootPane;
 
@@ -57,7 +57,7 @@ public class MainUIControl implements Initializable {
 
     /**
      * 文本输入界面
-     * */
+     */
     @FXML
     private ColumnConstraints inputChatLeftCol;
 
@@ -87,7 +87,7 @@ public class MainUIControl implements Initializable {
 
     /**
      * 消息显示界面
-     * */
+     */
     @FXML
     private ColumnConstraints showMessagesLeftCol;
 
@@ -102,7 +102,7 @@ public class MainUIControl implements Initializable {
 
     /**
      * 左侧联系人
-     * */
+     */
     @FXML
     private JFXListView contactsList;
 
@@ -112,16 +112,15 @@ public class MainUIControl implements Initializable {
 
     /**
      * socket网络发送消息
-     * */
+     */
     private Socket socket;
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
 
 
-
     /**
      * 初始化
-     * */
+     */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         // 获取屏幕大小用于自适应窗口
@@ -177,22 +176,13 @@ public class MainUIControl implements Initializable {
             contactsList.getItems().add(userListUI);
         }
     }
+
     /**
      * 向服务器发送消息
-     * */
+     */
     @FXML
     private void sendMessages(ActionEvent event) {
-        if(inputText.getText().equals("")) {
-            System.out.println("未输入任何内容！");
-        }else {
-            System.out.println(inputText.getText());
-            OtherChatBox otherChatBox = new OtherChatBox();
-            otherChatBox.setMessage(inputText.getText());
-
-            otherChatBox.setHeadImageView("@../../images/508035880.jpg");
-            chatBoxList.getItems().add(otherChatBox);
-            inputText.setText("");
-        }
+        showOtherMessage();
         /*try {
             socket = new Socket("10.6.49.224",9999);
             OutputStream outPut = socket.getOutputStream();
@@ -221,6 +211,36 @@ public class MainUIControl implements Initializable {
         Stage stage = (Stage) rootPane.getScene().getWindow();
         // 最小化到任务栏
         stage.setIconified(true);
+    }
+
+    /**
+     * 显示收到的消息
+     * */
+    public void showOtherMessage() {
+        String otherMessage = inputText.getText();
+        if (otherMessage.equals("")) {
+            System.out.println("未输入任何内容！");
+        } else {
+            int length = otherMessage.length();
+            int width;
+            if (length <= 23) {
+                width = 25 * length;
+            } else {
+                width = 600;
+            }
+            int height;
+            if (((length / 23) + 1) >= 3) {
+                height = ((length / 23) + 1) * 25;
+            } else {
+                height = ((length / 23) + 1) * 45;
+            }
+            OtherChatBox otherChatBox = new OtherChatBox();
+            otherChatBox.setMessage(otherMessage);
+            otherChatBox.setHeightAndWidth(height, width);
+            otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+            chatBoxList.getItems().add(otherChatBox);
+            inputText.setText("");
+        }
     }
 
 }

@@ -89,7 +89,9 @@
     -fx-background-color: BLACK;
 }
 
-
+/*
+去除文本域的蓝色边框
+*/
 .text-area{
     -fx-background-insets: 0;
     -fx-background-color: transparent, white, transparent, white;
@@ -101,4 +103,14 @@
 
 .text-area:focused {
     -fx-background-color: transparent, white, transparent, white;
+}
+/*
+设置收到消息气泡的颜色
+*/
+#otherChatBox .scroll-pane .content {
+-fx-background-color: yellow;
+}
+
+#otherChatBox:focused {
+    -fx-background-color: yellow, yellow, yellow, yellow;
 }

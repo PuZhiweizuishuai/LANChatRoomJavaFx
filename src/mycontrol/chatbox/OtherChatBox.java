@@ -8,6 +8,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,6 +26,9 @@ public class OtherChatBox extends HBox implements Initializable {
 
     @FXML
     private TextArea chatMessage;
+
+    @FXML
+    private Pane TextPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
@@ -43,8 +48,11 @@ public class OtherChatBox extends HBox implements Initializable {
         }
     }
 
-    public void setHeight(double height) {
+    public void setHeightAndWidth(double height, double width) {
         chatMessage.setPrefHeight(height);
+        TextPane.setPrefHeight(height);
+        chatMessage.setPrefWidth(width);
+        TextPane.setPrefWidth(width-5);
     }
 
     public void setMessage(String name) {
