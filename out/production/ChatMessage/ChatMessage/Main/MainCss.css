@@ -88,3 +88,17 @@
 .custom-jfx-list-view .jfx-list-cell:filled:hover .sublist-header > .drop-icon {
     -fx-background-color: BLACK;
 }
+
+
+.text-area{
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused {
+    -fx-background-color: transparent, white, transparent, white;
+}

@@ -102,7 +102,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ListView fx:id="chatBoxList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-width: 0px;" GridPane.columnIndex="1" />
+                  <ListView fx:id="chatBoxList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-style: none; -fx-background-color: white;" stylesheets="@ListViewStyle.css" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>

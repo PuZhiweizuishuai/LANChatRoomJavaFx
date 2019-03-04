@@ -8,12 +8,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root fx:id="rooHbox"  prefWidth="600.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rooHbox" prefWidth="600.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="otherHeadImage" fitHeight="40" fitWidth="40" pickOnBounds="true" preserveRatio="true" />
       <Pane prefHeight="146.0" prefWidth="554.0" style="-fx-background-radius: 20px; -fx-background-color: blue;">
          <children>
-            <TextArea fx:id="chatMessage" prefHeight="50.0" prefWidth="550.0" style="-fx-border-radius: 20px;">
+            <TextArea fx:id="chatMessage" prefHeight="50.0" prefWidth="550.0" style="-fx-border-radius: 20px; -fx-border-image-width: 0; -fx-border-width: 0;">
                <font>
                   <Font name="Microsoft YaHei Bold" size="20.0" />
                </font></TextArea>
