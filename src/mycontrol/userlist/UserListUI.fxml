@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
@@ -10,7 +11,10 @@
 
 <fx:root type="FlowPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="nameLabel" text="Label" />
-      <JFXButton />
+      <ImageView fx:id="headImageView" fitHeight="50" fitWidth="50" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nameLabel" text="Label">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="20.0" />
+         </font></Label>
    </children>
 </fx:root>

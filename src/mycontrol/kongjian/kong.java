@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.VBox;
+import mycontrol.chatbox.OtherChatBox;
 import mycontrol.userlist.UserListUI;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,9 +20,15 @@ public class kong implements Initializable {
     private JFXListView<UserListUI> listJFX;
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        UserListUI userListUI = new UserListUI();
+        /*OtherChatBox otherChatBox = new OtherChatBox();
+        otherChatBox.setMessage("   13465464");
+        otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+        root.getChildren().add(otherChatBox);*/
+
+        /* UserListUI userListUI = new UserListUI();
+
         userListUI.setNameLabel("dfasd   ");
-        listJFX.getItems().add(userListUI);
+        listJFX.getItems().add(userListUI);*/
         /*ScrollBar sc = new ScrollBar();
         sc.setOrientation(Orientation.VERTICAL);
 

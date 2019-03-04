@@ -1,4 +1,4 @@
-package mycontrol.userlist;
+package mycontrol.chatbox;
 
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -6,19 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import javafx.scene.layout.HBox;
 
-public class UserListUI extends FlowPane {
+public class OtherChatBox extends HBox {
     @FXML
-    private Label nameLabel;
+    private ImageView otherHeadImage;
 
     @FXML
-    private ImageView headImageView;
+    private Label otherMessage;
 
-    public UserListUI() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserListUI.fxml"));
+    public OtherChatBox() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OtherChatBoxUI.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         try {
@@ -27,18 +25,19 @@ public class UserListUI extends FlowPane {
             e.printStackTrace();
         }
     }
-    public void setNameLabel(String name) {
+
+    public void setMessage(String name) {
         textProperty().set(name);
     }
 
 
-    public StringProperty textProperty() {
-        return nameLabel.textProperty();
+    private StringProperty textProperty() {
+        return otherMessage.textProperty();
     }
-
 
     public void setHeadImageView(String imagePath) {
         Image image = new Image(imagePath);
-        headImageView.setImage(image);
+        otherHeadImage.setImage(image);
     }
+
 }

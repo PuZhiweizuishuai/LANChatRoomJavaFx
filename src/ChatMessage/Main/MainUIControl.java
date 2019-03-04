@@ -5,7 +5,9 @@ import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,8 +16,9 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import mycontrol.chatbox.OtherChatBox;
+import mycontrol.userlist.UserListUI;
 
 
 /**
@@ -94,6 +97,9 @@ public class MainUIControl implements Initializable {
     @FXML
     private ColumnConstraints showMessagesRightCol;
 
+    @FXML
+    private ListView chatBoxList;
+
     /**
      * 左侧联系人
      * */
@@ -160,7 +166,7 @@ public class MainUIControl implements Initializable {
         closeButton.setLayoutY(buttonHight);
         minimizeButton.setLayoutY(buttonHight);
 
-
+/*
         Label label = new Label("ITEM");
         label.setId("TestLable");
         label.setTextFill(Paint.valueOf("blue"));
@@ -171,14 +177,34 @@ public class MainUIControl implements Initializable {
             contactsList.getItems().add(new Label("Item  " + i));
         }
         contactsList.expandedProperty().set(true);
+    */
+        UserListUI groupChat = new UserListUI();
+        groupChat.setNameLabel("    群聊");
+        groupChat.setHeadImageView("@../../images/GroupChat.png");
+        contactsList.getItems().add(groupChat);
+        for (int i = 0; i < 10; i++) {
+            UserListUI userListUI = new UserListUI();
+            userListUI.setNameLabel("    Image   " + i);
+            userListUI.setHeadImageView("@../../images/508035880.jpg");
+            contactsList.getItems().add(userListUI);
+        }
     }
-
     /**
      * 向服务器发送消息
      * */
     @FXML
     private void sendMessages(ActionEvent event) {
-        try {
+        System.out.println(inputText.getText());
+        OtherChatBox otherChatBox = new OtherChatBox();
+        otherChatBox.setMessage("    " + inputText.getText());
+        otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+        chatBoxList.getItems().add(otherChatBox);
+        /*UserListUI groupChat = new UserListUI();
+        groupChat.setNameLabel("    群聊");
+        groupChat.setHeadImageView("@../../images/GroupChat.png");
+        chatBoxList.getItems().add(groupChat);*/
+
+        /*try {
             socket = new Socket("10.6.49.224",9999);
             OutputStream outPut = socket.getOutputStream();
             InputStream input = socket.getInputStream();
@@ -192,7 +218,7 @@ public class MainUIControl implements Initializable {
             socket.close();
         } catch(Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 

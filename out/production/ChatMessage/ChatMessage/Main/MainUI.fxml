@@ -47,7 +47,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <TextArea id="inputTextCss" fx:id="inputText" prefHeight="149.0" prefWidth="597.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TextArea id="inputTextCss" fx:id="inputText" prefHeight="149.0" prefWidth="597.0" style="-fx-border-color: #f5f5f5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Microsoft YaHei Bold" size="25.0" />
                            </font>
@@ -85,7 +85,7 @@
                </cursor></JFXListView>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7f7cf8;">
                <children>
-                  <Label layoutX="26.0" layoutY="58.0" text="当前在线群聊用户" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+                  <Label layoutX="26.0" layoutY="58.0" text="当前用户" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                      <font>
                         <Font name="Microsoft YaHei Bold" size="25.0" />
                      </font>
@@ -102,7 +102,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" GridPane.columnIndex="1" />
+                  <ListView fx:id="chatBoxList" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="600.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="otherHeadImage" fitHeight="50" fitWidth="50" pickOnBounds="true" preserveRatio="true" />
+      <Pane prefHeight="146.0" prefWidth="554.0" style="-fx-background-radius: 20px; -fx-background-color: blue;">
+         <children>
+            <Label fx:id="otherMessage" text="Label" />
+         </children>
+      </Pane>
+   </children>
+</fx:root>
