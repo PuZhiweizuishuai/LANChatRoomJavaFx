@@ -114,3 +114,14 @@
 #otherChatBox:focused {
     -fx-background-color: yellow, yellow, yellow, yellow;
 }
+
+/*
+发出消息的气泡颜色
+*/
+#MyChatBox .scroll-pane .content {
+    -fx-background-color: #9eec62;
+}
+
+#MyChatBox:focused {
+    -fx-background-color: #9eec62, #9eec62, #9eec62, #9eec62;
+}

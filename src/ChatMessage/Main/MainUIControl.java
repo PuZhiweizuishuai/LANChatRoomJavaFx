@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -17,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import mycontrol.chatbox.MyChatBox;
 import mycontrol.chatbox.OtherChatBox;
 import mycontrol.userlist.UserListUI;
 
@@ -119,15 +121,16 @@ public class MainUIControl implements Initializable {
 
 
     /**
+     * 获取屏幕大小用于自适应窗口
+     * */
+    private Dimension sceneSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private double sceneWidth = sceneSize.width * 0.8;
+    private double sceneHeight = sceneSize.height * 0.8;
+    /**
      * 初始化
      */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        // 获取屏幕大小用于自适应窗口
-        Dimension sceneSize = Toolkit.getDefaultToolkit().getScreenSize();
-        double sceneWidth = sceneSize.width * 0.8;
-        double sceneHeight = sceneSize.height * 0.8;
-
         // 外部界面大小
         rootPane.setPrefWidth(sceneWidth);
         rootPane.setPrefHeight(sceneHeight);
@@ -182,6 +185,7 @@ public class MainUIControl implements Initializable {
      */
     @FXML
     private void sendMessages(ActionEvent event) {
+        showMyMessage();
         showOtherMessage();
         /*try {
             socket = new Socket("10.6.49.224",9999);
@@ -212,6 +216,38 @@ public class MainUIControl implements Initializable {
         // 最小化到任务栏
         stage.setIconified(true);
     }
+    /**
+     * 显示我发出的消息
+     * */
+    public void showMyMessage() {
+        // double inputSceneWidth = sceneWidth * 0.65 * 0.95;
+        String myMessage = inputText.getText();
+        if (myMessage.equals("")) {
+            System.out.println("未输入任何内容！");
+        } else {
+            int length = myMessage.length();
+            int width;
+            if (length <= 23) {
+                width = 25 * length;
+            } else {
+                width = 600;
+            }
+            int height;
+            if (((length / 23) + 1) > 3) {
+                height = ((length / 23) + 1) * 25;
+            } else {
+                height = ((length / 23) + 1) * 40;
+            }
+            System.out.println( length + "       " +((length / 23) + 1));
+            MyChatBox myChatBox = new MyChatBox();
+            myChatBox.setMessage(myMessage);
+            myChatBox.setHeightAndWidth(height,width);
+            myChatBox.setHeadImageView("@../../images/508035880.jpg");
+            chatBoxList.setNodeOrientation(NodeOrientation.valueOf("RIGHT_TO_LEFT"));
+            chatBoxList.getItems().add(myChatBox);
+            //inputText.setText("");
+        }
+    }
 
     /**
      * 显示收到的消息
@@ -238,6 +274,7 @@ public class MainUIControl implements Initializable {
             otherChatBox.setMessage(otherMessage);
             otherChatBox.setHeightAndWidth(height, width);
             otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+            chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
             chatBoxList.getItems().add(otherChatBox);
             inputText.setText("");
         }

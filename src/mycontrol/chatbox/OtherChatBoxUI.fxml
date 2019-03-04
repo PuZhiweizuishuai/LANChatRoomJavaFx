@@ -12,13 +12,6 @@
    <children>
       <ImageView fx:id="otherHeadImage" fitHeight="40" fitWidth="40" pickOnBounds="true" preserveRatio="true" />
       <Pane prefHeight="20.0" prefWidth="20.0" />
-      <Pane fx:id="TextPane" prefHeight="50" prefWidth="524.0" style="-fx-background-radius: 20px; -fx-background-color: blue;">
-         <children>
-            <TextArea id="otherChatBox" fx:id="chatMessage" layoutX="-4.0" prefHeight="50.0" prefWidth="554.0" style="-fx-border-radius: 20px; -fx-border-image-width: 0; -fx-border-width: 0;">
-               <font>
-                  <Font name="Microsoft YaHei Bold" size="20.0" />
-               </font></TextArea>
-         </children>
-      </Pane>
+      <TextFlow fx:id="otherMessage" prefHeight="200.0" prefWidth="544.0" />
    </children>
 </fx:root>
