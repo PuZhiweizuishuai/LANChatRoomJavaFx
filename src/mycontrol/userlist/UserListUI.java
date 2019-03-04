@@ -5,13 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class UserListUI extends FlowPane {
     @FXML
     private Label nameLabel;
 
+    @FXML
+    private ImageView headImageView;
 
     public UserListUI() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserListUI.fxml"));
@@ -32,4 +36,9 @@ public class UserListUI extends FlowPane {
         return nameLabel.textProperty();
     }
 
+
+    public void setHeadImageView(String imagePath) {
+        Image image = new Image(imagePath);
+        headImageView.setImage(image);
+    }
 }

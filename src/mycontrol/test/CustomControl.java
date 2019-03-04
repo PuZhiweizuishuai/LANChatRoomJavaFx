@@ -38,19 +38,25 @@ import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 /**
  * Sample custom control hosting a text field and a button.
  */
 public class CustomControl extends VBox {
-    @FXML private TextField textField;
+    @FXML
+    private TextField textField;
+
+    @FXML
+    private ImageView imageCeshi;
 
     public CustomControl() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("custom_control.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-        
+
         try {
             fxmlLoader.load();            
         } catch (IOException exception) {
@@ -72,6 +78,8 @@ public class CustomControl extends VBox {
         
     @FXML
     protected void doSomething() {
+        Image image = new Image("@../../images/LoginBG.png");
+        imageCeshi.setImage(image);
         System.out.println("The button was clicked!");
     }
 }

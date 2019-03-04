@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- 
 /*
  * Copyright (c) 2011, 2014 Oracle and/or its affiliates.
@@ -32,12 +33,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 -->
- 
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml"> 
-    <TextField fx:id="textField"/>
-    <Button text="Click Me" onAction="#doSomething"/>
+<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"> 
+    <TextField fx:id="textField" />
+    <Button onAction="#doSomething" text="Click Me" />
+   <children>
+      <ImageView fx:id="imageCeshi" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/LoginBG.jpg" />
+         </image></ImageView>
+   </children>
 </fx:root>
