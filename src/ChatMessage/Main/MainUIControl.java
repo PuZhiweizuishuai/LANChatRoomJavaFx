@@ -166,18 +166,6 @@ public class MainUIControl implements Initializable {
         closeButton.setLayoutY(buttonHight);
         minimizeButton.setLayoutY(buttonHight);
 
-/*
-        Label label = new Label("ITEM");
-        label.setId("TestLable");
-        label.setTextFill(Paint.valueOf("blue"));
-        label.getStyleClass().add("MainCss");
-
-        contactsList.getItems().add(label);
-        for(int i = 0; i < 20; i++) {
-            contactsList.getItems().add(new Label("Item  " + i));
-        }
-        contactsList.expandedProperty().set(true);
-    */
         UserListUI groupChat = new UserListUI();
         groupChat.setNameLabel("    群聊");
         groupChat.setHeadImageView("@../../images/GroupChat.png");
@@ -194,18 +182,17 @@ public class MainUIControl implements Initializable {
      * */
     @FXML
     private void sendMessages(ActionEvent event) {
-        System.out.println(inputText.getText());
-        OtherChatBox otherChatBox = new OtherChatBox();
-        otherChatBox.setMessage(inputText.getText());
+        if(inputText.getText().equals("")) {
+            System.out.println("未输入任何内容！");
+        }else {
+            System.out.println(inputText.getText());
+            OtherChatBox otherChatBox = new OtherChatBox();
+            otherChatBox.setMessage(inputText.getText());
 
-        otherChatBox.setHeadImageView("@../../images/508035880.jpg");
-        chatBoxList.getItems().add(otherChatBox);
-        inputText.setText("");
-        /*UserListUI groupChat = new UserListUI();
-        groupChat.setNameLabel("    群聊");
-        groupChat.setHeadImageView("@../../images/GroupChat.png");
-        chatBoxList.getItems().add(groupChat);*/
-
+            otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+            chatBoxList.getItems().add(otherChatBox);
+            inputText.setText("");
+        }
         /*try {
             socket = new Socket("10.6.49.224",9999);
             OutputStream outPut = socket.getOutputStream();

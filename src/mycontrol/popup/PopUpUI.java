@@ -38,7 +38,10 @@ public class PopUpUI extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PopUpUI.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle(title);
-        Scene scene = new Scene(root, sceneSize.width * 0.2, sceneSize.height * 0.2);
+        double width = sceneSize.height * 0.2;
+        if(width <= 180)
+            width = sceneSize.width * 0.25;
+        Scene scene = new Scene(root, width, sceneSize.height * 0.2);
         primaryStage.setScene(scene);
         // 设置界面一直在最上面显示
         primaryStage.setAlwaysOnTop(true);
