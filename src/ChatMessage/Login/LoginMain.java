@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -25,6 +26,7 @@ public class LoginMain extends Application {
         primaryStage.setResizable(false);
         // 窗口移动
         DragUtil.addDragListener(primaryStage, root);
+        primaryStage.getIcons().add(new Image("@../../images/Icon.png"));
         primaryStage.show();
     }
 

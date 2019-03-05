@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
@@ -11,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -108,6 +111,12 @@ public class MainUIControl implements Initializable {
     @FXML
     private ListView chatBoxList;
 
+    @FXML
+    private Label nameLabelTop;
+
+    @FXML
+    private ImageView headImageTop;
+
     /**
      * 时间
      * */
@@ -139,6 +148,7 @@ public class MainUIControl implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        //setContactsList();
         // 外部界面大小
         rootPane.setPrefWidth(sceneWidth);
         rootPane.setPrefHeight(sceneHeight);
@@ -171,8 +181,14 @@ public class MainUIControl implements Initializable {
         showMessagesCentreCol.setPrefWidth(inputSceneWidth * 0.95);
         showMessagesRightCol.setPrefWidth(inputSceneWidth * 0.025);
 
-        // 按钮
         double buttonHight = (sceneHeight * 0.1) / 2 - 25;
+        nameLabelTop.setText("群聊中：");
+        headImageTop.setLayoutY(buttonHight - 5);
+        headImageTop.setFitWidth(60);
+        headImageTop.setFitHeight(60);
+        headImageTop.setImage(new Image("@../../images/GroupChat.png"));
+
+        // 按钮
         closeButton.setLayoutY(buttonHight);
         minimizeButton.setLayoutY(buttonHight);
 
@@ -314,6 +330,35 @@ public class MainUIControl implements Initializable {
         }
 
         return time;
+    }
+
+
+    /**
+     * 点击联系人后的事件
+     * 以下两个都可以用
+     * */
+    public void setContactsList() {
+        contactsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                UserListUI userListUI = (UserListUI) contactsList.getSelectionModel().getSelectedItem();
+                System.out.println(userListUI.getName());
+            }
+        });
+    }
+
+
+    public void handleMouseClickContactsList(MouseEvent arg0) {
+        //TODO
+        // 代补充聊天记录方法
+        UserListUI userListUI = (UserListUI) contactsList.getSelectionModel().getSelectedItem();
+        if(userListUI.getName().equals("    群聊")) {
+            nameLabelTop.setText("群聊中：");
+        } else {
+            nameLabelTop.setText("与" + userListUI.getName() + "  聊天中！");
+        }
+
+        headImageTop.setImage(new Image(userListUI.getImagePath()));
     }
 
 }

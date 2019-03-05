@@ -25,7 +25,7 @@
         </rowConstraints>
          <children>
             <Pane fx:id="ceshiyixai" style="-fx-background-color: #7f7cf8;" GridPane.rowIndex="2" />
-            <GridPane style="-fx-background-color: #f5f5f5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <GridPane style="-fx-background-color: e8e6e7;" GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columnConstraints>
                   <ColumnConstraints fx:id="inputChatLeftCol" hgrow="SOMETIMES" prefWidth="52.0" />
                 <ColumnConstraints fx:id="inputChatCentreCol" hgrow="SOMETIMES" prefWidth="739.0" />
@@ -56,10 +56,10 @@
                            </cursor></TextArea>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.columnIndex="1" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e8e6e7;" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <AnchorPane prefHeight="100.0" prefWidth="832.0" style="-fx-background-color: blue;" GridPane.columnIndex="1">
+            <AnchorPane prefHeight="100.0" prefWidth="832.0" style="-fx-background-color: e8e6e7;" GridPane.columnIndex="1">
                <children>
                   <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="753.0" layoutY="25.0" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="20.0">
                      <font>
@@ -77,9 +77,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
+                  <ImageView fx:id="headImageTop" fitHeight="90.0" fitWidth="91.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" />
+                  <Label fx:id="nameLabelTop" layoutX="131.0" layoutY="40.0" text="Label" AnchorPane.leftAnchor="100.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <JFXListView fx:id="contactsList" depth="10" styleClass="custom-jfx-list-view1" GridPane.rowIndex="1">
+            <JFXListView fx:id="contactsList" depth="10" onMouseClicked="#handleMouseClickContactsList" styleClass="custom-jfx-list-view1" GridPane.rowIndex="1">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXListView>

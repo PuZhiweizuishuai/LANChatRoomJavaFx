@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -32,6 +33,7 @@ public class SignUp extends Application {
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         DragUtil.addDragListener(primaryStage, root);
+        primaryStage.getIcons().add(new Image("@../../images/Icon.png"));
         primaryStage.show();
     }
 

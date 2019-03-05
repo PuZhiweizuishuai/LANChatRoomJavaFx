@@ -17,6 +17,8 @@ public class UserListUI extends FlowPane {
     @FXML
     private ImageView headImageView;
 
+    private String imagePath;
+
     public UserListUI() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserListUI.fxml"));
         fxmlLoader.setRoot(this);
@@ -38,11 +40,17 @@ public class UserListUI extends FlowPane {
 
 
     public void setHeadImageView(String imagePath) {
+        this.imagePath = imagePath;
         Image image = new Image(imagePath);
         headImageView.setImage(image);
     }
 
     public String getName() {
         return nameLabel.getText();
+    }
+
+
+    public String getImagePath() {
+        return imagePath;
     }
 }
