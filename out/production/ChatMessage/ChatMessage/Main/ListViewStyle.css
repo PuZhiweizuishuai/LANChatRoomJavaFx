@@ -28,7 +28,7 @@
 }
 
 #onlineUsersHbox {
-    -fx-border-color: #d5d5d5;
+    -fx-border-color:  #d5d5d5;
     -fx-border-width: 1px;
     -fx-padding: 0.2;
     -fx-spacing: -2;

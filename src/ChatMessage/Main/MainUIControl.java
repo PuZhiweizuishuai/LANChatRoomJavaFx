@@ -286,6 +286,7 @@ public class MainUIControl implements Initializable {
             }
             OtherChatBox otherChatBox = new OtherChatBox();
             otherChatBox.setMessage(otherMessage);
+            otherChatBox.setNameLabel("puzhiwei");
             otherChatBox.setHeightAndWidth(height, width);
             otherChatBox.setHeadImageView("@../../images/508035880.jpg");
             chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
