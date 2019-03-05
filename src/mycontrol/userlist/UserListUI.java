@@ -41,4 +41,8 @@ public class UserListUI extends FlowPane {
         Image image = new Image(imagePath);
         headImageView.setImage(image);
     }
+
+    public String getName() {
+        return nameLabel.getText();
+    }
 }

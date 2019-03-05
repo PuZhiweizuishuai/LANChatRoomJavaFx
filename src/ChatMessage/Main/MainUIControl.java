@@ -2,6 +2,7 @@ package ChatMessage.Main;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,8 +17,12 @@ import java.awt.Toolkit;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mycontrol.chatbox.MyChatBox;
 import mycontrol.chatbox.OtherChatBox;
@@ -102,6 +107,11 @@ public class MainUIControl implements Initializable {
 
     @FXML
     private ListView chatBoxList;
+
+    /**
+     * 时间
+     * */
+    private  Date lastTime;
 
     /**
      * 左侧联系人
@@ -218,6 +228,7 @@ public class MainUIControl implements Initializable {
      * 显示我发出的消息
      * */
     public void showMyMessage() {
+        getTime();
         // double inputSceneWidth = sceneWidth * 0.65 * 0.95;
         String myMessage = inputText.getText();
         if (myMessage.equals("")) {
@@ -253,6 +264,7 @@ public class MainUIControl implements Initializable {
      * 显示收到的消息
      * */
     public void showOtherMessage() {
+        getTime();
         String otherMessage = inputText.getText();
         if (otherMessage.equals("")) {
             System.out.println("未输入任何内容！");
@@ -280,6 +292,27 @@ public class MainUIControl implements Initializable {
             chatBoxList.getItems().add(otherChatBox);
             inputText.setText("");
         }
+    }
+
+    /**
+     * 获取当前时间,并显示在聊天界面
+     * */
+    public String getTime() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String time = df.format(date);
+        System.out.println(time);
+        System.out.println(date.getTime());
+        if(lastTime == null || date.getTime() - lastTime.getTime() > 180000) {
+            Label timeLabel = new Label(time);
+            timeLabel.setFont(new Font("Microsoft YaHei",15));
+
+            chatBoxList.getItems().add(timeLabel);
+            lastTime = date;
+            return time;
+        }
+
+        return time;
     }
 
 }
