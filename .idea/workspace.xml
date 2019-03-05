@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/Main/MainUIControl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/Login/LoginMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Login/LoginMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/Main/MainUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Main/MainUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/SignUp/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/SignUp/SignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mycontrol/popup/PopUpUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mycontrol/popup/PopUpUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mycontrol/userlist/UserListUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mycontrol/userlist/UserListUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java_5_1_47_bin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatMessage.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ChatMessage.iml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -217,8 +212,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ChatMessage/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+            <state relative-caret-position="319">
+              <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -325,8 +320,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -339,39 +334,6 @@
               <item name="ChatMessage" type="b2602c69:ProjectViewProjectNode" />
               <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChatMessage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChatMessage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChatMessage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="Main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChatMessage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mycontrol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChatMessage" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mycontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="popup" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -391,7 +353,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551766107315" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files/Oracle/JavaFX Scene Builder 2.0/JavaFX Scene Builder 2.0.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/lib/mysql-connector-java-5.1.47-bin.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -601,11 +563,12 @@
       <workItem from="1551673028776" duration="1220000" />
       <workItem from="1551711810082" duration="5087000" />
       <workItem from="1551783390225" duration="4915000" />
+      <workItem from="1551788711785" duration="64000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65134000" />
+    <option name="totallyTimeSpent" value="65198000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -633,7 +596,7 @@
       <window_info anchor="bottom" id="Terminal" order="15" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22395833" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22395833" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info id="Learn" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -658,38 +621,38 @@
     <layout-to-restore>
       <window_info anchor="bottom" id="Application Servers" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26010782" />
+      <window_info id="Learn" order="7" />
       <window_info id="Image Layers" order="3" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26010782" />
       <window_info anchor="right" id="JetGradle" order="4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Profiler" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Changes" order="9" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.2574124" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.22172236" />
-      <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Problems" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Terminal" order="15" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32884097" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info id="Learn" order="7" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.2574124" />
+      <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.31130877" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" weight="0.3296875" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32884097" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39892185" />
     </layout-to-restore>
   </component>
@@ -708,6 +671,13 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/ChatMessage/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6360">
@@ -973,8 +943,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatMessage/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="39" column="73" selection-start-line="39" selection-start-column="73" selection-end-line="39" selection-end-column="73" />
+        <state relative-caret-position="319">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -989,7 +959,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1045,7 +1014,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>jfoenix-8.0.8</last-edited>
+          <last-edited>mysql-connector-java-5.1.47-bin</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
