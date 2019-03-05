@@ -2,6 +2,7 @@ package ChatMessage.Main;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
@@ -107,9 +108,6 @@ public class MainUIControl implements Initializable {
      */
     @FXML
     private JFXListView contactsList;
-
-    @FXML
-    private Pane ceshiyixai;
 
 
     /**
@@ -227,16 +225,18 @@ public class MainUIControl implements Initializable {
         } else {
             int length = myMessage.length();
             int width;
-            if (length <= 23) {
-                width = 25 * length;
+            if (length <= 2){
+                width = 28*3;
+            } else if (length <= 28 && length > 2) {
+                width = 28 * length;
             } else {
                 width = 600;
             }
             int height;
-            if (((length / 23) + 1) > 3) {
-                height = ((length / 23) + 1) * 25;
+            if (((length / 28) + 1) >= 3) {
+                height = ((length / 28) + 1) * 35;
             } else {
-                height = ((length / 23) + 1) * 40;
+                height = ((length / 28) + 1) * 40;
             }
             System.out.println( length + "       " +((length / 23) + 1));
             MyChatBox myChatBox = new MyChatBox();
@@ -259,16 +259,18 @@ public class MainUIControl implements Initializable {
         } else {
             int length = otherMessage.length();
             int width;
-            if (length <= 23) {
-                width = 25 * length;
+            if(length <= 2) {
+                width = 3*28;
+            }else if (length <= 28 && length > 2) {
+                width = 28 * length;
             } else {
                 width = 600;
             }
             int height;
-            if (((length / 23) + 1) >= 3) {
-                height = ((length / 23) + 1) * 25;
+            if (((length / 28) + 1) >= 3) {
+                height = ((length / 28) + 1) * 35;
             } else {
-                height = ((length / 23) + 1) * 45;
+                height = ((length / 28) + 1) * 40;
             }
             OtherChatBox otherChatBox = new OtherChatBox();
             otherChatBox.setMessage(otherMessage);

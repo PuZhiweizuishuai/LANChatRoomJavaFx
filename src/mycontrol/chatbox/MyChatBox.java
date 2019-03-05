@@ -3,6 +3,7 @@ package mycontrol.chatbox;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
@@ -69,6 +70,8 @@ public class MyChatBox extends HBox implements Initializable {
         textArea.setEditable(false);
         textArea.setId("MyChatBox");
         textArea.setWrapText(true);
+        textArea.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
+        textArea.setScrollTop(0);
         myMessage.getChildren().add(textArea);
     }
 
