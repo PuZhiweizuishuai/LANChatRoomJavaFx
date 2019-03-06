@@ -32,6 +32,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import mycontrol.chatbox.MyChatBox;
 import mycontrol.chatbox.OtherChatBox;
+import mycontrol.popup.PopUpUI;
 import mycontrol.userlist.UserListUI;
 
 
@@ -212,8 +213,9 @@ public class MainUIControl implements Initializable {
      */
     @FXML
     private void sendMessages(ActionEvent event) {
-        showMyMessage();
-        sendMessageToServer();
+        if(sendMessageToServer()){
+            showMyMessage();
+        }
     }
 
 
@@ -232,12 +234,12 @@ public class MainUIControl implements Initializable {
      * 显示我发出的消息
      * */
     public void showMyMessage() {
-        getTime();
         // double inputSceneWidth = sceneWidth * 0.65 * 0.95;
         String myMessage = inputText.getText();
         if (myMessage.equals("")) {
             System.out.println("未输入任何内容！");
         } else {
+            getTime();
             int length = myMessage.length();
             int width;
             if (length <= 2){
@@ -260,7 +262,6 @@ public class MainUIControl implements Initializable {
             myChatBox.setHeadImageView("@../../images/508035880.jpg");
             chatBoxList.setNodeOrientation(NodeOrientation.valueOf("RIGHT_TO_LEFT"));
             chatBoxList.getItems().add(myChatBox);
-            //inputText.setText("");
         }
     }
 
@@ -351,7 +352,11 @@ public class MainUIControl implements Initializable {
     /**
      * 发送消息
      * */
-    public void sendMessageToServer() {
+    public boolean sendMessageToServer() {
+        if (inputText.getText().equals("")) {
+            System.out.println("未输入任何内容！");
+            return false;
+        }
         try {
             socket = new Socket();
             // 防止超时
@@ -370,8 +375,11 @@ public class MainUIControl implements Initializable {
             //dataOutputStream.close();
             dataInputStream.close();
             socket.close();
+            return true;
         } catch(Exception e) {
+            new PopUpUI("错误","服务器异常，消息发送失败！");
             e.printStackTrace();
+            return false;
         }
     }
 }

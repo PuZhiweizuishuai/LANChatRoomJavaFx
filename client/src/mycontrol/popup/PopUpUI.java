@@ -39,8 +39,9 @@ public class PopUpUI extends Application {
         Parent root = fxmlLoader.load();
         primaryStage.setTitle(title);
         double width = sceneSize.width * 0.2;
-        if(width <= 180)
+        if(width <= 320)
             width = sceneSize.width * 0.25;
+        // System.out.println(width);
         Scene scene = new Scene(root, width, sceneSize.height * 0.2);
         primaryStage.setScene(scene);
         // 设置界面一直在最上面显示
