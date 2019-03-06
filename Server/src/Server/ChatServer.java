@@ -11,7 +11,6 @@ import ChatMessage.user.Message;
  * @author Pu Zhiwei
  * */
 public class ChatServer {
-
     private static HashMap<String, Socket> socketsfromUserName = new HashMap<>();
     /**
      * 启动监听服务
@@ -63,8 +62,6 @@ public class ChatServer {
                     //读取客户端消息
                     String revString = message.getMessage();
                     if(revString != null) {
-                        //System.out.println("收到消息");
-                        //System.out.println(message.getTYPE());
                         switch (message.getTYPE()) {
                             case CONNECT:
                                 checkConnect(message);
@@ -100,11 +97,13 @@ public class ChatServer {
                 //TODO
             } else {
                 for(Socket socket : socketsfromUserName.values()) {
-                    outPut =new ObjectOutputStream(socket.getOutputStream());
-                    ((ObjectOutputStream) outPut).writeObject(message);
+                    // outPut =new ObjectOutputStream(socket.getOutputStream());
+                    // ((ObjectOutputStream) outPut).writeObject(message);
+                    System.out.println(socket + "  " + message.getMessage());
+                    System.out.println("数据发送成功！");
                 }
             }
-            System.out.println("数据发送成功！");
+
         }
 
         /**
@@ -114,7 +113,7 @@ public class ChatServer {
         private void checkConnect(Message message) throws IOException{
             String username = message.getName();
 
-            if(socketsfromUserName.containsKey(username)) {
+            if(!socketsfromUserName.containsKey(username)) {
                 socketsfromUserName.put(username, s);
                 System.out.println(username);
             }

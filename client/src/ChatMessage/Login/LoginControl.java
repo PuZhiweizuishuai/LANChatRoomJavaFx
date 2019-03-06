@@ -2,6 +2,7 @@ package ChatMessage.Login;
 
 import ChatMessage.Main.Main;
 import ChatMessage.SignUp.SignUp;
+import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
 import javafx.event.ActionEvent;
 
@@ -24,6 +25,10 @@ import mycontrol.popup.PopUpUI;
  * @author Pu Zhiwei
  * */
 public class LoginControl implements Initializable {
+    private static LoginControl instance;
+
+    Communication comm;
+
     @FXML
     private AnchorPane rootBox;
 
@@ -33,6 +38,16 @@ public class LoginControl implements Initializable {
     @FXML
     private  PasswordField userPassword;
 
+    /**
+     * 为了获取 loginControl 对象
+     * */
+    public LoginControl() {
+        instance = this;
+    }
+
+    public static LoginControl getInstance() {
+        return instance;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {

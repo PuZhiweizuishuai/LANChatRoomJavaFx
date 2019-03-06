@@ -1,6 +1,7 @@
 package ChatMessage.user;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  * 封装的消息类
@@ -12,6 +13,7 @@ public class Message implements Serializable {
     private String message;
     private String to;
     private String password;
+    private LinkedList<String> userList;
     public Message(String name, String message, MessageType TYPE) {
         this.name = name;
         this.message = message;
@@ -39,5 +41,13 @@ public class Message implements Serializable {
     }
     public MessageType getTYPE() {
         return TYPE;
+    }
+
+    public LinkedList<String> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(LinkedList<String> userList) {
+        this.userList = userList;
     }
 }

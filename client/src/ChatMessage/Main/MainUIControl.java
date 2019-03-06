@@ -1,5 +1,6 @@
 package ChatMessage.Main;
 
+import ChatMessage.communication.Communication;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.SaveUser;
@@ -17,6 +18,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import java.awt.Dimension;
@@ -42,6 +45,16 @@ import mycontrol.userlist.UserListUI;
  * @author PuZhiwei
  * */
 public class MainUIControl implements Initializable {
+    /**
+     * MainUIControl 对象
+     * */
+    private static MainUIControl instance;
+
+    /**
+     * 通信基类对象
+     * */
+    private Communication comm;
+
     /**
      * 按钮
      */
@@ -134,6 +147,19 @@ public class MainUIControl implements Initializable {
     @FXML
     private JFXListView contactsList;
 
+    /**
+     * 右侧信息
+     * */
+    @FXML
+    private ImageView lefttMyHead;
+    @FXML
+    private Label leftNameLabel;
+
+    /**
+     * 个人信息
+     * */
+    private String headImagePath;
+    private String userName;
 
     /**
      * socket网络发送消息
@@ -149,12 +175,35 @@ public class MainUIControl implements Initializable {
     private Dimension sceneSize = Toolkit.getDefaultToolkit().getScreenSize();
     private double sceneWidth = sceneSize.width * 0.8;
     private double sceneHeight = sceneSize.height * 0.8;
+
+    /**
+     * 获取 LoginControl 对象
+     * */
+    public MainUIControl() {
+        instance = this;
+    }
+
+    /**
+     * 获得 MainUIControl 对象
+     * */
+    public static MainUIControl getInstance() {
+        return instance;
+    }
+
+
+    /**
+     * 注册通信线程对象
+     * */
+    public void setConnection(Communication comm) {
+        this.comm = comm;
+    }
+
+
     /**
      * 初始化
      */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
-        //setContactsList();
         // 外部界面大小
         rootPane.setPrefWidth(sceneWidth);
         rootPane.setPrefHeight(sceneHeight);
@@ -208,10 +257,14 @@ public class MainUIControl implements Initializable {
             userListUI.setHeadImageView("@../../images/508035880.jpg");
             contactsList.getItems().add(userListUI);
         }
+
+        lefttMyHead.setImage(new Image("@../../images/508035880.jpg"));
+        leftNameLabel.setText(SaveUser.getLoginUserName());
     }
 
     /**
      * 向服务器发送消息
+     * 鼠标事件
      */
     @FXML
     private void sendMessages(ActionEvent event) {
@@ -220,6 +273,17 @@ public class MainUIControl implements Initializable {
         }
     }
 
+    /**
+     * 发送消息快捷键
+     * */
+    @FXML
+    public void sendMethod(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            if(sendMessageToServer()){
+                showMyMessage();
+            }
+        }
+    }
 
     @FXML
     private void close() {
@@ -236,7 +300,6 @@ public class MainUIControl implements Initializable {
      * 显示我发出的消息
      * */
     public void showMyMessage() {
-        // double inputSceneWidth = sceneWidth * 0.65 * 0.95;
         String myMessage = inputText.getText();
         if (myMessage.equals("")) {
             System.out.println("未输入任何内容！");
@@ -264,6 +327,7 @@ public class MainUIControl implements Initializable {
             myChatBox.setHeadImageView("@../../images/508035880.jpg");
             chatBoxList.setNodeOrientation(NodeOrientation.valueOf("RIGHT_TO_LEFT"));
             chatBoxList.getItems().add(myChatBox);
+            inputText.setText("");
         }
     }
 
@@ -354,7 +418,7 @@ public class MainUIControl implements Initializable {
     /**
      * 发送消息
      * */
-    public boolean sendMessageToServer() {
+    private boolean sendMessageToServer() {
         if (inputText.getText().equals("")) {
             System.out.println("未输入任何内容！");
             return false;
@@ -371,10 +435,7 @@ public class MainUIControl implements Initializable {
             dataInputStream = new DataInputStream(input);
             Message message = new Message(SaveUser.getLoginUserName(), inputText.getText(), MessageType.MSG);
             ((ObjectOutputStream) outPut).writeObject(message);
-            //dataOutputStream.writeUTF(inputText.getText());
             socket.getOutputStream().flush();
-            inputText.setText("");
-            //dataOutputStream.close();
             dataInputStream.close();
             socket.close();
             return true;

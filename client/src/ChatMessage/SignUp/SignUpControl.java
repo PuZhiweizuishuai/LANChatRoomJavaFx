@@ -1,6 +1,7 @@
 package ChatMessage.SignUp;
 
 import ChatMessage.Login.LoginMain;
+import ChatMessage.communication.Communication;
 import ChatMessage.user.SaveUser;
 import ChatMessage.user.UserInformation;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import mycontrol.popup.PopUpUI;
 
 
 public class SignUpControl {
+    private static SignUpControl instance;
+    Communication comm;
     @FXML
     private AnchorPane signInStage;
 
@@ -23,6 +26,14 @@ public class SignUpControl {
 
     @FXML
     private TextField userPassword;
+
+    public SignUpControl() {
+        instance = this;
+    }
+
+    public static SignUpControl getInstance() {
+        return instance;
+    }
 
     @FXML
     public void clickSignInButtion(ActionEvent event) {
