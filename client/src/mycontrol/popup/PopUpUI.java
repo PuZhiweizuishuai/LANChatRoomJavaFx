@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.awt.Dimension;
@@ -41,7 +42,6 @@ public class PopUpUI extends Application {
         double width = sceneSize.width * 0.2;
         if(width <= 320)
             width = sceneSize.width * 0.25;
-        // System.out.println(width);
         Scene scene = new Scene(root, width, sceneSize.height * 0.2);
         primaryStage.setScene(scene);
         // 设置界面一直在最上面显示
@@ -49,6 +49,7 @@ public class PopUpUI extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         PopUpUIControl popUpUIControl = fxmlLoader.getController();
         popUpUIControl.setText(title, text);
+        primaryStage.getIcons().add(new Image("@../../images/Icon.png"));
         primaryStage.show();
     }
 

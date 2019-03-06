@@ -26,13 +26,6 @@ public class ChatServer {
                 System.out.println(socket);
                 // 每当客户端连接后启动一条ServerThread线程为该客户端服务
                 new Thread(new ServerThread(socket)).start();
-                //ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-                /*try {
-                    Message message = (Message)ois.readObject();
-                    System.out.println("用户："+message.getName() +"    发送消息："+ message.getMessage());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -40,11 +33,19 @@ public class ChatServer {
     }
 
     public static class ServerThread implements Runnable {
-        //定义当前线程所处理的Socket
+        /**
+         * 定义当前线程所处理的Socket
+         * */
         private Socket s = null;
-        //该xiancheng所处理的Socket所对应的输入流
+
+        /**
+         * 输出流
+         * */
         private ObjectInputStream ois = null;
 
+        /**
+         * 消息记录
+         * */
         private Message message = null;
         public ServerThread(Socket s) throws Exception {
             this.s = s;
@@ -114,7 +115,6 @@ public class ChatServer {
             String username = message.getName();
 
             if(socketsfromUserName.containsKey(username)) {
-                System.out.println("nimabi");
                 socketsfromUserName.put(username, s);
                 System.out.println(username);
             }

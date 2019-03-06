@@ -64,13 +64,14 @@ public class LoginControl implements Initializable {
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
-            Main main = new Main();
-            try {
-                Stage thisStage = (Stage) rootBox.getScene().getWindow();
-                thisStage.close();
-                sendLoginMessage();
-            } catch (Exception e) {
-                e.printStackTrace();
+            if(sendLoginMessage()) {
+                Main main = new Main();
+                try {
+                    Stage thisStage = (Stage) rootBox.getScene().getWindow();
+                    thisStage.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             new PopUpUI("提示:", "请输入用户名和密码!");
@@ -112,14 +113,21 @@ public class LoginControl implements Initializable {
         stage.setIconified(true);
     }
 
-    private void sendLoginMessage() throws Exception{
-        Socket socket = socket = new Socket();
-        // 防止超时
-        socket.connect(new InetSocketAddress(ServerIP.IP,ServerIP.port), ServerIP.timeout);
-        // 发送
-        OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
-        Message message = new Message(SaveUser.getLoginUserName(), "", MessageType.CONNECT);
-        message.setPassword(userPassword.getText());
-        ((ObjectOutputStream) outPut).writeObject(message);
+    private boolean sendLoginMessage() {
+        try {
+            Socket socket = new Socket();
+            // 防止超时
+            socket.connect(new InetSocketAddress(ServerIP.IP,ServerIP.port), ServerIP.timeout);
+            // 发送
+            OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
+            Message message = new Message(SaveUser.getLoginUserName(), "", MessageType.CONNECT);
+            message.setPassword(userPassword.getText());
+            ((ObjectOutputStream) outPut).writeObject(message);
+            return true;
+        } catch (Exception e) {
+            new PopUpUI("提示", "暂时无法连接到服务器，请稍后再试！");
+            return false;
+        }
+
     }
 }
