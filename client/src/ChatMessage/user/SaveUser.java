@@ -1,7 +1,11 @@
 package ChatMessage.user;
+import jdk.nashorn.internal.ir.ReturnNode;
+
 import java.io.*;
+import java.rmi.server.ExportException;
 
 public class SaveUser {
+    private static String userName;
     /**
      * 对象序列化，保存用户信息
      * */
@@ -27,5 +31,17 @@ public class SaveUser {
         ois.close();
         in.close();
         return c;
+    }
+
+
+    /**
+     * 记录登录用户名
+     * */
+    public static void saveLoginUserName(String name) {
+        userName = name;
+    }
+
+    public static String getLoginUserName() {
+        return  userName;
     }
 }

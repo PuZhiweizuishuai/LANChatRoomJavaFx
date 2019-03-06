@@ -59,6 +59,7 @@ public class LoginControl implements Initializable {
         String name = userName.getText();
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
+            SaveUser.saveLoginUserName(name);
             Main main = new Main();
             try {
                 Stage thisStage = (Stage) rootBox.getScene().getWindow();

@@ -1,6 +1,8 @@
 package ChatMessage.Login;
 
 import ChatMessage.Main.MainUIControl;
+import ChatMessage.user.SaveUser;
+import ChatMessage.user.UserInformation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +30,7 @@ public class LoginMain extends Application {
         DragUtil.addDragListener(primaryStage, root);
         primaryStage.getIcons().add(new Image("@../../images/Icon.png"));
         primaryStage.show();
+        // SaveUser.userSerialize(new UserInformation("","",""));
     }
 
 

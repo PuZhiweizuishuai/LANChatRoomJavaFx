@@ -1,5 +1,7 @@
 package ChatMessage.Main;
 
+import ChatMessage.user.Message;
+import ChatMessage.user.SaveUser;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +20,7 @@ import javafx.scene.layout.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -210,22 +213,8 @@ public class MainUIControl implements Initializable {
     @FXML
     private void sendMessages(ActionEvent event) {
         showMyMessage();
-        showOtherMessage();
-        /*try {
-            socket = new Socket("10.6.49.224",9999);
-            OutputStream outPut = socket.getOutputStream();
-            InputStream input = socket.getInputStream();
-            dataOutputStream = new DataOutputStream(outPut);
-            dataInputStream = new DataInputStream(input);
-            dataOutputStream.writeUTF(inputText.getText());
-            System.out.println(inputText.getText());
-            inputText.setText("");
-            dataOutputStream.close();
-            dataInputStream.close();
-            socket.close();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }*/
+
+
     }
 
 
@@ -318,17 +307,13 @@ public class MainUIControl implements Initializable {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String time = df.format(date);
-        System.out.println(time);
-        System.out.println(date.getTime());
         if(lastTime == null || date.getTime() - lastTime.getTime() > 180000) {
             Label timeLabel = new Label(time);
             timeLabel.setFont(new Font("Microsoft YaHei",15));
-
             chatBoxList.getItems().add(timeLabel);
             lastTime = date;
             return time;
         }
-
         return time;
     }
 
@@ -347,7 +332,9 @@ public class MainUIControl implements Initializable {
         });
     }
 
-
+    /**
+     * 切换联系人
+     * */
     public void handleMouseClickContactsList(MouseEvent arg0) {
         //TODO
         // 代补充聊天记录方法
@@ -361,4 +348,28 @@ public class MainUIControl implements Initializable {
         headImageTop.setImage(new Image(userListUI.getImagePath()));
     }
 
+
+    /**
+     * 发送消息
+     * */
+    public void sendMessage() {
+        try {
+            socket = new Socket();
+            // 防止超时
+            socket.connect(new InetSocketAddress("127.0.0.1",9999), 10000);
+            OutputStream outPut = socket.getOutputStream();
+            InputStream input = socket.getInputStream();
+            dataOutputStream = new DataOutputStream(outPut);
+            dataInputStream = new DataInputStream(input);
+            //Message message = new Message(SaveUser.getLoginUserName(), inputText.getText());
+
+            dataOutputStream.writeUTF(inputText.getText());
+            inputText.setText("");
+            dataOutputStream.close();
+            dataInputStream.close();
+            socket.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
