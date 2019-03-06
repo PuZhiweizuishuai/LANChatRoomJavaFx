@@ -1,11 +1,10 @@
 package Server;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
-
+import ChatMessage.user.Message;
 /**
  * 服务端
  * @author Pu Zhiwei
@@ -22,11 +21,12 @@ public class ChatServer {
                 // 等待连接
                 Socket socket = server.accept();
                 System.out.println(socket);
-                InputStream inputStream = socket.getInputStream();
-                Scanner in = new Scanner(inputStream);
-                while (in.hasNext()) {
-                    String line = in.nextLine();
-                    System.out.println(line);
+                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+                try {
+                    Message message = (Message)ois.readObject();
+                    System.out.println("用户："+message.getName() +"    发送消息："+ message.getMessage());
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         } catch (IOException e) {

@@ -213,8 +213,7 @@ public class MainUIControl implements Initializable {
     @FXML
     private void sendMessages(ActionEvent event) {
         showMyMessage();
-
-
+        sendMessageToServer();
     }
 
 
@@ -352,20 +351,23 @@ public class MainUIControl implements Initializable {
     /**
      * 发送消息
      * */
-    public void sendMessage() {
+    public void sendMessageToServer() {
         try {
             socket = new Socket();
             // 防止超时
             socket.connect(new InetSocketAddress("127.0.0.1",9999), 10000);
-            OutputStream outPut = socket.getOutputStream();
+            // 发送
+            OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
+            // 接收
             InputStream input = socket.getInputStream();
-            dataOutputStream = new DataOutputStream(outPut);
+            //dataOutputStream = new DataOutputStream(outPut);
             dataInputStream = new DataInputStream(input);
-            //Message message = new Message(SaveUser.getLoginUserName(), inputText.getText());
-
-            dataOutputStream.writeUTF(inputText.getText());
+            Message message = new Message(SaveUser.getLoginUserName(), inputText.getText());
+            ((ObjectOutputStream) outPut).writeObject(message);
+            //dataOutputStream.writeUTF(inputText.getText());
+            socket.getOutputStream().flush();
             inputText.setText("");
-            dataOutputStream.close();
+            //dataOutputStream.close();
             dataInputStream.close();
             socket.close();
         } catch(Exception e) {

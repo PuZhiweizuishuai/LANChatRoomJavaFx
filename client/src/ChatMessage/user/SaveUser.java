@@ -1,11 +1,10 @@
 package ChatMessage.user;
-import jdk.nashorn.internal.ir.ReturnNode;
 
 import java.io.*;
-import java.rmi.server.ExportException;
+
 
 public class SaveUser {
-    private static String userName;
+    private static String userName = "";
     /**
      * 对象序列化，保存用户信息
      * */
