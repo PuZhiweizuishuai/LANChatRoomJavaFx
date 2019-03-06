@@ -8,12 +8,26 @@ import java.io.Serializable;
 public class Message implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
-
+    private MessageType TYPE;
     private String message;
-
-    public Message(String name, String message) {
+    private String to;
+    private String password;
+    public Message(String name, String message, MessageType TYPE) {
         this.name = name;
         this.message = message;
+        this.TYPE = TYPE;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setTo(String other) {
+        to = other;
     }
 
     public String getName() {
@@ -22,5 +36,8 @@ public class Message implements Serializable {
 
     public String getMessage() {
         return message;
+    }
+    public MessageType getTYPE() {
+        return TYPE;
     }
 }

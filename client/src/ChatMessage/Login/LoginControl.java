@@ -2,9 +2,13 @@ package ChatMessage.Login;
 
 import ChatMessage.Main.Main;
 import ChatMessage.SignUp.SignUp;
-import ChatMessage.user.SaveUser;
-import ChatMessage.user.UserInformation;
+import ChatMessage.user.*;
 import javafx.event.ActionEvent;
+
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -64,6 +68,7 @@ public class LoginControl implements Initializable {
             try {
                 Stage thisStage = (Stage) rootBox.getScene().getWindow();
                 thisStage.close();
+                sendLoginMessage();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -105,5 +110,16 @@ public class LoginControl implements Initializable {
         Stage stage = (Stage) rootBox.getScene().getWindow();
         // 最小化到任务栏
         stage.setIconified(true);
+    }
+
+    private void sendLoginMessage() throws Exception{
+        Socket socket = socket = new Socket();
+        // 防止超时
+        socket.connect(new InetSocketAddress(ServerIP.IP,ServerIP.port), ServerIP.timeout);
+        // 发送
+        OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
+        Message message = new Message(SaveUser.getLoginUserName(), "", MessageType.CONNECT);
+        message.setPassword(userPassword.getText());
+        ((ObjectOutputStream) outPut).writeObject(message);
     }
 }

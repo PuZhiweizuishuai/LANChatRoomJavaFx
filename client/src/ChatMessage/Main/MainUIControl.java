@@ -1,7 +1,9 @@
 package ChatMessage.Main;
 
 import ChatMessage.user.Message;
+import ChatMessage.user.MessageType;
 import ChatMessage.user.SaveUser;
+import ChatMessage.user.ServerIP;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.value.ObservableValue;
@@ -360,14 +362,14 @@ public class MainUIControl implements Initializable {
         try {
             socket = new Socket();
             // 防止超时
-            socket.connect(new InetSocketAddress("127.0.0.1",9999), 10000);
+            socket.connect(new InetSocketAddress(ServerIP.IP,ServerIP.port), ServerIP.timeout);
             // 发送
             OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
             // 接收
             InputStream input = socket.getInputStream();
             //dataOutputStream = new DataOutputStream(outPut);
             dataInputStream = new DataInputStream(input);
-            Message message = new Message(SaveUser.getLoginUserName(), inputText.getText());
+            Message message = new Message(SaveUser.getLoginUserName(), inputText.getText(), MessageType.MSG);
             ((ObjectOutputStream) outPut).writeObject(message);
             //dataOutputStream.writeUTF(inputText.getText());
             socket.getOutputStream().flush();
