@@ -90,7 +90,7 @@
                </cursor></JFXListView>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7f7cf8;">
                <children>
-                  <Label layoutX="26.0" layoutY="58.0" text="当前用户" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+                  <Label fx:id="nowUserNumber" layoutX="26.0" layoutY="58.0" text="当前用户" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                      <font>
                         <Font name="Microsoft YaHei Bold" size="25.0" />
                      </font>

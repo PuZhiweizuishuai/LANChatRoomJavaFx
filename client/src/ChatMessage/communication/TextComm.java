@@ -16,7 +16,7 @@ public class TextComm extends Communication implements Runnable {
     /**
      * 该线程所处理的输出流
      * */
-    private ObjectOutputStream outPut;
+    private ObjectOutputStream outPut = null;
     /**
      * 该线程处理的输入流
      * */
@@ -52,6 +52,9 @@ public class TextComm extends Communication implements Runnable {
                         case USERLIST:
                             mainUIControl.sendUserList(message.getUserList());
                             break;
+                        case MSG:
+                            mainUIControl.addOtherMessage(message);
+                            break;
                         default:
                             break;
                     }
@@ -64,11 +67,31 @@ public class TextComm extends Communication implements Runnable {
 
     @Override
     public void send(Message message) {
-
+        try {
+            outPut.writeObject(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void disconnect() {
-
+    public void destroy() {
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    if(outPut != null) {
+                        outPut.close();
+                        outPut = null;
+                    }
+                    if(ois != null) {
+                        ois.close();
+                        ois = null;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 }

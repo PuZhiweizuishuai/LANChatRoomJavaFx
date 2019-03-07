@@ -8,6 +8,7 @@ import ChatMessage.user.ServerIP;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,10 +30,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Observable;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -151,7 +150,17 @@ public class MainUIControl implements Initializable {
     @FXML
     private JFXListView contactsList;
 
+    /**
+     * 保存在线用户列表
+     * */
     private LinkedList<String> userList;
+
+    /**
+     * 保存个人的消息记录
+     * */
+    private HashMap<String, ListView> messageLog = new HashMap<>();
+
+    private String ChatObject = "群聊";
 
     /**
      * 右侧信息
@@ -254,7 +263,7 @@ public class MainUIControl implements Initializable {
         minimizeButton.setLayoutY(buttonHight);
 
         UserListUI groupChat = new UserListUI();
-        groupChat.setNameLabel("    群聊");
+        groupChat.setNameLabel("群聊");
         groupChat.setHeadImageView("@../../images/GroupChat.png");
         contactsList.getItems().add(groupChat);
 
@@ -268,9 +277,10 @@ public class MainUIControl implements Initializable {
      */
     @FXML
     private void sendMessages(ActionEvent event) {
-        if(sendMessageToServer()){
+        /*if(sendMessageToServer()){
             showMyMessage();
-        }
+        }*/
+        comm.sendMsg("wo","ni","text");
     }
 
     /**
@@ -300,6 +310,7 @@ public class MainUIControl implements Initializable {
      * 显示我发出的消息
      * */
     public void showMyMessage() {
+        getTime();
         String myMessage = inputText.getText();
         if (myMessage.equals("")) {
             System.out.println("未输入任何内容！");
@@ -334,35 +345,39 @@ public class MainUIControl implements Initializable {
     /**
      * 显示收到的消息
      * */
-    public void showOtherMessage() {
+    public void showOtherMessage(Message message) {
         getTime();
         String otherMessage = inputText.getText();
-        if (otherMessage.equals("")) {
-            System.out.println("未输入任何内容！");
+        int length = otherMessage.length();
+        int width;
+        if(length <= 2) {
+            width = 3*28;
+        } else if (length <= 28 && length > 2) {
+            width = 28 * length;
         } else {
-            int length = otherMessage.length();
-            int width;
-            if(length <= 2) {
-                width = 3*28;
-            }else if (length <= 28 && length > 2) {
-                width = 28 * length;
-            } else {
-                width = 600;
-            }
-            int height;
-            if (((length / 28) + 1) >= 3) {
-                height = ((length / 28) + 1) * 35;
-            } else {
-                height = ((length / 28) + 1) * 40;
-            }
-            OtherChatBox otherChatBox = new OtherChatBox();
-            otherChatBox.setMessage(otherMessage);
-            otherChatBox.setNameLabel("puzhiwei");
-            otherChatBox.setHeightAndWidth(height, width);
-            otherChatBox.setHeadImageView("@../../images/508035880.jpg");
-            chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
-            chatBoxList.getItems().add(otherChatBox);
-            inputText.setText("");
+            width = 600;
+        }
+        int height;
+        if (((length / 28) + 1) >= 3) {
+            height = ((length / 28) + 1) * 35;
+        } else {
+            height = ((length / 28) + 1) * 40;
+        }
+        OtherChatBox otherChatBox = new OtherChatBox();
+        otherChatBox.setMessage(message.getMessage());
+        otherChatBox.setNameLabel(message.getName());
+        otherChatBox.setHeightAndWidth(height, width);
+        otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+        chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
+        chatBoxList.getItems().add(otherChatBox);
+    }
+
+    /**
+     * 收到消息后设置消息提示并在点击用户名后显示相应的消息
+     * */
+    public void addOtherMessage(Message message) {
+        if(message.getName().equals(ChatObject)) {
+            showOtherMessage(message);
         }
     }
 
@@ -383,32 +398,27 @@ public class MainUIControl implements Initializable {
         return time;
     }
 
-
-    /**
-     * 点击联系人后的事件
-     * 以下两个都可以用
-     * */
-    public void setContactsList() {
-        contactsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                UserListUI userListUI = (UserListUI) contactsList.getSelectionModel().getSelectedItem();
-                System.out.println(userListUI.getName());
-            }
-        });
-    }
-
     /**
      * 切换联系人
      * */
     public void handleMouseClickContactsList(MouseEvent arg0) {
-        //TODO
-        // 代补充聊天记录方法
         UserListUI userListUI = (UserListUI) contactsList.getSelectionModel().getSelectedItem();
+        if(ChatObject.equals(userListUI.getName())) {
+            return;
+        }
+        // 保存当前用户聊天信息
+        ListView userListMessage = new ListView();
+        userListMessage.getItems().addAll(chatBoxList);
+        messageLog.put(ChatObject, userListMessage);
+        // 清除当前页面的消息
+        chatBoxList.getItems().clear();
         if(userListUI.getName().equals("    群聊")) {
             nameLabelTop.setText("群聊中：");
+            ChatObject = "群聊";
+
         } else {
             nameLabelTop.setText("与" + userListUI.getName() + "  聊天中！");
+            ChatObject = userListUI.getName();
             userListUI.closeMessageNumber();
         }
 

@@ -43,7 +43,7 @@ public abstract class Communication {
     /**
      * 断开物理连接，由子类具体实现
      * */
-    public void destory() {
+    public void destroy() {
         //TODO 待写入日志
     }
 

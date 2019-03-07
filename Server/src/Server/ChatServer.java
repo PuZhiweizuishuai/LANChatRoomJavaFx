@@ -17,7 +17,7 @@ public class ChatServer {
      * */
     public static void startServer() throws Exception{
         try {
-            ServerSocket server = new ServerSocket(9999);
+            ServerSocket server = new ServerSocket(999);
             while (true) {
                 System.out.println("accept之前");
                 // 造成阻塞,等待连接
