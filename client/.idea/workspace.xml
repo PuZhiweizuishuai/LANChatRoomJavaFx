@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/communication/TextComm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/communication/TextComm.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -315,8 +311,8 @@
       <file leaf-file-name="TextComm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ChatMessage/communication/TextComm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="727">
-              <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+            <state relative-caret-position="1032">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -551,28 +547,6 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="CustomControlExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mycontrol.test.CustomControlExample" />
-      <module name="ChatMessage" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mycontrol.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="ListViewSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mycontrol.kongjian.ListViewSample" />
-      <module name="ChatMessage" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mycontrol.kongjian.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChatMessage.Main.Main" />
       <module name="ChatMessage" />
@@ -602,17 +576,6 @@
       <method>
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="kongjian" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mycontrol.kongjian.kongjian" />
-      <module name="ChatMessage" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mycontrol.kongjian.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -681,19 +644,13 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.CustomControlExample" />
-      <item itemvalue="Application.kongjian" />
       <item itemvalue="Application.Main (1)" />
-      <item itemvalue="Application.ListViewSample" />
       <item itemvalue="Application.ChatServer" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.ChatServer" />
-        <item itemvalue="Application.ListViewSample" />
-        <item itemvalue="Application.kongjian" />
-        <item itemvalue="Application.CustomControlExample" />
       </list>
     </recent_temporary>
   </component>
@@ -720,12 +677,12 @@
       <workItem from="1551783390225" duration="4915000" />
       <workItem from="1551788711785" duration="64000" />
       <workItem from="1551874694423" duration="8511000" />
-      <workItem from="1551931952572" duration="1191000" />
+      <workItem from="1551931952572" duration="1529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74900000" />
+    <option name="totallyTimeSpent" value="75238000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -738,7 +695,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.31130877" />
@@ -1127,8 +1083,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatMessage/communication/TextComm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+        <state relative-caret-position="1032">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>
