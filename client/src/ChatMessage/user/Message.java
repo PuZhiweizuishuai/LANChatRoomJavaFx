@@ -14,6 +14,7 @@ public class Message implements Serializable {
     private String to;
     private String password;
     private String email;
+    private String headPicture;
     private LinkedList<String> userList;
     public Message(String name, String message, MessageType TYPE) {
         this.name = name;
@@ -62,5 +63,13 @@ public class Message implements Serializable {
 
     public String getTo() {
         return to;
+    }
+
+    public void setHeadPicture(String headPicture) {
+        this.headPicture = headPicture;
+    }
+
+    public String getHeadPicture() {
+        return headPicture;
     }
 }

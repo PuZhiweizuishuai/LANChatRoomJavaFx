@@ -38,6 +38,8 @@ public class LoginControl implements Initializable {
     @FXML
     private  PasswordField userPassword;
 
+    private static boolean isLoginResults = false;
+
     /**
      * 为了获取 loginControl 对象
      * */
@@ -79,8 +81,10 @@ public class LoginControl implements Initializable {
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
-            if(sendLoginMessage()) {
-               LoadMain();
+            if(isLoginResults) {
+                LoadMain();
+            } else {
+                new PopUpUI("提示", "密码或账号错误！");
             }
         } else {
             new PopUpUI("提示:", "请输入用户名和密码!");
@@ -122,24 +126,9 @@ public class LoginControl implements Initializable {
         stage.setIconified(true);
     }
 
-    private boolean sendLoginMessage() {
-        try {
-            Socket socket = new Socket();
-            // 防止超时
-            socket.connect(new InetSocketAddress(ServerIP.IP,ServerIP.port), ServerIP.timeout);
-            // 发送
-            OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
-            Message message = new Message(SaveUser.getLoginUserName(), "", MessageType.CONNECT);
-            message.setPassword(userPassword.getText());
-            ((ObjectOutputStream) outPut).writeObject(message);
-            return true;
-        } catch (Exception e) {
-            new PopUpUI("提示", "暂时无法连接到服务器，请稍后再试！");
-            return false;
-        }
-    }
 
-    public void LoadMain() {
+
+    private void LoadMain() {
         try {
             Main main = new Main();
             Stage thisStage = (Stage) rootBox.getScene().getWindow();
@@ -147,5 +136,9 @@ public class LoginControl implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setIsLoginResults(boolean isLoginResults) {
+        LoginControl.isLoginResults = isLoginResults;
     }
 }

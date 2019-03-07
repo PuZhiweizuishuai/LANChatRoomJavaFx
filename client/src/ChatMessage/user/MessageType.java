@@ -1,5 +1,18 @@
 package ChatMessage.user;
 
 public enum MessageType {
-    CONNECT,DISCONNECT,MSG,QUERY,SUCCESS,FAIL,USERLIST,NOTIFICATION,SIGNUP
+    /**
+     * 消息状态
+     * */
+    CONNECT,
+    DISCONNECT,
+    MSG,
+    QUERY,
+    SUCCESS,
+    FAIL,
+    USERLIST,
+    NOTIFICATION,
+    SIGNUP,
+    SIGNUPSUCCESS,
+    SIGNUPFAIL
 }

@@ -27,6 +27,8 @@ public class SignUpControl {
     @FXML
     private TextField userPassword;
 
+    private static boolean isSingUpSuecces = false;
+
     public SignUpControl() {
         instance = this;
     }
@@ -42,15 +44,17 @@ public class SignUpControl {
             UserInformation user = new UserInformation(userEmail.getText(),userName.getText(),userPassword.getText());
             try {
                 SaveUser.userSerialize(user);
-                new PopUpUI("提示：", "注册成功！");
-
-                loginMain.showWindow();
-                Stage thisStage = (Stage) signInStage.getScene().getWindow();
-                thisStage.close();
+                if(isSingUpSuecces) {
+                    new PopUpUI("提示：", "注册成功！");
+                    loginMain.showWindow();
+                    Stage thisStage = (Stage) signInStage.getScene().getWindow();
+                    thisStage.close();
+                } else {
+                    new PopUpUI("提示：","该用户名已存在！");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //TODO
         } else {
             new PopUpUI("提示：", "请填写正确的信息后注册！");
         }
@@ -92,6 +96,10 @@ public class SignUpControl {
             return false;
         }
         return true;
+    }
+
+    public void setIsSingUpSuecces(boolean isSingUpSuecces) {
+        SignUpControl.isSingUpSuecces = isSingUpSuecces;
     }
 
 }

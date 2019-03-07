@@ -280,7 +280,6 @@ public class MainUIControl implements Initializable {
         /*if(sendMessageToServer()){
             showMyMessage();
         }*/
-        comm.sendMsg("wo","ni","text");
     }
 
     /**
@@ -457,8 +456,9 @@ public class MainUIControl implements Initializable {
         }
     }
 
-    public void sendUserList(LinkedList<String> userList) {
-        this.userList = userList;
+    public void setUserList(Message message) {
+        contactsList.getItems().clear();
+        this.userList = message.getUserList();
         int userCount = userList.size() - 1;
         nowUserNumber.setText("当前用户 " + userCount + " 人");
         for(String name : userList) {
@@ -467,5 +467,9 @@ public class MainUIControl implements Initializable {
             userListUI.setHeadImageView("@../../images/508035880.jpg");
             contactsList.getItems().add(userListUI);
         }
+    }
+
+    public void newUserNotification(Message message) {
+        //TODO 添加具体功能
     }
 }

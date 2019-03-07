@@ -5,110 +5,118 @@ import ChatMessage.Main.MainUIControl;
 import ChatMessage.SignUp.SignUpControl;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
-import java.util.LinkedList;
-import java.util.logging.Logger;
+import ChatMessage.user.ServerIP;
+import mycontrol.popup.PopUpUI;
+import java.io.*;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 
 /**
  * 与服务器通信模块
  * @author PuZhiwei
  * */
-public abstract class Communication {
-    /**
-     * 获取各 UI 控制器对象
-     * */
-    protected MainUIControl mainUIControl = MainUIControl.getInstance();
-    protected LoginControl loginControl = LoginControl.getInstance();
-    protected SignUpControl signUpControl = SignUpControl.getInstance();
+public class Communication implements Runnable {
+    private static final String HASCONNECTED = "has connected";
 
-    protected String userName;
-    protected String userPic;
-    protected String ServerIP;
-    protected String password;
-    protected String email;
-    protected int port;
-    public Communication(String ServerIP, int port, String userName, String userPic) {
-        this.ServerIP = ServerIP;
+    private static String picture;
+    private Socket socket;
+    public String hostname;
+    public int port;
+    public static String username;
+    private static String userPassword;
+    public MainUIControl controller;
+    private static ObjectOutputStream oos;
+    private InputStream is;
+    private ObjectInputStream input;
+    private OutputStream outputStream;
+
+
+    public Communication(String hostname, int port, String username, String picture, MainUIControl controller) {
+        this.hostname = hostname;
         this.port = port;
-        this.userName = userName;
-        this.userPic = userPic;
-        // 将通信对象注册到 mainUIControl 控制器中
-        mainUIControl.setConnection(this);
+        Communication.username = username;
+        Communication.picture = picture;
+        this.controller = controller;
+    }
+
+    public void setUserPassword(String userPassword) {
+        Communication.userPassword = userPassword;
+    }
+
+    @Override
+    public void run() {
+        try {
+            socket = new Socket();
+            socket.connect(new InetSocketAddress(hostname,port), ServerIP.timeout);
+            outputStream = socket.getOutputStream();
+            oos = new ObjectOutputStream(outputStream);
+
+            is = socket.getInputStream();
+            input = new ObjectInputStream(is);
+        } catch (Exception e) {
+            new PopUpUI("提示","服务器异常，连接失败！");
+            e.printStackTrace();
+        }
+
+
+        try {
+            connect();
+            while (socket.isConnected()) {
+                Message message = null;
+                message = (Message) input.readObject();
+                if(message != null) {
+                    switch (message.getTYPE()) {
+                        case MSG:
+                            controller.addOtherMessage(message);
+                        case NOTIFICATION:
+                            controller.newUserNotification(message);
+                            break;
+                        case FAIL:
+                            LoginControl.getInstance().setIsLoginResults(false);
+                            break;
+                        case SUCCESS:
+                            LoginControl.getInstance().setIsLoginResults(true);
+                            break;
+                        case CONNECT:
+                            controller.setUserList(message);
+                            break;
+                        case DISCONNECT:
+                            controller.setUserList(message);
+                            break;
+                        case USERLIST:
+                            controller.setUserList(message);
+                            break;
+                        case SIGNUPSUCCESS:
+                            SignUpControl.getInstance().setIsSingUpSuecces(true);
+                            break;
+                        case SIGNUPFAIL:
+                            SignUpControl.getInstance().setIsSingUpSuecces(false);
+                            break;
+                        default:
+                             break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * 发送，由子类具体实现
+     * 此方法用于发送普通消息
      * */
-    abstract void send(Message message);
-
-    /**
-     * 断开物理连接，由子类具体实现
-     * */
-    public void destroy() {
-        //TODO 待写入日志
+    public static void send(Message message) throws IOException {
+        oos.writeObject(message);
+        oos.flush();
     }
 
     /**
-     * 用户连接请求消息
+     * 此方法用于发送连接请求
      * */
-    public void connect() {
-        LinkedList<String> usertemp = new LinkedList<>();
-        usertemp.add(userName);
-        //创建新连接消息
-        Message message = new Message(userName,"",MessageType.CONNECT);
-        message.setUserList(usertemp);
-        // 发送
-        send(message);
-    }
-
-    /**
-     * 用户注销请求
-     * */
-    public void disconnect() {
-        Message message = new Message(userName,"",MessageType.DISCONNECT);
-        send(message);
-    }
-
-    /**
-     * 对话类型消息
-     * */
-    public void sendMsg(String from, String to, String conntent) {
-        Message message = new Message(from, conntent,MessageType.MSG);
-        message.setTo(to);
-        send(message);
-    }
-
-    /**
-     * 查询用户列表
-     * */
-    public void querUserList() {
-        Message message = new Message(userName,"",MessageType.QUERY);
-        message.setTo(userName);
-        send(message);
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * 注册
-     * */
-    public void sendSingUp() {
-        Message message = new Message(userName,"",MessageType.SIGNUP);
-        message.setEmail(email);
-        message.setPassword(password);
-        send(message);
+    public static void connect() throws IOException {
+        Message message = new Message(username, HASCONNECTED, MessageType.CONNECT);
+        message.setHeadPicture(picture);
+        message.setPassword(userPassword);
+        oos.writeObject(message);
     }
 }
