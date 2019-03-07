@@ -311,8 +311,8 @@
       <file leaf-file-name="TextComm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ChatMessage/communication/TextComm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1032">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="624">
+              <caret line="34" column="65" lean-forward="true" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -677,12 +677,12 @@
       <workItem from="1551783390225" duration="4915000" />
       <workItem from="1551788711785" duration="64000" />
       <workItem from="1551874694423" duration="8511000" />
-      <workItem from="1551931952572" duration="1529000" />
+      <workItem from="1551931952572" duration="1575000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75238000" />
+    <option name="totallyTimeSpent" value="75284000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1083,8 +1083,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatMessage/communication/TextComm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1032">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="624">
+          <caret line="34" column="65" lean-forward="true" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
         </state>
       </provider>
     </entry>
