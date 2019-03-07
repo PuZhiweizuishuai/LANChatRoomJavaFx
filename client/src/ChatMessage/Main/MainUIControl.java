@@ -30,6 +30,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -145,7 +146,12 @@ public class MainUIControl implements Initializable {
      * 左侧联系人
      */
     @FXML
+    private Label nowUserNumber;
+
+    @FXML
     private JFXListView contactsList;
+
+    private LinkedList<String> userList;
 
     /**
      * 右侧信息
@@ -251,12 +257,6 @@ public class MainUIControl implements Initializable {
         groupChat.setNameLabel("    群聊");
         groupChat.setHeadImageView("@../../images/GroupChat.png");
         contactsList.getItems().add(groupChat);
-        for (int i = 0; i < 10; i++) {
-            UserListUI userListUI = new UserListUI();
-            userListUI.setNameLabel("    Image   " + i);
-            userListUI.setHeadImageView("@../../images/508035880.jpg");
-            contactsList.getItems().add(userListUI);
-        }
 
         lefttMyHead.setImage(new Image("@../../images/508035880.jpg"));
         leftNameLabel.setText(SaveUser.getLoginUserName());
@@ -409,6 +409,7 @@ public class MainUIControl implements Initializable {
             nameLabelTop.setText("群聊中：");
         } else {
             nameLabelTop.setText("与" + userListUI.getName() + "  聊天中！");
+            userListUI.closeMessageNumber();
         }
 
         headImageTop.setImage(new Image(userListUI.getImagePath()));
@@ -444,5 +445,12 @@ public class MainUIControl implements Initializable {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public void sendUserList(LinkedList<String> userList) {
+        this.userList = userList;
+        int userCount = userList.size() - 1;
+        nowUserNumber.setText("当前用户 " + userCount + " 人");
+
     }
 }

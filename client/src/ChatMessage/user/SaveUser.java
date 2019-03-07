@@ -5,6 +5,7 @@ import java.io.*;
 
 public class SaveUser {
     private static String userName = "";
+    private static String userPassword = "";
     /**
      * 对象序列化，保存用户信息
      * */
@@ -42,5 +43,16 @@ public class SaveUser {
 
     public static String getLoginUserName() {
         return  userName;
+    }
+
+    /**
+     * 记录登录密码
+     * */
+    public static void setUserPassword(String password) {
+        userPassword = password;
+    }
+
+    public static String getUserPassword() {
+        return  userPassword;
     }
 }

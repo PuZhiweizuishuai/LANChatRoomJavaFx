@@ -5,8 +5,6 @@ import ChatMessage.Main.MainUIControl;
 import ChatMessage.SignUp.SignUpControl;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
-import ChatMessage.user.SaveUser;
-
 import java.util.LinkedList;
 import java.util.logging.Logger;
 
@@ -25,9 +23,11 @@ public abstract class Communication {
     protected String userName;
     protected String userPic;
     protected String ServerIP;
+    protected String password;
+    protected String email;
     protected int port;
-    public Communication(String serverIP, int port, String userName, String userPic) {
-        this.ServerIP = serverIP;
+    public Communication(String ServerIP, int port, String userName, String userPic) {
+        this.ServerIP = ServerIP;
         this.port = port;
         this.userName = userName;
         this.userPic = userPic;
@@ -86,4 +86,29 @@ public abstract class Communication {
         send(message);
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * 注册
+     * */
+    public void sendSingUp() {
+        Message message = new Message(userName,"",MessageType.SIGNUP);
+        message.setEmail(email);
+        message.setPassword(password);
+        send(message);
+    }
 }

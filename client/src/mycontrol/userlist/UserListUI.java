@@ -1,5 +1,6 @@
 package mycontrol.userlist;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,9 @@ public class UserListUI extends FlowPane {
 
     @FXML
     private ImageView headImageView;
+
+    @FXML
+    private JFXButton messageNumber;
 
     private String imagePath;
 
@@ -52,5 +56,15 @@ public class UserListUI extends FlowPane {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public void setMessageNumber(String number) {
+        messageNumber.setVisible(true);
+        messageNumber.setText(number);
+    }
+
+    public void closeMessageNumber() {
+        messageNumber.setVisible(false);
+        messageNumber.setText("0");
     }
 }

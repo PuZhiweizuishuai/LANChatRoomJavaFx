@@ -80,13 +80,7 @@ public class LoginControl implements Initializable {
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
             if(sendLoginMessage()) {
-                Main main = new Main();
-                try {
-                    Stage thisStage = (Stage) rootBox.getScene().getWindow();
-                    thisStage.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+               LoadMain();
             }
         } else {
             new PopUpUI("提示:", "请输入用户名和密码!");
@@ -143,6 +137,15 @@ public class LoginControl implements Initializable {
             new PopUpUI("提示", "暂时无法连接到服务器，请稍后再试！");
             return false;
         }
+    }
 
+    public void LoadMain() {
+        try {
+            Main main = new Main();
+            Stage thisStage = (Stage) rootBox.getScene().getWindow();
+            thisStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

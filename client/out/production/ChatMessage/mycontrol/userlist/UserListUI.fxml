@@ -16,5 +16,11 @@
          <font>
             <Font name="Microsoft YaHei Bold" size="20.0" />
          </font></Label>
+      <Pane prefHeight="20.0" prefWidth="30.0" />
+      <JFXButton fx:id="messageNumber" buttonType="RAISED" onAction="#closeMessageNumber" prefHeight="20.0" prefWidth="20.0" style="-fx-background-radius: 90px; -fx-background-color: red;" text="0" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </fx:root>

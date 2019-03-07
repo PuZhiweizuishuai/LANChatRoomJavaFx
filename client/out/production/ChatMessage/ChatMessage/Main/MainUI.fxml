@@ -112,8 +112,8 @@
             </GridPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <ImageView fx:id="lefttMyHead" fitHeight="100.0" fitWidth="100.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" />
-                  <Label fx:id="leftNameLabel" layoutX="224.0" layoutY="100.0" text="Label" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0">
+                  <ImageView fx:id="lefttMyHead" fitHeight="100.0" fitWidth="100.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" />
+                  <Label fx:id="leftNameLabel" layoutX="224.0" layoutY="100.0" text="Label" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="170.0">
                      <font>
                         <Font name="Microsoft YaHei Bold" size="30.0" />
                      </font>

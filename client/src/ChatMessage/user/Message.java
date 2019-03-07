@@ -13,6 +13,7 @@ public class Message implements Serializable {
     private String message;
     private String to;
     private String password;
+    private String email;
     private LinkedList<String> userList;
     public Message(String name, String message, MessageType TYPE) {
         this.name = name;
@@ -49,5 +50,17 @@ public class Message implements Serializable {
 
     public void setUserList(LinkedList<String> userList) {
         this.userList = userList;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getTo() {
+        return to;
     }
 }
