@@ -49,11 +49,16 @@ public class TextComm extends Communication implements Runnable {
                         case FAIL:
                             new PopUpUI("错误", "登录失败！");
                             break;
+                        case USERLIST:
+                            mainUIControl.sendUserList(message.getUserList());
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 

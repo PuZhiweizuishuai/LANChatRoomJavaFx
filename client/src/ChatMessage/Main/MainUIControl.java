@@ -451,6 +451,11 @@ public class MainUIControl implements Initializable {
         this.userList = userList;
         int userCount = userList.size() - 1;
         nowUserNumber.setText("当前用户 " + userCount + " 人");
-
+        for(String name : userList) {
+            UserListUI userListUI = new UserListUI();
+            userListUI.setNameLabel(name);
+            userListUI.setHeadImageView("@../../images/508035880.jpg");
+            contactsList.getItems().add(userListUI);
+        }
     }
 }
