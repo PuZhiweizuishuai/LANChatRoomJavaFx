@@ -26,8 +26,8 @@ public class ChatServer {
      * 启动监听服务
      * */
     public static void startServer() throws Exception{
+        ServerSocket server = new ServerSocket(PORT);
         try {
-            ServerSocket server = new ServerSocket(PORT);
             while (true) {
                 System.out.println("accept之前");
                 // 造成阻塞,等待连接
@@ -35,6 +35,8 @@ public class ChatServer {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            server.close();
         }
     }
 
@@ -58,13 +60,18 @@ public class ChatServer {
                 input = new ObjectInputStream(is);
                 os = socket.getOutputStream();
                 output = new ObjectOutputStream(os);
+
                 Message firstMessage = (Message)input.readObject();
                 checkUserNameAndPwd(firstMessage);
                 writers.add(output);
+                sendType(firstMessage, output,MessageType.SUCCESS);
+                addToList();
 
                 while (socket.isConnected()) {
                     Message inputMessage = (Message)input.readObject();
                     if(inputMessage != null) {
+                        System.out.println(inputMessage.getTYPE());
+                        System.out.println(inputMessage.getMessage());
                         switch (inputMessage.getTYPE()) {
                             case GROUPSMS:
                                 writeGroup(inputMessage);
@@ -72,17 +79,25 @@ public class ChatServer {
                             case MSG:
                                 write(inputMessage);
                                 break;
+                            case CONNECT:
+                                addToList();
                         }
                     }
                 }
             } catch (Exception e) {
+               try {
+                   sendType(new Message("SERVER","",MessageType.FAIL), output,MessageType.FAIL);
+               } catch (IOException e1) {
+                   e1.printStackTrace();
+               }
                 e.printStackTrace();
             } finally {
-
+                //closeConnections();
             }
         }
 
         private synchronized void checkUserNameAndPwd(Message firstMessage) throws UserNameOrPwdException {
+            // System.out.println(nameAndSocket.containsKey(firstMessage.getName()));
             if(!nameAndSocket.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
                 user = new UserInformation(firstMessage.getEmail(),firstMessage.getName(),firstMessage.getPassword());
@@ -90,9 +105,24 @@ public class ChatServer {
                 user.setSocket(socket);
                 users.add(user);
                 nameAndSocket.put(name, user);
+
             } else {
-                throw  new UserNameOrPwdException("密码错误！");
+                throw new UserNameOrPwdException("密码错误！");
             }
+        }
+
+        private Message sendType(Message firstMessage, ObjectOutputStream output, MessageType type) throws IOException {
+            Message msg = new Message(firstMessage.getName(),"",type);
+            msg.setHeadPicture(firstMessage.getHeadPicture());
+            output.writeObject(msg);
+            output.reset();
+            return msg;
+        }
+
+        private Message addToList() throws IOException {
+            Message message = new Message("SERVER","",MessageType.CONNECT);
+            writeGroup(message);
+            return message;
         }
 
         /**

@@ -1,12 +1,10 @@
 package ChatMessage.Main;
 
 import ChatMessage.communication.Communication;
-import ChatMessage.user.Message;
-import ChatMessage.user.MessageType;
-import ChatMessage.user.SaveUser;
-import ChatMessage.user.ServerIP;
+import ChatMessage.user.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -278,9 +276,7 @@ public class MainUIControl implements Initializable {
      */
     @FXML
     private void sendMessages(ActionEvent event) {
-        /*if(sendMessageToServer()){
-            showMyMessage();
-        }*/
+        sendMessageToServer();
     }
 
     /**
@@ -289,9 +285,7 @@ public class MainUIControl implements Initializable {
     @FXML
     public void sendMethod(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
-            if(sendMessageToServer()){
-                showMyMessage();
-            }
+            sendMessageToServer();
         }
     }
 
@@ -309,37 +303,31 @@ public class MainUIControl implements Initializable {
     /**
      * 显示我发出的消息
      * */
-    public void showMyMessage() {
+    public void showMyMessage(String myMessage) {
         getTime();
-        String myMessage = inputText.getText();
-        if (myMessage.equals("")) {
-            System.out.println("未输入任何内容！");
+        int length = myMessage.length();
+        int width;
+        if (length <= 2){
+            width = 28*3;
+        } else if (length <= 28 && length > 2) {
+            width = 28 * length;
         } else {
-            getTime();
-            int length = myMessage.length();
-            int width;
-            if (length <= 2){
-                width = 28*3;
-            } else if (length <= 28 && length > 2) {
-                width = 28 * length;
-            } else {
-                width = 600;
-            }
-            int height;
-            if (((length / 28) + 1) >= 3) {
-                height = ((length / 28) + 1) * 35;
-            } else {
-                height = ((length / 28) + 1) * 40;
-            }
-            System.out.println( length + "       " +((length / 23) + 1));
-            MyChatBox myChatBox = new MyChatBox();
-            myChatBox.setMessage(myMessage);
-            myChatBox.setHeightAndWidth(height,width);
-            myChatBox.setHeadImageView("@../../images/508035880.jpg");
-            chatBoxList.setNodeOrientation(NodeOrientation.valueOf("RIGHT_TO_LEFT"));
-            chatBoxList.getItems().add(myChatBox);
-            inputText.setText("");
+            width = 600;
         }
+        int height;
+        if (((length / 28) + 1) >= 3) {
+            height = ((length / 28) + 1) * 35;
+        } else {
+            height = ((length / 28) + 1) * 40;
+        }
+        // System.out.println( length + "       " +((length / 23) + 1));
+        MyChatBox myChatBox = new MyChatBox();
+        myChatBox.setMessage(myMessage);
+        myChatBox.setHeightAndWidth(height,width);
+        myChatBox.setHeadImageView("@../../images/508035880.jpg");
+        chatBoxList.setNodeOrientation(NodeOrientation.valueOf("RIGHT_TO_LEFT"));
+        chatBoxList.getItems().add(myChatBox);
+        inputText.setText("");
     }
 
     /**
@@ -429,38 +417,32 @@ public class MainUIControl implements Initializable {
     /**
      * 发送消息
      * */
-    private boolean sendMessageToServer() {
-        if (inputText.getText().equals("")) {
-            System.out.println("未输入任何内容！");
-            return false;
+    private void sendMessageToServer() {
+        String myMessage = inputText.getText();
+        if(!myMessage.isEmpty()) {
+            //Message message = new Message(SaveUser.getLoginUserName(),myMessage,MessageType.GROUPSMS);
+            try {
+                Communication.send(myMessage);
+            } catch (IOException e) {
+               new PopUpUI("提示：", "发送失败，请稍后再试");
+            }
+            Platform.runLater(()->{
+                showMyMessage(myMessage);
+            });
         }
-        try {
-            socket = new Socket();
-            // 防止超时
-            socket.connect(new InetSocketAddress(ServerIP.IP,ServerIP.port), ServerIP.timeout);
-            // 发送
-            OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
-            // 接收
-            InputStream input = socket.getInputStream();
-            //dataOutputStream = new DataOutputStream(outPut);
-            dataInputStream = new DataInputStream(input);
-            Message message = new Message(SaveUser.getLoginUserName(), inputText.getText(), MessageType.MSG);
-            ((ObjectOutputStream) outPut).writeObject(message);
-            socket.getOutputStream().flush();
-            dataInputStream.close();
-            socket.close();
-            return true;
-        } catch(Exception e) {
-            new PopUpUI("错误","服务器异常，消息发送失败！");
-            e.printStackTrace();
-            return false;
-        }
+
     }
 
     public void setUserList(Message message) {
         contactsList.getItems().clear();
+        ArrayList<UserInformation> uifs = message.getUserList();
         Platform.runLater(()->{
-
+            for(UserInformation uif : uifs) {
+                UserListUI userListUI = new UserListUI();
+                userListUI.setNameLabel(uif.getUserName());
+                userListUI.setHeadImageView(uif.getUserPicture());
+                contactsList.getItems().add(userListUI);
+            }
         });
     }
 

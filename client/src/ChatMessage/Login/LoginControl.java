@@ -38,8 +38,6 @@ public class LoginControl implements Initializable {
     @FXML
     private  PasswordField userPassword;
 
-    private static boolean isLoginResults = false;
-
     /**
      * 为了获取 loginControl 对象
      * */
@@ -84,11 +82,6 @@ public class LoginControl implements Initializable {
             Communication communication = new Communication(ServerIP.IP,ServerIP.port,name,"@../../images/508035880.jpg",con);
             Thread x = new Thread(communication);
             x.start();
-            if(isLoginResults) {
-                LoadMain();
-            } else {
-                // new PopUpUI("提示", "密码或账号错误！");
-            }
         } else {
             new PopUpUI("提示:", "请输入用户名和密码!");
         }
@@ -131,18 +124,16 @@ public class LoginControl implements Initializable {
 
 
 
-    private void LoadMain() {
-        try {
-            Main main = new Main();
-            Stage thisStage = (Stage) rootBox.getScene().getWindow();
-            thisStage.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setIsLoginResults(boolean isLoginResults) {
-        LoginControl.isLoginResults = isLoginResults;
+    public void LoadMain() {
+        Platform.runLater(()->{
+            try {
+                Main main = new Main();
+                Stage thisStage = (Stage) rootBox.getScene().getWindow();
+                thisStage.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void showDilog(String title, String text) {

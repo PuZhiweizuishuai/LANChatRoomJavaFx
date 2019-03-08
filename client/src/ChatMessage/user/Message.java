@@ -9,7 +9,6 @@ import java.util.LinkedList;
  * 封装的消息类
  * */
 public class Message implements Serializable {
-    private static final long serialVersionUID = 1L;
     private String name;
     private MessageType TYPE;
     private String message;

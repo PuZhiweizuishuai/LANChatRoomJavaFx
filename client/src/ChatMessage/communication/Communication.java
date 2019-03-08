@@ -6,7 +6,6 @@ import ChatMessage.SignUp.SignUpControl;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.ServerIP;
-import mycontrol.popup.PopUpUI;
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -50,7 +49,6 @@ public class Communication implements Runnable {
             socket.connect(new InetSocketAddress(hostname,port), ServerIP.timeout);
             outputStream = socket.getOutputStream();
             oos = new ObjectOutputStream(outputStream);
-
             is = socket.getInputStream();
             input = new ObjectInputStream(is);
         } catch (Exception e) {
@@ -65,17 +63,21 @@ public class Communication implements Runnable {
                 Message message = null;
                 message = (Message) input.readObject();
                 if(message != null) {
+                    System.out.println("消息类型： "+message.getTYPE());
                     switch (message.getTYPE()) {
+                        case GROUPSMS:
+                            System.out.println(message.getMessage());
+                            break;
                         case MSG:
                             controller.addOtherMessage(message);
                         case NOTIFICATION:
                             controller.newUserNotification(message);
                             break;
                         case FAIL:
-                            LoginControl.getInstance().setIsLoginResults(false);
+                            LoginControl.getInstance().showDilog("提示：","账号或密码错误");
                             break;
                         case SUCCESS:
-                            LoginControl.getInstance().setIsLoginResults(true);
+                            LoginControl.getInstance().LoadMain();
                             break;
                         case CONNECT:
                             controller.setUserList(message);
@@ -105,8 +107,10 @@ public class Communication implements Runnable {
     /**
      * 此方法用于发送普通消息
      * */
-    public static void send(Message message) throws IOException {
-        oos.writeObject(message);
+    public static void send(String message) throws IOException {
+        Message createMessage = new Message(username,message,MessageType.GROUPSMS);
+        createMessage.setHeadPicture(picture);
+        oos.writeObject(createMessage);
         oos.flush();
     }
 
