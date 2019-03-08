@@ -8,6 +8,7 @@ import ChatMessage.user.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -18,6 +19,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
@@ -31,7 +34,7 @@ import mycontrol.popup.PopUpUI;
 public class LoginControl implements Initializable {
     private static LoginControl instance;
     private Main main = new Main();
-    private MainUIControl control;
+
     @FXML
     private AnchorPane rootBox;
 
@@ -41,6 +44,7 @@ public class LoginControl implements Initializable {
     @FXML
     private  PasswordField userPassword;
 
+    private Communication communication;
     /**
      * 为了获取 loginControl 对象
      * */
@@ -78,13 +82,13 @@ public class LoginControl implements Initializable {
      * 点击登陆按钮后的事件
      * */
     @FXML
-    public void clickLoginButton(ActionEvent event) {
+    public void clickLoginButton(ActionEvent event) throws IOException {
         String name = userName.getText();
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
             // 多线程，处理登陆
-            Communication communication = new Communication(ServerIP.IP,ServerIP.port,name,"@../../images/508035880.jpg");
+            communication = new Communication(ServerIP.IP,ServerIP.port,name,"@../../images/508035880.jpg");
             Thread x = new Thread(communication);
             x.start();
         } else {

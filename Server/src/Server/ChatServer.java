@@ -94,7 +94,7 @@ public class ChatServer {
                }
                 e.printStackTrace();
             } finally {
-                //closeConnections();
+                closeConnections();
             }
         }
 

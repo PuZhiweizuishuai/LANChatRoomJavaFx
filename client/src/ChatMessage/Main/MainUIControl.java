@@ -194,6 +194,7 @@ public class MainUIControl implements Initializable {
      * 获取 LoginControl 对象
      * */
     public MainUIControl() {
+        instance = this;
     }
 
     /**
@@ -203,12 +204,12 @@ public class MainUIControl implements Initializable {
         return instance;
     }
 
-    public void setCommunication(Communication comm) {
-        this.comm = comm;
-    }
-
     public void text(String s) {
         System.out.println(s);
+    }
+
+    public void setComm(Communication comm) {
+        this.comm = comm;
     }
 
     /**
@@ -440,7 +441,6 @@ public class MainUIControl implements Initializable {
     }
 
     public void setUserList(Message message) {
-
         Platform.runLater(()->{
             System.out.println(message.getName());
             contactsList.getItems().clear();

@@ -18,7 +18,8 @@ import java.net.Socket;
  */
 public class Communication implements Runnable {
     private static final String HASCONNECTED = "has connected";
-    private MainUIControl controller = MainUIControl.getInstance();
+    public MainUIControl controller = MainUIControl.getInstance();
+
     private static String picture;
     private Socket socket;
     public String hostname;
@@ -36,7 +37,7 @@ public class Communication implements Runnable {
         this.port = port;
         Communication.username = username;
         Communication.picture = picture;
-
+        //controller.setComm(this);
     }
 
 
