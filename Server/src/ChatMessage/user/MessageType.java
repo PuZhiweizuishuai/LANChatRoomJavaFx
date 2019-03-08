@@ -14,5 +14,6 @@ public enum  MessageType {
     NOTIFICATION,
     SIGNUP,
     SIGNUPSUCCESS,
-    SIGNUPFAIL
+    SIGNUPFAIL,
+    GROUPSMS
 }

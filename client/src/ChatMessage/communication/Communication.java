@@ -54,10 +54,10 @@ public class Communication implements Runnable {
             is = socket.getInputStream();
             input = new ObjectInputStream(is);
         } catch (Exception e) {
-            new PopUpUI("提示","服务器异常，连接失败！");
+            LoginControl.getInstance().showDilog("提示", "服务器异常，连接失败！");
+            System.out.println("服务器异常");
             e.printStackTrace();
         }
-
 
         try {
             connect();

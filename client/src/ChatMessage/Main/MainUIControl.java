@@ -7,6 +7,7 @@ import ChatMessage.user.SaveUser;
 import ChatMessage.user.ServerIP;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
@@ -458,15 +459,9 @@ public class MainUIControl implements Initializable {
 
     public void setUserList(Message message) {
         contactsList.getItems().clear();
-        this.userList = message.getUserList();
-        int userCount = userList.size() - 1;
-        nowUserNumber.setText("当前用户 " + userCount + " 人");
-        for(String name : userList) {
-            UserListUI userListUI = new UserListUI();
-            userListUI.setNameLabel(name);
-            userListUI.setHeadImageView("@../../images/508035880.jpg");
-            contactsList.getItems().add(userListUI);
-        }
+        Platform.runLater(()->{
+
+        });
     }
 
     public void newUserNotification(Message message) {

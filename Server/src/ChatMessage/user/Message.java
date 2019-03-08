@@ -1,6 +1,8 @@
 package ChatMessage.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -13,7 +15,7 @@ public class Message implements Serializable {
     private String message;
     private String to;
     private String password;
-    private LinkedList<String> userList;
+    private ArrayList<UserInformation> userList;
     private String email;
     private String headPicture;
     public Message(String name, String message, MessageType TYPE) {
@@ -45,12 +47,12 @@ public class Message implements Serializable {
         return TYPE;
     }
 
-    public LinkedList<String> getUserList() {
+    public ArrayList<UserInformation> getUserList() {
         return userList;
     }
 
-    public void setUserList(LinkedList<String> userList) {
-        this.userList = userList;
+    public void setUserList(HashMap<String, UserInformation> userList) {
+        this.userList = new ArrayList<>(userList.values());
     }
 
     public void setEmail(String email) {

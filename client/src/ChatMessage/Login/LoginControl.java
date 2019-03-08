@@ -1,9 +1,11 @@
 package ChatMessage.Login;
 
 import ChatMessage.Main.Main;
+import ChatMessage.Main.MainUIControl;
 import ChatMessage.SignUp.SignUp;
 import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 import java.io.ObjectOutputStream;
@@ -26,9 +28,7 @@ import mycontrol.popup.PopUpUI;
  * */
 public class LoginControl implements Initializable {
     private static LoginControl instance;
-
-    Communication comm;
-
+    private static MainUIControl con;
     @FXML
     private AnchorPane rootBox;
 
@@ -81,10 +81,13 @@ public class LoginControl implements Initializable {
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
+            Communication communication = new Communication(ServerIP.IP,ServerIP.port,name,"@../../images/508035880.jpg",con);
+            Thread x = new Thread(communication);
+            x.start();
             if(isLoginResults) {
                 LoadMain();
             } else {
-                new PopUpUI("提示", "密码或账号错误！");
+                // new PopUpUI("提示", "密码或账号错误！");
             }
         } else {
             new PopUpUI("提示:", "请输入用户名和密码!");
@@ -140,5 +143,11 @@ public class LoginControl implements Initializable {
 
     public void setIsLoginResults(boolean isLoginResults) {
         LoginControl.isLoginResults = isLoginResults;
+    }
+
+    public void showDilog(String title, String text) {
+        Platform.runLater(()->{
+            new PopUpUI(title, text);
+        });
     }
 }

@@ -3,123 +3,167 @@ package Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
+import ChatMessage.exception.UserNameOrPwdException;
 import ChatMessage.user.Message;
+import ChatMessage.user.MessageType;
+import ChatMessage.user.UserInformation;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 /**
  * 服务端
  * @author Pu Zhiwei
  * */
 public class ChatServer {
-    private static HashMap<String, Socket> socketsfromUserName = new HashMap<>();
+    private static final int PORT = 9999;
+    private static HashSet<ObjectOutputStream> writers = new HashSet<>();
+    private static ArrayList<UserInformation> users = new ArrayList<>();
+    private static HashMap<String, UserInformation> nameAndSocket = new HashMap<>();
     /**
      * 启动监听服务
      * */
     public static void startServer() throws Exception{
         try {
-            ServerSocket server = new ServerSocket(999);
+            ServerSocket server = new ServerSocket(PORT);
             while (true) {
                 System.out.println("accept之前");
                 // 造成阻塞,等待连接
-                Socket socket = server.accept();
-                System.out.println(socket);
-                // 每当客户端连接后启动一条ServerThread线程为该客户端服务
-                new Thread(new ServerThread(socket)).start();
+                new Handler(server.accept()).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static class ServerThread implements Runnable {
-        /**
-         * 定义当前线程所处理的Socket
-         * */
-        private Socket s = null;
+    private static class Handler extends Thread {
+        private String name;
+        private Socket socket;
+        private UserInformation user;
+        private ObjectInputStream input;
+        private OutputStream os;
+        private ObjectOutputStream output;
+        private InputStream is;
 
-        /**
-         * 输出流
-         * */
-        private ObjectInputStream ois = null;
-
-        /**
-         * 消息记录
-         * */
-        private Message message = null;
-        public ServerThread(Socket s) throws Exception {
-            this.s = s;
-            ois = new ObjectInputStream(s.getInputStream());
-            message = (Message)ois.readObject();
+        public Handler(Socket socket) throws IOException {
+            this.socket = socket;
         }
 
         @Override
         public void run() {
             try {
-                if(!s.isClosed()) {
-                    System.out.println(s + "用户已连接服务器！下一步将判断是否能登录成功..");
-                }
-                while (s.isConnected()) {
-                    //读取客户端消息
-                    String revString = message.getMessage();
-                    if(revString != null) {
-                        switch (message.getTYPE()) {
-                            case CONNECT:
-                                checkConnect(message);
+                is = socket.getInputStream();
+                input = new ObjectInputStream(is);
+                os = socket.getOutputStream();
+                output = new ObjectOutputStream(os);
+                Message firstMessage = (Message)input.readObject();
+                checkUserNameAndPwd(firstMessage);
+                writers.add(output);
+
+                while (socket.isConnected()) {
+                    Message inputMessage = (Message)input.readObject();
+                    if(inputMessage != null) {
+                        switch (inputMessage.getTYPE()) {
+                            case GROUPSMS:
+                                writeGroup(inputMessage);
                                 break;
                             case MSG:
-                                sendAll(message, false);
-                                break;
-                            default:
+                                write(inputMessage);
                                 break;
                         }
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+
+            }
+        }
+
+        private synchronized void checkUserNameAndPwd(Message firstMessage) throws UserNameOrPwdException {
+            if(!nameAndSocket.containsKey(firstMessage.getName())) {
+                this.name = firstMessage.getName();
+                user = new UserInformation(firstMessage.getEmail(),firstMessage.getName(),firstMessage.getPassword());
+                user.setUserPicture(firstMessage.getHeadPicture());
+                user.setSocket(socket);
+                users.add(user);
+                nameAndSocket.put(name, user);
+            } else {
+                throw  new UserNameOrPwdException("密码错误！");
             }
         }
 
         /**
-         * 将message发送给指定客户端
+         * 向指定用户发送消息
          * */
-        private void send(Message message, Socket socket) throws Exception {
-            OutputStream outPut =new ObjectOutputStream(socket.getOutputStream());
-            ((ObjectOutputStream) outPut).writeObject(message);
-            System.out.println("消息发送成功！");
+        private void write(Message message) throws IOException {
+            UserInformation u = nameAndSocket.get(message.getTo());
+            if(u != null) {
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(u.getSocket().getOutputStream());
+                message.setUserList(nameAndSocket);
+                objectOutputStream.writeObject(message);
+                objectOutputStream.reset();
+            }
         }
 
         /**
-         * 将message发送给所有客户端
+         * 群发
          * */
-        private void sendAll(Message message, Boolean isRemoveLocalUser) throws Exception {
-            OutputStream outPut = null;
-            if(isRemoveLocalUser) {
-                //TODO
-            } else {
-                for(Socket socket : socketsfromUserName.values()) {
-                    // outPut =new ObjectOutputStream(socket.getOutputStream());
-                    // ((ObjectOutputStream) outPut).writeObject(message);
-                    System.out.println(socket + "  " + message.getMessage());
-                    System.out.println("数据发送成功！");
+        private void writeGroup(Message message) throws IOException {
+            for(ObjectOutputStream writer: writers) {
+                message.setUserList(nameAndSocket);
+                writer.writeObject(message);
+                writer.reset();
+            }
+        }
+
+        private synchronized void closeConnections() {
+            if(name != null) {
+                nameAndSocket.remove(name);
+                System.out.println("用户"+ name + "下线");
+            }
+            if(user != null) {
+                users.remove(user);
+                System.out.println("对象"+ user + "下线");
+            }
+            if(output != null) {
+                writers.remove(output);
+                System.out.println("对象"+ output + "下线");
+            }
+
+            if(is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-
+            if(input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                removeFromList();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        /**
-         * 检查是否登录成功，并发送登录结果
-         * 登陆成功后需要向所有用户发送新用户集列表和新用户上线通知
-         */
-        private void checkConnect(Message message) throws IOException{
-            String username = message.getName();
-
-            if(!socketsfromUserName.containsKey(username)) {
-                socketsfromUserName.put(username, s);
-                System.out.println(username);
-            }
-
+        private Message removeFromList() throws IOException {
+            Message msg = new Message("SERVER","has left the chat", MessageType.DISCONNECT);
+            msg.setUserList(nameAndSocket);
+            writeGroup(msg);
+            return msg;
         }
     }
+
+
+
 
     public static void main(String[] args) throws Exception{
         startServer();
