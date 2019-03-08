@@ -9,7 +9,6 @@ public class UserInformation implements Serializable {
     private String userEmail;
     private String userPassword;
     private String userPicture;
-    private Socket socket;
     public UserInformation(String userEmail, String userName, String userPassword) {
         this.userEmail = userEmail;
         this.userName = userName;
@@ -46,12 +45,5 @@ public class UserInformation implements Serializable {
 
     public String getUserPicture() {
         return userPicture;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-    public Socket getSocket() {
-        return socket;
     }
 }

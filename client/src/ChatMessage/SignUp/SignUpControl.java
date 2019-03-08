@@ -4,6 +4,7 @@ import ChatMessage.Login.LoginMain;
 import ChatMessage.communication.Communication;
 import ChatMessage.user.SaveUser;
 import ChatMessage.user.UserInformation;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -78,6 +79,7 @@ public class SignUpControl {
     @FXML
     public void close(ActionEvent event) {
         //TODO
+        Platform.exit();
         System.exit(0);
     }
 

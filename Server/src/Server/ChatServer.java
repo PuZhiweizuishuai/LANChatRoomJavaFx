@@ -70,8 +70,8 @@ public class ChatServer {
                 while (socket.isConnected()) {
                     Message inputMessage = (Message)input.readObject();
                     if(inputMessage != null) {
-                        System.out.println(inputMessage.getTYPE());
-                        System.out.println(inputMessage.getMessage());
+                        System.out.println("消息类型：" + inputMessage.getTYPE());
+                        System.out.println("用户" +inputMessage.getName() + "说："+ inputMessage.getMessage());
                         switch (inputMessage.getTYPE()) {
                             case GROUPSMS:
                                 writeGroup(inputMessage);
@@ -81,6 +81,8 @@ public class ChatServer {
                                 break;
                             case CONNECT:
                                 addToList();
+                            default:
+                                break;
                         }
                     }
                 }
@@ -97,12 +99,10 @@ public class ChatServer {
         }
 
         private synchronized void checkUserNameAndPwd(Message firstMessage) throws UserNameOrPwdException {
-            // System.out.println(nameAndSocket.containsKey(firstMessage.getName()));
             if(!nameAndSocket.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
                 user = new UserInformation(firstMessage.getEmail(),firstMessage.getName(),firstMessage.getPassword());
                 user.setUserPicture(firstMessage.getHeadPicture());
-                user.setSocket(socket);
                 users.add(user);
                 nameAndSocket.put(name, user);
 
@@ -129,13 +129,7 @@ public class ChatServer {
          * 向指定用户发送消息
          * */
         private void write(Message message) throws IOException {
-            UserInformation u = nameAndSocket.get(message.getTo());
-            if(u != null) {
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(u.getSocket().getOutputStream());
-                message.setUserList(nameAndSocket);
-                objectOutputStream.writeObject(message);
-                objectOutputStream.reset();
-            }
+
         }
 
         /**
@@ -143,6 +137,7 @@ public class ChatServer {
          * */
         private void writeGroup(Message message) throws IOException {
             for(ObjectOutputStream writer: writers) {
+                System.out.println("开始群发 " + writer);
                 message.setUserList(nameAndSocket);
                 writer.writeObject(message);
                 writer.reset();

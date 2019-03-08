@@ -292,6 +292,7 @@ public class MainUIControl implements Initializable {
     @FXML
     private void close() {
         //TODO
+        Platform.exit();
         System.exit(0);
     }
 
@@ -420,9 +421,10 @@ public class MainUIControl implements Initializable {
     private void sendMessageToServer() {
         String myMessage = inputText.getText();
         if(!myMessage.isEmpty()) {
-            //Message message = new Message(SaveUser.getLoginUserName(),myMessage,MessageType.GROUPSMS);
+            Message message = new Message(SaveUser.getLoginUserName(),myMessage,MessageType.GROUPSMS);
+            message.setHeadPicture("@../../images/508035880.jpg");
             try {
-                Communication.send(myMessage);
+                Communication.send(message);
             } catch (IOException e) {
                new PopUpUI("提示：", "发送失败，请稍后再试");
             }
@@ -434,15 +436,20 @@ public class MainUIControl implements Initializable {
     }
 
     public void setUserList(Message message) {
-        contactsList.getItems().clear();
-        ArrayList<UserInformation> uifs = message.getUserList();
+
         Platform.runLater(()->{
+            System.out.println(message.getName());
+            /*contactsList.getItems().clear();
+            ArrayList<UserInformation> uifs = message.getUserList();
+            for(UserInformation u : uifs) {
+                System.out.println(u.getUserName());
+            }/*
             for(UserInformation uif : uifs) {
                 UserListUI userListUI = new UserListUI();
                 userListUI.setNameLabel(uif.getUserName());
                 userListUI.setHeadImageView(uif.getUserPicture());
                 contactsList.getItems().add(userListUI);
-            }
+            }*/
         });
     }
 

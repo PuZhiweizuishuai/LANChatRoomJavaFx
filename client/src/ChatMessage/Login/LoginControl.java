@@ -52,6 +52,7 @@ public class LoginControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         UserInformation user;
+        con = MainUIControl.getInstance();
         try {
             user = SaveUser.userDeserialize();
             userName.setText(user.getUserName());
@@ -109,6 +110,7 @@ public class LoginControl implements Initializable {
     @FXML
     public void close(ActionEvent event) {
         //TODO
+        Platform.exit();
         System.exit(0);
     }
 

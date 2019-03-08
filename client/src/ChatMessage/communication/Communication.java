@@ -38,9 +38,11 @@ public class Communication implements Runnable {
         this.controller = controller;
     }
 
-    public void setUserPassword(String userPassword) {
-        Communication.userPassword = userPassword;
+    public void setController(MainUIControl controller) {
+        this.controller = controller;
     }
+
+
 
     @Override
     public void run() {
@@ -107,10 +109,8 @@ public class Communication implements Runnable {
     /**
      * 此方法用于发送普通消息
      * */
-    public static void send(String message) throws IOException {
-        Message createMessage = new Message(username,message,MessageType.GROUPSMS);
-        createMessage.setHeadPicture(picture);
-        oos.writeObject(createMessage);
+    public static void send(Message message) throws IOException {
+        oos.writeObject(message);
         oos.flush();
     }
 
