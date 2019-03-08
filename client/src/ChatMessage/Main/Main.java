@@ -4,6 +4,7 @@ import java.awt.*;
 import java.lang.Exception;
 
 import ChatMessage.Login.DragUtil;
+import ChatMessage.communication.Communication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,20 +18,14 @@ import javafx.stage.StageStyle;
  * 默认群聊主界面
  * */
 public class Main extends Application {
-    public Main() {
-        try {
-            Stage stage = new Stage();
-            start(stage);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    private Stage stage = new Stage();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         // 获取屏幕大小
         Dimension sceneSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Parent root = FXMLLoader.load(getClass().getResource("MainUI.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainUI.fxml"));
+        Parent root = fxmlLoader.load();
         primaryStage.setTitle("群聊");
         Scene scene = new Scene(root,sceneSize.width * 0.8,sceneSize.height*0.8);
         scene.getStylesheets().add(getClass().getResource("MainCss.css").toExternalForm());
@@ -41,8 +36,19 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+
+
+
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void showWindow() {
+        try {
+            start(stage);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

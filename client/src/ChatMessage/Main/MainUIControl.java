@@ -47,7 +47,7 @@ public class MainUIControl implements Initializable {
     /**
      * MainUIControl 对象
      * */
-    private static MainUIControl instance;
+    private static MainUIControl instance = new MainUIControl();
 
     /**
      * 通信基类对象
@@ -194,7 +194,6 @@ public class MainUIControl implements Initializable {
      * 获取 LoginControl 对象
      * */
     public MainUIControl() {
-        instance = this;
     }
 
     /**
@@ -204,14 +203,13 @@ public class MainUIControl implements Initializable {
         return instance;
     }
 
-
-    /**
-     * 注册通信线程对象
-     * */
-    public void setConnection(Communication comm) {
+    public void setCommunication(Communication comm) {
         this.comm = comm;
     }
 
+    public void text(String s) {
+        System.out.println(s);
+    }
 
     /**
      * 初始化
@@ -335,7 +333,7 @@ public class MainUIControl implements Initializable {
      * 显示收到的消息
      * */
     public void showOtherMessage(Message message) {
-        getTime();
+        //getTime();
         String otherMessage = inputText.getText();
         int length = otherMessage.length();
         int width;
@@ -352,14 +350,20 @@ public class MainUIControl implements Initializable {
         } else {
             height = ((length / 28) + 1) * 40;
         }
-        OtherChatBox otherChatBox = new OtherChatBox();
-        otherChatBox.setMessage(message.getMessage());
-        otherChatBox.setNameLabel(message.getName());
-        otherChatBox.setHeightAndWidth(height, width);
-        otherChatBox.setHeadImageView("@../../images/508035880.jpg");
-        chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
-        chatBoxList.getItems().add(otherChatBox);
+        Platform.runLater(()->{
+            OtherChatBox otherChatBox = new OtherChatBox();
+            otherChatBox.setMessage(message.getMessage());
+            otherChatBox.setNameLabel(message.getName());
+            otherChatBox.setHeightAndWidth(height, width);
+            otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+            chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
+            chatBoxList.getItems().add(otherChatBox);
+        });
     }
+
+
+
+
 
     /**
      * 收到消息后设置消息提示并在点击用户名后显示相应的消息
@@ -439,17 +443,14 @@ public class MainUIControl implements Initializable {
 
         Platform.runLater(()->{
             System.out.println(message.getName());
-            /*contactsList.getItems().clear();
+            contactsList.getItems().clear();
             ArrayList<UserInformation> uifs = message.getUserList();
-            for(UserInformation u : uifs) {
-                System.out.println(u.getUserName());
-            }/*
             for(UserInformation uif : uifs) {
                 UserListUI userListUI = new UserListUI();
                 userListUI.setNameLabel(uif.getUserName());
                 userListUI.setHeadImageView(uif.getUserPicture());
                 contactsList.getItems().add(userListUI);
-            }*/
+            }
         });
     }
 

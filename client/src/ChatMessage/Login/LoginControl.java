@@ -14,6 +14,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -28,7 +30,8 @@ import mycontrol.popup.PopUpUI;
  * */
 public class LoginControl implements Initializable {
     private static LoginControl instance;
-    private static MainUIControl con;
+    private Main main = new Main();
+    private MainUIControl control;
     @FXML
     private AnchorPane rootBox;
 
@@ -45,6 +48,7 @@ public class LoginControl implements Initializable {
         instance = this;
     }
 
+
     public static LoginControl getInstance() {
         return instance;
     }
@@ -52,7 +56,6 @@ public class LoginControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         UserInformation user;
-        con = MainUIControl.getInstance();
         try {
             user = SaveUser.userDeserialize();
             userName.setText(user.getUserName());
@@ -80,7 +83,8 @@ public class LoginControl implements Initializable {
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
-            Communication communication = new Communication(ServerIP.IP,ServerIP.port,name,"@../../images/508035880.jpg",con);
+            // 多线程，处理登陆
+            Communication communication = new Communication(ServerIP.IP,ServerIP.port,name,"@../../images/508035880.jpg");
             Thread x = new Thread(communication);
             x.start();
         } else {
@@ -129,7 +133,7 @@ public class LoginControl implements Initializable {
     public void LoadMain() {
         Platform.runLater(()->{
             try {
-                Main main = new Main();
+                main.showWindow();
                 Stage thisStage = (Stage) rootBox.getScene().getWindow();
                 thisStage.close();
             } catch (Exception e) {

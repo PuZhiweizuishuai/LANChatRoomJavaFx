@@ -6,49 +6,45 @@ import ChatMessage.SignUp.SignUpControl;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.ServerIP;
+
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
  * 与服务器通信模块
+ *
  * @author PuZhiwei
- * */
+ */
 public class Communication implements Runnable {
     private static final String HASCONNECTED = "has connected";
-
+    private MainUIControl controller = MainUIControl.getInstance();
     private static String picture;
     private Socket socket;
     public String hostname;
     public int port;
     public static String username;
     private static String userPassword;
-    public MainUIControl controller;
     private static ObjectOutputStream oos;
     private InputStream is;
     private ObjectInputStream input;
     private OutputStream outputStream;
 
 
-    public Communication(String hostname, int port, String username, String picture, MainUIControl controller) {
+    public Communication(String hostname, int port, String username, String picture) {
         this.hostname = hostname;
         this.port = port;
         Communication.username = username;
         Communication.picture = picture;
-        this.controller = controller;
-    }
 
-    public void setController(MainUIControl controller) {
-        this.controller = controller;
     }
-
 
 
     @Override
     public void run() {
         try {
             socket = new Socket();
-            socket.connect(new InetSocketAddress(hostname,port), ServerIP.timeout);
+            socket.connect(new InetSocketAddress(hostname, port), ServerIP.timeout);
             outputStream = socket.getOutputStream();
             oos = new ObjectOutputStream(outputStream);
             is = socket.getInputStream();
@@ -64,11 +60,11 @@ public class Communication implements Runnable {
             while (socket.isConnected()) {
                 Message message = null;
                 message = (Message) input.readObject();
-                if(message != null) {
-                    System.out.println("消息类型： "+message.getTYPE());
+                if (message != null) {
+                    System.out.println("消息类型： " + message.getTYPE());
                     switch (message.getTYPE()) {
                         case GROUPSMS:
-                            System.out.println(message.getMessage());
+                            controller.showOtherMessage(message);
                             break;
                         case MSG:
                             controller.addOtherMessage(message);
@@ -76,7 +72,7 @@ public class Communication implements Runnable {
                             controller.newUserNotification(message);
                             break;
                         case FAIL:
-                            LoginControl.getInstance().showDilog("提示：","账号或密码错误");
+                            LoginControl.getInstance().showDilog("提示：", "账号或密码错误");
                             break;
                         case SUCCESS:
                             LoginControl.getInstance().LoadMain();
@@ -97,7 +93,7 @@ public class Communication implements Runnable {
                             SignUpControl.getInstance().setIsSingUpSuecces(false);
                             break;
                         default:
-                             break;
+                            break;
                     }
                 }
             }
@@ -108,7 +104,7 @@ public class Communication implements Runnable {
 
     /**
      * 此方法用于发送普通消息
-     * */
+     */
     public static void send(Message message) throws IOException {
         oos.writeObject(message);
         oos.flush();
@@ -116,7 +112,7 @@ public class Communication implements Runnable {
 
     /**
      * 此方法用于发送连接请求
-     * */
+     */
     public static void connect() throws IOException {
         Message message = new Message(username, HASCONNECTED, MessageType.CONNECT);
         message.setHeadPicture(picture);
