@@ -27,13 +27,13 @@ public class SignUp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SignUpUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/SignUpUI.fxml"));
         primaryStage.setTitle("Chat Message注册");
         Scene scene = new Scene(root,960,540);
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         DragUtil.addDragListener(primaryStage, root);
-        primaryStage.getIcons().add(new Image("@../../images/Icon.png"));
+        primaryStage.getIcons().add(new Image("/resources/images/Icon.png"));
         primaryStage.show();
     }
 

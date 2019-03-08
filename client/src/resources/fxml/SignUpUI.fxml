@@ -15,7 +15,7 @@
             <children>
                 <ImageView fitHeight="373.0" fitWidth="373.0" layoutX="52.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/LoginBg.png" />
+                        <Image url="@../images/LoginBg.png" />
                     </image>
                 </ImageView>
             <TextField fx:id="userEmail" layoutX="490.0" layoutY="79.0" prefHeight="50.0" prefWidth="320.0" promptText="邮箱" style="-fx-background-radius: 30px; -fx-background-color: #ebeef1;">
@@ -44,12 +44,12 @@
                 </PasswordField>
                 <ImageView fitHeight="150.0" fitWidth="40.0" layoutX="437.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/userName.png" />
+                        <Image url="@../images/userName.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="150.0" fitWidth="45.0" layoutX="435.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../images/userPassword.png" />
+                        <Image url="@../images/userPassword.png" />
                     </image>
                 </ImageView>
                 <JFXButton fx:id="signUpButton" buttonType="RAISED" layoutX="548.0" layoutY="352.0" onAction="#clickSignInButtion" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 90px; -fx-background-color: #5178d9;" text="注册" textFill="WHITE">
@@ -62,7 +62,7 @@
                 </JFXButton>
             <ImageView fitHeight="150.0" fitWidth="40.0" layoutX="437.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/Email.png" />
+                  <Image url="@../images/Email.png" />
                </image>
             </ImageView>
             </children>

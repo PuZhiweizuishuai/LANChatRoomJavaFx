@@ -78,7 +78,7 @@ public class CustomControl extends VBox {
         
     @FXML
     protected void doSomething() {
-        Image image = new Image("@../../images/LoginBG.png");
+        Image image = new Image("@../../resources.images/LoginBG.png");
         imageCeshi.setImage(image);
         System.out.println("The button was clicked!");
     }

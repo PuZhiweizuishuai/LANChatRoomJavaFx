@@ -46,7 +46,7 @@
    <children>
       <ImageView fx:id="imageCeshi" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../images/LoginBG.jpg" />
+            <Image url="@../../resources/images/LoginBG.jpg" />
          </image></ImageView>
    </children>
 </fx:root>

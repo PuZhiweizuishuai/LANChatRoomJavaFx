@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="3000.0" style="-fx-background-color: white;" stylesheets="@MainCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.Main.MainUIControl">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="3000.0" style="-fx-background-color: white;" stylesheets="@../../ChatMessage/Main/MainCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.Main.MainUIControl">
    <children>
       <GridPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
@@ -107,7 +107,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ListView fx:id="chatBoxList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-style: none; -fx-background-color: #f5f5f5;" stylesheets="@ListViewStyle.css" GridPane.columnIndex="1" />
+                  <ListView fx:id="chatBoxList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-style: none; -fx-background-color: #f5f5f5;" stylesheets="@../../ChatMessage/Main/ListViewStyle.css" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">

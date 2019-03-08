@@ -4,7 +4,6 @@ import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -44,16 +43,6 @@ import mycontrol.userlist.UserListUI;
  * @author PuZhiwei
  * */
 public class MainUIControl implements Initializable {
-    /**
-     * MainUIControl 对象
-     * */
-    private static MainUIControl instance = new MainUIControl();
-
-    /**
-     * 通信基类对象
-     * */
-    private Communication comm;
-
     /**
      * 按钮
      */
@@ -149,10 +138,6 @@ public class MainUIControl implements Initializable {
     @FXML
     private JFXListView contactsList;
 
-    /**
-     * 保存在线用户列表
-     * */
-    private LinkedList<String> userList;
 
     /**
      * 保存个人的消息记录
@@ -162,7 +147,7 @@ public class MainUIControl implements Initializable {
     private String ChatObject = "群聊";
 
     /**
-     * 右侧信息
+     * 左侧信息
      * */
     @FXML
     private ImageView lefttMyHead;
@@ -190,27 +175,8 @@ public class MainUIControl implements Initializable {
     private double sceneWidth = sceneSize.width * 0.8;
     private double sceneHeight = sceneSize.height * 0.8;
 
-    /**
-     * 获取 LoginControl 对象
-     * */
-    public MainUIControl() {
-        instance = this;
-    }
 
-    /**
-     * 获得 MainUIControl 对象
-     * */
-    public static MainUIControl getInstance() {
-        return instance;
-    }
 
-    public void text(String s) {
-        System.out.println(s);
-    }
-
-    public void setComm(Communication comm) {
-        this.comm = comm;
-    }
 
     /**
      * 初始化
@@ -254,7 +220,7 @@ public class MainUIControl implements Initializable {
         headImageTop.setLayoutY(buttonHight - 5);
         headImageTop.setFitWidth(60);
         headImageTop.setFitHeight(60);
-        headImageTop.setImage(new Image("@../../images/GroupChat.png"));
+        headImageTop.setImage(new Image("/resources/images/GroupChat.png"));
 
         // 按钮
         closeButton.setLayoutY(buttonHight);
@@ -262,11 +228,12 @@ public class MainUIControl implements Initializable {
 
         UserListUI groupChat = new UserListUI();
         groupChat.setNameLabel("群聊");
-        groupChat.setHeadImageView("@../../images/GroupChat.png");
+        groupChat.setHeadImageView("/resources/images/GroupChat.png");
         contactsList.getItems().add(groupChat);
 
-        lefttMyHead.setImage(new Image("@../../images/508035880.jpg"));
+        lefttMyHead.setImage(new Image("/resources/images/508035880.jpg"));
         leftNameLabel.setText(SaveUser.getLoginUserName());
+        System.out.println(SaveUser.getLoginUserName());
     }
 
     /**
@@ -320,12 +287,10 @@ public class MainUIControl implements Initializable {
         } else {
             height = ((length / 28) + 1) * 40;
         }
-        // System.out.println( length + "       " +((length / 23) + 1));
         MyChatBox myChatBox = new MyChatBox();
         myChatBox.setMessage(myMessage);
         myChatBox.setHeightAndWidth(height,width);
-        myChatBox.setHeadImageView("@../../images/508035880.jpg");
-        chatBoxList.setNodeOrientation(NodeOrientation.valueOf("RIGHT_TO_LEFT"));
+        myChatBox.setHeadImageView("/resources/images/508035880.jpg");
         chatBoxList.getItems().add(myChatBox);
         inputText.setText("");
     }
@@ -334,8 +299,11 @@ public class MainUIControl implements Initializable {
      * 显示收到的消息
      * */
     public void showOtherMessage(Message message) {
-        //getTime();
-        String otherMessage = inputText.getText();
+        if(message.getName().equals(SaveUser.getLoginUserName())) {
+            return ;
+        }
+        getTime();
+        String otherMessage = message.getMessage();
         int length = otherMessage.length();
         int width;
         if(length <= 2) {
@@ -353,10 +321,10 @@ public class MainUIControl implements Initializable {
         }
         Platform.runLater(()->{
             OtherChatBox otherChatBox = new OtherChatBox();
-            otherChatBox.setMessage(message.getMessage());
+            otherChatBox.setMessage(otherMessage);
             otherChatBox.setNameLabel(message.getName());
             otherChatBox.setHeightAndWidth(height, width);
-            otherChatBox.setHeadImageView("@../../images/508035880.jpg");
+            otherChatBox.setHeadImageView("/resources/images/508035880.jpg");
             chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
             chatBoxList.getItems().add(otherChatBox);
         });
@@ -427,7 +395,7 @@ public class MainUIControl implements Initializable {
         String myMessage = inputText.getText();
         if(!myMessage.isEmpty()) {
             Message message = new Message(SaveUser.getLoginUserName(),myMessage,MessageType.GROUPSMS);
-            message.setHeadPicture("@../../images/508035880.jpg");
+            message.setHeadPicture("/resources/images/508035880.jpg");
             try {
                 Communication.send(message);
             } catch (IOException e) {
@@ -442,10 +410,18 @@ public class MainUIControl implements Initializable {
 
     public void setUserList(Message message) {
         Platform.runLater(()->{
-            System.out.println(message.getName());
-            contactsList.getItems().clear();
             ArrayList<UserInformation> uifs = message.getUserList();
+            int count = uifs.size();
+            nowUserNumber.setText("当前用户："+ count +" 人");
+            contactsList.getItems().clear();
+            UserListUI groupChat = new UserListUI();
+            groupChat.setNameLabel("群聊");
+            groupChat.setHeadImageView("/resources/images/GroupChat.png");
+            contactsList.getItems().add(groupChat);
             for(UserInformation uif : uifs) {
+                if(uif.getUserName().equals(SaveUser.getLoginUserName())) {
+                    continue;
+                }
                 UserListUI userListUI = new UserListUI();
                 userListUI.setNameLabel(uif.getUserName());
                 userListUI.setHeadImageView(uif.getUserPicture());

@@ -49,7 +49,7 @@ public class PopUpUI extends Application {
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         PopUpUIControl popUpUIControl = fxmlLoader.getController();
         popUpUIControl.setText(title, text);
-        primaryStage.getIcons().add(new Image("@../../images/Icon.png"));
+        primaryStage.getIcons().add(new Image("/resources/images/Icon.png"));
         primaryStage.show();
     }
 

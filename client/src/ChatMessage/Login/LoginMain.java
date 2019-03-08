@@ -1,8 +1,5 @@
 package ChatMessage.Login;
 
-import ChatMessage.Main.MainUIControl;
-import ChatMessage.user.SaveUser;
-import ChatMessage.user.UserInformation;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +15,7 @@ public class LoginMain extends Application {
     private Stage stage = new Stage();
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("LoginUI.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/LoginUI.fxml"));
         primaryStage.setTitle("ChatMessages登陆");
         Scene scene = new Scene(root, 960, 540);
         primaryStage.setScene(scene);
@@ -28,7 +25,7 @@ public class LoginMain extends Application {
         primaryStage.setResizable(false);
         // 窗口移动
         DragUtil.addDragListener(primaryStage, root);
-        primaryStage.getIcons().add(new Image("@../../images/Icon.png"));
+        primaryStage.getIcons().add(new Image("/resources/images/Icon.png"));
         primaryStage.show();
         // SaveUser.userSerialize(new UserInformation("","",""));
     }

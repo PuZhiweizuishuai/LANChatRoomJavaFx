@@ -3,6 +3,7 @@ package ChatMessage.communication;
 import ChatMessage.Login.LoginControl;
 import ChatMessage.Main.MainUIControl;
 import ChatMessage.SignUp.SignUpControl;
+import ChatMessage.controller.Context;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.ServerIP;
@@ -18,7 +19,8 @@ import java.net.Socket;
  */
 public class Communication implements Runnable {
     private static final String HASCONNECTED = "has connected";
-    public MainUIControl controller = MainUIControl.getInstance();
+
+    public MainUIControl controller;
 
     private static String picture;
     private Socket socket;
@@ -32,12 +34,13 @@ public class Communication implements Runnable {
     private OutputStream outputStream;
 
 
-    public Communication(String hostname, int port, String username, String picture) {
+    public Communication(String hostname, int port, String username, String picture ,MainUIControl controller) {
         this.hostname = hostname;
         this.port = port;
         Communication.username = username;
         Communication.picture = picture;
-        //controller.setComm(this);
+        this.controller = controller;
+
     }
 
 

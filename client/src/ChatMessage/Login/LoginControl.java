@@ -7,20 +7,13 @@ import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
@@ -33,8 +26,9 @@ import mycontrol.popup.PopUpUI;
  * */
 public class LoginControl implements Initializable {
     private static LoginControl instance;
-    private Main main = new Main();
-
+    private MainUIControl mainUIControl;
+    private Main main;
+    private Parent roots;
     @FXML
     private AnchorPane rootBox;
 
@@ -59,6 +53,16 @@ public class LoginControl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/MainUI.fxml"));
+        System.out.println(fxmlLoader);
+        try {
+            roots = fxmlLoader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mainUIControl = (MainUIControl) fxmlLoader.getController();
+        main = new Main(fxmlLoader, roots);
+        System.out.println(mainUIControl);
         UserInformation user;
         try {
             user = SaveUser.userDeserialize();
@@ -88,7 +92,7 @@ public class LoginControl implements Initializable {
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
             // 多线程，处理登陆
-            communication = new Communication(ServerIP.IP,ServerIP.port,name,"@../../images/508035880.jpg");
+            communication = new Communication(ServerIP.IP,ServerIP.port,name,"/resources/images/508035880.jpg", mainUIControl);
             Thread x = new Thread(communication);
             x.start();
         } else {

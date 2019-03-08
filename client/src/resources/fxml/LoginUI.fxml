@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="373.0" fitWidth="373.0" layoutX="52.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/LoginBg.png" />
+                  <Image url="@../images/LoginBg.png" />
                </image>
             </ImageView>
             <Label layoutX="488.0" layoutY="60.0" prefHeight="49.0" prefWidth="268.0" text="Chat Message" textFill="#535274">
@@ -41,12 +41,12 @@
             </PasswordField>
             <ImageView fitHeight="150.0" fitWidth="40.0" layoutX="435.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/userName.png" />
+                  <Image url="@../images/userName.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="150.0" fitWidth="45.0" layoutX="433.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../images/userPassword.png" />
+                  <Image url="@../images/userPassword.png" />
                </image>
             </ImageView>
             <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="523.0" layoutY="303.0" onAction="#clickLoginButton" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #827ffe; -fx-background-radius: 20px;" text="登  陆  →" textAlignment="CENTER" textFill="WHITE">
