@@ -289,12 +289,15 @@ public class MainUIControl implements Initializable {
         } else {
             height = ((length / 28) + 1) * 40;
         }
-        MyChatBox myChatBox = new MyChatBox();
-        myChatBox.setMessage(myMessage);
-        myChatBox.setHeightAndWidth(height,width);
-        myChatBox.setHeadImageView("/resources/images/508035880.jpg");
-        chatBoxList.getItems().add(myChatBox);
-        inputText.setText("");
+        Platform.runLater(()->{
+            MyChatBox myChatBox = new MyChatBox();
+            myChatBox.setMessage(myMessage);
+            myChatBox.setHeightAndWidth(height,width);
+            myChatBox.setHeadImageView("/resources/images/508035880.jpg");
+            chatBoxList.getItems().add(myChatBox);
+            inputText.setText("");
+        });
+
     }
 
     /**
@@ -338,7 +341,6 @@ public class MainUIControl implements Initializable {
      */
     public void setContactMessageNumber(String name) {
         if(name.equals(ChatObject)) {
-            System.out.println(name);
             return;
         }
         contactMessageNumber.put(name, contactMessageNumber.get(name) + 1);
@@ -358,6 +360,22 @@ public class MainUIControl implements Initializable {
             });
         }
     }
+
+    /**
+     * 显示群消息
+     * */
+    public void addGroupMessage(Message message) {
+        UserListUI userListUI = contactsHashMap.get("群聊");
+        if(ChatObject.equals("群聊")) {
+            showOtherMessage(message);
+        } else {
+            Platform.runLater(()->{
+                contactMessageNumber.put("群聊", contactMessageNumber.get("群聊") + 1);
+                userListUI.setMessageNumber(contactMessageNumber.get("群聊").toString());
+            });
+        }
+    }
+
 
     /**
      * 获取当前时间,并显示在聊天界面
@@ -389,7 +407,7 @@ public class MainUIControl implements Initializable {
             nameLabelTop.setText("群聊中：");
             ChatObject = "群聊";
             userListUI.closeMessageNumber();
-            //switchChatUser();
+            switchGroup();
         } else {
             nameLabelTop.setText("与 " + userListUI.getName() + " 聊天中！");
             ChatObject = userListUI.getName();
@@ -417,6 +435,7 @@ public class MainUIControl implements Initializable {
             try {
                 Communication.send(message);
                 SaveMessage(message);
+                saveGroupMessage(message);
             } catch (IOException e) {
                new PopUpUI("提示：", "发送失败，请稍后再试");
                return;
@@ -482,10 +501,10 @@ public class MainUIControl implements Initializable {
      * */
     public void switchChatUser() {
         chatBoxList.getItems().clear();
+        int i = 0;
         LinkedList<Message> list = messageLog.get(ChatObject);
         if(list != null) {
             for(Message message : list) {
-                System.out.println(message.getName() + "  " + message.getMessage());
                 if(message.getName().equals(SaveUser.getLoginUserName())) {
                     showMyMessage(message.getMessage());
                 } else if(message.getTYPE() != MessageType.GROUPSMS) {
@@ -505,6 +524,23 @@ public class MainUIControl implements Initializable {
         }
     }
 
+
+    /**
+     * 切换到群聊界面
+     * */
+    public void switchGroup() {
+        chatBoxList.getItems().clear();
+        LinkedList<Message> list = groupMessage;
+        if(list != null) {
+            for(Message message : groupMessage) {
+                if(message.getName().equals(SaveUser.getLoginUserName())) {
+                    showMyMessage(message.getMessage());
+                } else {
+                    showOtherMessage(message);
+                }
+            }
+        }
+    }
 
     public void newUserNotification(Message message) {
         //TODO 添加具体功能

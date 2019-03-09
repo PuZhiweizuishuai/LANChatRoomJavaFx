@@ -67,7 +67,8 @@ public class Communication implements Runnable {
                     System.out.println("消息类型： " + message.getTYPE());
                     switch (message.getTYPE()) {
                         case GROUPSMS:
-
+                            controller.saveGroupMessage(message);
+                            controller.addGroupMessage(message);
                             break;
                         case MSG:
                             controller.SaveMessage(message);
