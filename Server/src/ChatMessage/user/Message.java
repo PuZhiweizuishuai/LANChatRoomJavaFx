@@ -42,6 +42,11 @@ public class Message implements Serializable {
     public String getMessage() {
         return message;
     }
+
+    public void setTYPE(MessageType TYPE) {
+        this.TYPE = TYPE;
+    }
+
     public MessageType getTYPE() {
         return TYPE;
     }

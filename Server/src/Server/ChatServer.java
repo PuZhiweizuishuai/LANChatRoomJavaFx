@@ -21,7 +21,8 @@ public class ChatServer {
     private static final int PORT = 9999;
     private static HashSet<ObjectOutputStream> writers = new HashSet<>();
     private static ArrayList<UserInformation> users = new ArrayList<>();
-    private static HashMap<String, UserInformation> nameAndSocket = new HashMap<>();
+    private static HashMap<String, UserInformation> names = new HashMap<>();
+    private static HashMap<String, ObjectOutputStream> sendDesignatedUser = new HashMap<>();
     /**
      * 启动监听服务
      * */
@@ -64,6 +65,7 @@ public class ChatServer {
                 Message firstMessage = (Message)input.readObject();
                 checkUserNameAndPwd(firstMessage);
                 writers.add(output);
+                sendDesignatedUser.put(firstMessage.getName(), output);
                 sendType(firstMessage, output,MessageType.SUCCESS);
                 addToList();
 
@@ -99,12 +101,12 @@ public class ChatServer {
         }
 
         private synchronized void checkUserNameAndPwd(Message firstMessage) throws UserNameOrPwdException {
-            if(!nameAndSocket.containsKey(firstMessage.getName())) {
+            if(!names.containsKey(firstMessage.getName())) {
                 this.name = firstMessage.getName();
                 user = new UserInformation(firstMessage.getEmail(),firstMessage.getName(),firstMessage.getPassword());
                 user.setUserPicture(firstMessage.getHeadPicture());
                 users.add(user);
-                nameAndSocket.put(name, user);
+                names.put(name, user);
 
             } else {
                 throw new UserNameOrPwdException("密码错误！");
@@ -129,7 +131,10 @@ public class ChatServer {
          * 向指定用户发送消息
          * */
         private void write(Message message) throws IOException {
-
+            ObjectOutputStream oos = sendDesignatedUser.get(message.getTo());
+            System.out.println("用户：" + message.getName() + " 开始向用户：" + message.getTo() + "发送消息！");
+            oos.writeObject(message);
+            oos.reset();
         }
 
         /**
@@ -138,7 +143,7 @@ public class ChatServer {
         private void writeGroup(Message message) throws IOException {
             for(ObjectOutputStream writer: writers) {
                 System.out.println("开始群发 " + writer);
-                message.setUserList(nameAndSocket);
+                message.setUserList(names);
                 writer.writeObject(message);
                 writer.reset();
             }
@@ -146,7 +151,7 @@ public class ChatServer {
 
         private synchronized void closeConnections() {
             if(name != null) {
-                nameAndSocket.remove(name);
+                names.remove(name);
                 System.out.println("用户"+ name + "下线");
             }
             if(user != null) {
@@ -181,7 +186,7 @@ public class ChatServer {
 
         private Message removeFromList() throws IOException {
             Message msg = new Message("SERVER","has left the chat", MessageType.DISCONNECT);
-            msg.setUserList(nameAndSocket);
+            msg.setUserList(names);
             writeGroup(msg);
             return msg;
         }

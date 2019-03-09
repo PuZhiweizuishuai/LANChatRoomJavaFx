@@ -54,7 +54,6 @@ public class LoginControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/MainUI.fxml"));
-        System.out.println(fxmlLoader);
         try {
             roots = fxmlLoader.load();
         } catch (Exception e) {
@@ -62,7 +61,6 @@ public class LoginControl implements Initializable {
         }
         mainUIControl = (MainUIControl) fxmlLoader.getController();
         main = new Main(fxmlLoader, roots);
-        System.out.println(mainUIControl);
         UserInformation user;
         try {
             user = SaveUser.userDeserialize();

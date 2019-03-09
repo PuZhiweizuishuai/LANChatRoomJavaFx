@@ -3,7 +3,6 @@ package ChatMessage.communication;
 import ChatMessage.Login.LoginControl;
 import ChatMessage.Main.MainUIControl;
 import ChatMessage.SignUp.SignUpControl;
-import ChatMessage.controller.Context;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.ServerIP;
@@ -68,9 +67,11 @@ public class Communication implements Runnable {
                     System.out.println("消息类型： " + message.getTYPE());
                     switch (message.getTYPE()) {
                         case GROUPSMS:
-                            controller.showOtherMessage(message);
+
                             break;
                         case MSG:
+                            controller.SaveMessage(message);
+                            controller.setContactMessageNumber(message.getName());
                             controller.addOtherMessage(message);
                         case NOTIFICATION:
                             controller.newUserNotification(message);

@@ -31,7 +31,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         // 获取屏幕大小
         Dimension sceneSize = Toolkit.getDefaultToolkit().getScreenSize();
-        //root = fxmlLoader.load();
         primaryStage.setTitle("群聊");
         Scene scene = new Scene(root,sceneSize.width * 0.8,sceneSize.height*0.8);
         scene.getStylesheets().add(getClass().getResource("MainCss.css").toExternalForm());
