@@ -6,7 +6,6 @@ import ChatMessage.SignUp.SignUpControl;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.ServerIP;
-
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -20,7 +19,7 @@ public class Communication implements Runnable {
     private static final String HASCONNECTED = "has connected";
 
     public MainUIControl controller;
-
+    public SignUpControl signUpControl;
     private static String picture;
     private Socket socket;
     public String hostname;
@@ -33,12 +32,13 @@ public class Communication implements Runnable {
     private OutputStream outputStream;
 
 
-    public Communication(String hostname, int port, String username, String picture ,MainUIControl controller) {
+    public Communication(String hostname, int port, String username, String picture ,MainUIControl controller, SignUpControl signUpControl) {
         this.hostname = hostname;
         this.port = port;
         Communication.username = username;
         Communication.picture = picture;
         this.controller = controller;
+        this.signUpControl = signUpControl;
 
     }
 
@@ -93,10 +93,10 @@ public class Communication implements Runnable {
                             controller.setUserList(message);
                             break;
                         case SIGNUPSUCCESS:
-                            SignUpControl.getInstance().setIsSingUpSuecces(true);
+                            signUpControl.loadLogin();
                             break;
                         case SIGNUPFAIL:
-                            SignUpControl.getInstance().setIsSingUpSuecces(false);
+                            LoginControl.getInstance().showDilog("提示：", "注册失败，请重试！");
                             break;
                         default:
                             break;

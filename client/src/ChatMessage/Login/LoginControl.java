@@ -3,6 +3,7 @@ package ChatMessage.Login;
 import ChatMessage.Main.Main;
 import ChatMessage.Main.MainUIControl;
 import ChatMessage.SignUp.SignUp;
+import ChatMessage.SignUp.SignUpControl;
 import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
 import javafx.application.Platform;
@@ -27,8 +28,11 @@ import mycontrol.popup.PopUpUI;
 public class LoginControl implements Initializable {
     private static LoginControl instance;
     private MainUIControl mainUIControl;
+    private SignUpControl signUpControl;
     private Main main;
+    private SignUp signUp;
     private Parent roots;
+    private Parent rootSignUp;
     @FXML
     private AnchorPane rootBox;
 
@@ -54,13 +58,19 @@ public class LoginControl implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/MainUI.fxml"));
+        FXMLLoader fxmlSignIn = new FXMLLoader(getClass().getResource("/resources/fxml/SignUpUI.fxml"));
         try {
             roots = fxmlLoader.load();
+            rootSignUp = fxmlSignIn.load();
         } catch (Exception e) {
             e.printStackTrace();
         }
         mainUIControl = (MainUIControl) fxmlLoader.getController();
+        signUpControl = (SignUpControl) fxmlSignIn.getController();
+
         main = new Main(fxmlLoader, roots);
+        signUp = new SignUp(rootSignUp, fxmlSignIn);
+
         UserInformation user;
         try {
             user = SaveUser.userDeserialize();
@@ -90,7 +100,7 @@ public class LoginControl implements Initializable {
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
             // 多线程，处理登陆
-            communication = new Communication(ServerIP.IP,ServerIP.port,name,"/resources/images/508035880.jpg", mainUIControl);
+            communication = new Communication(ServerIP.IP,ServerIP.port,name,"/resources/images/508035880.jpg", mainUIControl, signUpControl);
             Thread x = new Thread(communication);
             x.start();
         } else {
@@ -104,13 +114,7 @@ public class LoginControl implements Initializable {
      * */
     @FXML
     public void clickSignUpButton(ActionEvent event) {
-        new SignUp();
-        try {
-            Stage thisStage = (Stage) rootBox.getScene().getWindow();
-            thisStage.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        loadSignUp();
     }
 
 
@@ -146,6 +150,18 @@ public class LoginControl implements Initializable {
                 e.printStackTrace();
             }
         });
+    }
+
+
+    public void loadSignUp() {
+        try {
+            signUp.showWindow();
+            Stage thisStage = (Stage) rootBox.getScene().getWindow();
+            thisStage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void showDilog(String title, String text) {

@@ -18,7 +18,7 @@ import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
  * @author Pu Zhiwei
  * */
 public class ChatServer {
-    private static final int PORT = 9999;
+    private static final int PORT = 3389;
     private static HashSet<ObjectOutputStream> writers = new HashSet<>();
     private static ArrayList<UserInformation> users = new ArrayList<>();
     private static HashMap<String, UserInformation> names = new HashMap<>();
@@ -83,6 +83,9 @@ public class ChatServer {
                                 break;
                             case CONNECT:
                                 addToList();
+                            case SIGNUP:
+                                signUp(inputMessage);
+                                break;
                             default:
                                 break;
                         }
@@ -149,6 +152,9 @@ public class ChatServer {
             }
         }
 
+        /**
+         * 关闭连接
+         * */
         private synchronized void closeConnections() {
             if(name != null) {
                 names.remove(name);
@@ -189,6 +195,10 @@ public class ChatServer {
             msg.setUserList(names);
             writeGroup(msg);
             return msg;
+        }
+
+        private void signUp(Message message) {
+
         }
     }
 

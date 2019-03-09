@@ -10,15 +10,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class SignUp extends Application {
-    //private Stage stage = new Stage();
-
-    public SignUp() {
-        try {
-            Stage stage = new Stage();
-            start(stage);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    private Stage stage = new Stage();
+    private Parent root;
+    private FXMLLoader fxmlLoader;
+    public SignUp(Parent root, FXMLLoader fxmlLoader) {
+        this.root = root;
+        this.fxmlLoader = fxmlLoader;
     }
 
     public static void main(String[] args) {
@@ -27,7 +24,6 @@ public class SignUp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/SignUpUI.fxml"));
         primaryStage.setTitle("Chat Message注册");
         Scene scene = new Scene(root,960,540);
         primaryStage.setScene(scene);
@@ -37,7 +33,7 @@ public class SignUp extends Application {
         primaryStage.show();
     }
 
-    /*public void showWindow() throws Exception {
+    public void showWindow() throws Exception {
         start(stage);
-    }*/
+    }
 }

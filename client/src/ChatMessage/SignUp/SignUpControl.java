@@ -1,8 +1,10 @@
 package ChatMessage.SignUp;
 
 import ChatMessage.Login.LoginMain;
+import ChatMessage.Main.MainUIControl;
 import ChatMessage.communication.Communication;
 import ChatMessage.user.SaveUser;
+import ChatMessage.user.ServerIP;
 import ChatMessage.user.UserInformation;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -14,8 +16,6 @@ import mycontrol.popup.PopUpUI;
 
 
 public class SignUpControl {
-    private static SignUpControl instance;
-    Communication comm;
     @FXML
     private AnchorPane signInStage;
 
@@ -29,33 +29,38 @@ public class SignUpControl {
     private TextField userPassword;
 
     private static boolean isSingUpSuecces = false;
+    private LoginMain loginMain = new LoginMain();
+    private Communication communication;
+    private MainUIControl mainUIControl;
+    private SignUpControl signUpControl;
+
 
     public SignUpControl() {
-        instance = this;
+
     }
 
-    public static SignUpControl getInstance() {
-        return instance;
+    public void set(MainUIControl mainUIControl, SignUpControl signUpControl) {
+        this.mainUIControl = mainUIControl;
+        this.signUpControl = signUpControl;
     }
+
+
+
+
+
 
     @FXML
     public void clickSignInButtion(ActionEvent event) {
-        LoginMain loginMain = new LoginMain();
         if(checkUserInput()) {
             UserInformation user = new UserInformation(userEmail.getText(),userName.getText(),userPassword.getText());
             try {
                 SaveUser.userSerialize(user);
-                if(isSingUpSuecces) {
-                    new PopUpUI("提示：", "注册成功！");
-                    loginMain.showWindow();
-                    Stage thisStage = (Stage) signInStage.getScene().getWindow();
-                    thisStage.close();
-                } else {
-                    new PopUpUI("提示：","该用户名已存在！");
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            communication = new Communication(ServerIP.IP,ServerIP.port,userName.getText(),"/resources/images/508035880.jpg", mainUIControl, signUpControl);
+            Thread x = new Thread(communication);
+            x.start();
         } else {
             new PopUpUI("提示：", "请填写正确的信息后注册！");
         }
@@ -63,14 +68,7 @@ public class SignUpControl {
 
     @FXML
     public void backButtion(ActionEvent event) {
-        LoginMain loginMain = new LoginMain();
-        try {
-            loginMain.showWindow();
-            Stage thisStage = (Stage) signInStage.getScene().getWindow();
-            thisStage.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        loadLogin();
     }
 
     /**
@@ -94,14 +92,33 @@ public class SignUpControl {
     }
 
     private boolean checkUserInput() {
-        if(userEmail.getText().equals("") || userName.getText().equals("") || userPassword.getText().equals("")) {
+        String email = userEmail.getText();
+        String name = userName.getText();
+        String pwd = userPassword.getText();
+
+        if(pwd.equals("") || name.equals("") || email.equals("")) {
+            new PopUpUI("提示：", "请填写正确的数据");
+            return false;
+        }
+        if(!email.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")) {
+            new PopUpUI("提示：", "邮箱格式错误！");
+            return false;
+        }
+        if(userName.getLength() >= 10) {
+            new PopUpUI("提示：", "用户名超过10位！");
             return false;
         }
         return true;
     }
 
-    public void setIsSingUpSuecces(boolean isSingUpSuecces) {
-        SignUpControl.isSingUpSuecces = isSingUpSuecces;
+    public void loadLogin() {
+        try {
+            new PopUpUI("提示：", "注册成功！");
+            loginMain.showWindow();
+            Stage thisStage = (Stage) signInStage.getScene().getWindow();
+            thisStage.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 }
