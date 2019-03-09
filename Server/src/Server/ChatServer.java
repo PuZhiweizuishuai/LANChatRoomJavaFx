@@ -18,7 +18,7 @@ import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
  * @author Pu Zhiwei
  * */
 public class ChatServer {
-    private static final int PORT = 3389;
+    private static final int PORT = 9999;
     private static HashSet<ObjectOutputStream> writers = new HashSet<>();
     private static ArrayList<UserInformation> users = new ArrayList<>();
     private static HashMap<String, UserInformation> names = new HashMap<>();

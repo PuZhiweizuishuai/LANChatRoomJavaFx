@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2000.0" prefWidth="3000.0" style="-fx-background-color: white;" stylesheets="@../../ChatMessage/Main/MainCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.Main.MainUIControl">
+   <children>
+      <GridPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0">
+        <columnConstraints>
+          <ColumnConstraints fx:id="leftCol" hgrow="SOMETIMES" minWidth="10.0" prefWidth="448.0" />
+          <ColumnConstraints fx:id="rightCol" hgrow="SOMETIMES" minWidth="10.0" prefWidth="832.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints fx:id="topRow" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="centreRow" prefHeight="400.0" vgrow="SOMETIMES" />
+          <RowConstraints fx:id="downRow" prefHeight="220.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane style="-fx-background-color: e8e6e7;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                  <ColumnConstraints fx:id="inputChatLeftCol" hgrow="SOMETIMES" prefWidth="52.0" />
+                <ColumnConstraints fx:id="inputChatCentreCol" hgrow="SOMETIMES" prefWidth="739.0" />
+                  <ColumnConstraints fx:id="inputChatRightCol" hgrow="SOMETIMES" prefWidth="42.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints fx:id="inputChatTopRow" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="inputChatCentreRow" prefHeight="134.0" vgrow="SOMETIMES" />
+                <RowConstraints fx:id="inputChatDownRow" prefHeight="12.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane fx:id="inputChatAnchor" prefHeight="149.0" prefWidth="739.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <JFXButton fx:id="sendButton" buttonType="RAISED" layoutX="674.0" layoutY="60.0" onAction="#sendMessages" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="↑" textFill="WHITE" AnchorPane.rightAnchor="10.0">
+                           <font>
+                              <Font name="Microsoft YaHei Bold" size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <TextArea id="inputTextCss" fx:id="inputText" onKeyPressed="#sendMethod" prefHeight="149.0" prefWidth="597.0" style="-fx-border-color: #f5f5f5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="Microsoft YaHei" size="25.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor></TextArea>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: e8e6e7;" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <AnchorPane prefHeight="100.0" prefWidth="832.0" style="-fx-background-color: e8e6e7;" GridPane.columnIndex="1">
+               <children>
+                  <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="753.0" layoutY="25.0" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="20.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="minimizeButton" buttonType="RAISED" layoutX="687.0" layoutY="25.0" onAction="#minimize" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #41caf6;-fx-background-radius: 90px;" text="-" textFill="WHITE" AnchorPane.rightAnchor="90.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <ImageView fx:id="headImageTop" fitHeight="90.0" fitWidth="91.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" />
+                  <Label fx:id="nameLabelTop" layoutX="131.0" layoutY="40.0" text="Label" AnchorPane.leftAnchor="100.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <JFXListView fx:id="contactsList" depth="10" onMouseClicked="#handleMouseClickContactsList" styleClass="custom-jfx-list-view1" GridPane.rowIndex="1">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXListView>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #7f7cf8;">
+               <children>
+                  <Label fx:id="nowUserNumber" layoutX="26.0" layoutY="58.0" text="当前用户" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <GridPane style="-fx-background-color: #f5f5f5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <columnConstraints>
+                <ColumnConstraints fx:id="showMessagesLeftCol" hgrow="SOMETIMES" prefWidth="52.0" />
+                <ColumnConstraints fx:id="showMessagesCentreCol" hgrow="SOMETIMES" prefWidth="737.0" />
+                  <ColumnConstraints fx:id="showMessagesRightCol" hgrow="SOMETIMES" prefWidth="44.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ListView fx:id="chatBoxList" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: transparent; -fx-border-style: none; -fx-background-color: #f5f5f5;" stylesheets="@../../ChatMessage/Main/ListViewStyle.css" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fx:id="lefttMyHead" fitHeight="100.0" fitWidth="100.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" />
+                  <Label fx:id="leftNameLabel" layoutX="224.0" layoutY="100.0" text="Label" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="170.0">
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</Pane>

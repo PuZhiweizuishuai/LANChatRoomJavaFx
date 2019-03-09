@@ -9,9 +9,9 @@ public class DbText {
     public static void main(String[] args) {
         Connection con;
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://140.143.242.57:3306/ChatMessage";
+        String url = "jdbc:mysql://192.168.244.129:3306/ChatMessage";
         String user = "root";
-        String password = "@pzw12138";
+        String password = "123456";
         try {
             Class.forName(driver);
             con = DriverManager.getConnection(url,user,password);
@@ -24,8 +24,9 @@ public class DbText {
             String name, email, pwd;
             while (rs.next()) {
                 name = rs.getString("Name");
-
-                System.out.println(name);
+                email = rs.getString("Email");
+                pwd = rs.getString("Password");
+                System.out.println(name + "  " + email + "  " + pwd);
             }
             rs.close();
             con.close();
