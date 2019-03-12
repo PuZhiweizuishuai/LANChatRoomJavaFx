@@ -1,9 +1,11 @@
 package ChatMessage.Setting;
 
-import ChatMessage.user.SaveSetting;
-import ChatMessage.user.SaveUser;
+import ChatMessage.Main.MainUIControl;
+import ChatMessage.communication.Communication;
+import ChatMessage.user.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +14,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import mycontrol.popup.PopUpUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,6 +65,10 @@ public class SettingUiControl implements Initializable {
     @FXML
     private JFXToggleButton promptToneButton;
 
+    private String newPwd;
+    private String oldPwd;
+    private MainUIControl mainUIControl;
+
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         if(SaveSetting.isOnLinePrompt) {
@@ -83,6 +92,9 @@ public class SettingUiControl implements Initializable {
 
 
     public void clickUserMessageButton(ActionEvent event) {
+        userMessageButton.setStyle("-fx-background-color: #3fcb48;");
+        settingButton.setStyle("-fx-background-color: #f4f4f4");
+        aboutMeButton.setStyle("-fx-background-color: #f4f4f4");
         message.setVisible(true);
         aboutMePane.setVisible(false);
         settingPane.setVisible(false);
@@ -90,17 +102,27 @@ public class SettingUiControl implements Initializable {
     }
 
     public void clickSettingButton(ActionEvent event) {
+        settingButton.setStyle("-fx-background-color: #3fcb48;");
+        userMessageButton.setStyle("-fx-background-color: #f4f4f4");
+        aboutMeButton.setStyle("-fx-background-color: #f4f4f4");
         settingPane.setVisible(true);
         message.setVisible(false);
         aboutMePane.setVisible(false);
     }
 
     public void clickAboutMeButton(ActionEvent event) {
+        aboutMeButton.setStyle("-fx-background-color: #3fcb48;");
+        userMessageButton.setStyle("-fx-background-color: #f4f4f4");
+        settingButton.setStyle("-fx-background-color: #f4f4f4");
         aboutMePane.setVisible(true);
         settingPane.setVisible(false);
         message.setVisible(false);
     }
 
+
+    public void setMainUIControl(MainUIControl mainUIControl) {
+        this.mainUIControl = mainUIControl;
+    }
 
     public void clickOnLine() {
         if(onLineButton.isSelected()) {
@@ -126,6 +148,19 @@ public class SettingUiControl implements Initializable {
     public void close(ActionEvent event) {
         Stage stage = (Stage) rootBox.getScene().getWindow();
         stage.close();
+    }
+
+    public void changePwd() {
+        newPwd = newPassword.getText();
+        oldPwd = oldPassword.getText();
+        if(!newPwd.equals("") && !oldPwd.equals("")) {
+            Message message = new Message(SaveUser.getLoginUserName(), oldPwd, MessageType.CHANGEPWD);
+            message.setPassword(newPwd);
+            mainUIControl.chengePwds(message);
+        } else {
+            new PopUpUI("提示：","请输出密码！");
+
+        }
     }
 
 }

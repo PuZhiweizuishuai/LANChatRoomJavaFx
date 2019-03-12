@@ -94,6 +94,34 @@ public class DBControl {
         return false;
     }
 
+    public static boolean changePwd(Message message) {
+        connect();
+        try {
+            String sql = "select * from User where Name = " + "'" + message.getName() + "'";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            String name = "", email = "", pwd = "";
+            while (rs.next()) {
+                name = rs.getString("Name");
+                email = rs.getString("Email");
+                pwd = rs.getString("Password");
+            }
+            if(pwd.equals(message.getMessage())) {
+                sql = "update User set Password = " + message.getPassword() +
+                        "where Name " + "''" + message.getName() + "''";
+                PreparedStatement insert = con.prepareStatement(sql);
+                insert.executeUpdate();
+                con.close();
+                return true;
+            }
+            con.close();
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public static void main(String[] args) {
         //checkUserNameAndPwd();

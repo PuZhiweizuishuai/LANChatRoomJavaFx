@@ -102,6 +102,7 @@ public class LoginControl implements Initializable {
         String pwd = userPassword.getText();
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
+            mainUIControl.setLeftNameLabel(name);
             // 多线程，处理登陆
             communication = new Communication(ServerIP.IP,ServerIP.port,name,SaveUser.getPicPath(), mainUIControl, signUpControl);
             communication.setUserPassword(pwd);

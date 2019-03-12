@@ -2,6 +2,7 @@ package ChatMessage.communication;
 
 import ChatMessage.Login.LoginControl;
 import ChatMessage.Main.MainUIControl;
+import ChatMessage.Setting.SettingUiControl;
 import ChatMessage.SignUp.SignUpControl;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
@@ -27,6 +28,7 @@ public class Communication implements Runnable {
     public static String username;
     private static String userPassword;
     private static String userEmail;
+    private static String userMessage;
     private static ObjectOutputStream oos;
     private InputStream is;
     private ObjectInputStream input;
@@ -43,6 +45,10 @@ public class Communication implements Runnable {
 
     }
 
+    public void setUserMessage(String message) {
+        userMessage = message;
+    }
+
     public void setUserPassword(String password) {
         userPassword = password;
     }
@@ -54,6 +60,8 @@ public class Communication implements Runnable {
     public void setMessageType(MessageType messageType) {
         this.messageType = messageType;
     }
+
+
 
     @Override
     public void run() {
@@ -76,7 +84,6 @@ public class Communication implements Runnable {
             } else {
                 connect();
             }
-
             while (socket.isConnected()) {
                 Message message = null;
                 message = (Message) input.readObject();
@@ -115,6 +122,12 @@ public class Communication implements Runnable {
                         case SIGNUPFAIL:
                             LoginControl.getInstance().showDilog("提示：", "与已有用户名重复！");
                             break;
+                        case CHANGESUCCESS:
+                            LoginControl.getInstance().showDilog("提示：", "密码更改成功！");
+                            break;
+                        case CHANGEFAIL:
+                            LoginControl.getInstance().showDilog("提示：", "请检查现密码！");
+                            break;
                         default:
                             break;
                     }
@@ -149,4 +162,5 @@ public class Communication implements Runnable {
         message.setEmail(userEmail);
         oos.writeObject(message);
     }
+
 }

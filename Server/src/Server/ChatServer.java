@@ -67,6 +67,9 @@ public class ChatServer {
                 System.out.println(firstMessage.getTYPE());
                 if(firstMessage.getTYPE() == MessageType.SIGNUP) {
                     signUp(firstMessage, output);
+                } else if(firstMessage.getTYPE() == MessageType.CHANGEPWD) {
+                    System.out.println("123");
+                    changePassword(firstMessage, output);
                 } else {
                     checkUserNameAndPwd(firstMessage);
                     writers.add(output);
@@ -91,6 +94,9 @@ public class ChatServer {
                                 addToList();
                             case SIGNUP:
                                 signUp(inputMessage, output);
+                                break;
+                            case CHANGEPWD:
+                                changePassword(inputMessage, output);
                                 break;
                             default:
                                 break;
@@ -225,6 +231,19 @@ public class ChatServer {
                 e.printStackTrace();
             }
 
+        }
+
+        private void changePassword(Message message, ObjectOutputStream output) {
+            try {
+                System.out.println("gaimmima");
+                if(DBControl.changePwd(message)) {
+                    sendType(new Message("SERVER","Change Success",MessageType.CHANGESUCCESS),output,MessageType.CHANGESUCCESS);
+                } else {
+                    sendType(new Message("SERVER","Change Success",MessageType.CHANGEFAIL),output,MessageType.CHANGEFAIL);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

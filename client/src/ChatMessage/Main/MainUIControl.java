@@ -1,10 +1,12 @@
 package ChatMessage.Main;
 
 import ChatMessage.Setting.SettingUIMain;
+import ChatMessage.Setting.SettingUiControl;
 import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.sun.org.apache.bcel.internal.generic.POP;
 import com.traynotifications.animations.AnimationType;
 import com.traynotifications.notification.TrayNotification;
 import javafx.application.Platform;
@@ -13,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Parent;
@@ -192,14 +195,22 @@ public class MainUIControl implements Initializable {
     private double sceneWidth = sceneSize.width * 0.8;
     private double sceneHeight = sceneSize.height * 0.8;
 
-
-
-
+    private SettingUiControl settingUiControl;
+    private Parent settingRoot;
+    private FXMLLoader fxmlLoader;
     /**
      * 初始化
      */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/SettingUI.fxml"));
+        try {
+            settingRoot = fxmlLoader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        settingUiControl= fxmlLoader.getController();
+        settingUiControl.setMainUIControl(this);
         // 外部界面大小
         rootPane.setPrefWidth(sceneWidth);
         rootPane.setPrefHeight(sceneHeight);
@@ -245,8 +256,10 @@ public class MainUIControl implements Initializable {
         settingButton.setLayoutY(buttonHight);
 
         lefttMyHead.setImage(new Image(SaveUser.getPicPath()));
-        leftNameLabel.setText(SaveUser.getLoginUserName());
-        System.out.println(SaveUser.getLoginUserName());
+    }
+
+    public void setLeftNameLabel(String name) {
+        leftNameLabel.setText(name);
     }
 
     /**
@@ -362,7 +375,7 @@ public class MainUIControl implements Initializable {
      * 收到消息后设置消息提示并在点击用户名后显示相应的消息
      * */
     public void addOtherMessage(Message message) {
-        if(SaveSetting.isPromptSound) {
+        if(SaveSetting.isPromptSound && !message.getName().equals(SaveUser.getLoginUserName())) {
             sound("/resources/sounds/NewMessage.wav");
         }
         UserListUI userListUI = contactsHashMap.get(message.getName());
@@ -379,7 +392,7 @@ public class MainUIControl implements Initializable {
      * 显示群消息
      * */
     public void addGroupMessage(Message message) {
-        if(SaveSetting.isPromptSound) {
+        if(SaveSetting.isPromptSound && !message.getName().equals(SaveUser.getLoginUserName())) {
             sound("/resources/sounds/NewMessage.wav");
         }
         UserListUI userListUI = contactsHashMap.get("群聊");
@@ -588,7 +601,18 @@ public class MainUIControl implements Initializable {
     }
 
     public void setting() {
-        SettingUIMain settingUIMain = new SettingUIMain();
+        SettingUIMain settingUIMain = new SettingUIMain(fxmlLoader, settingRoot);
         settingUIMain.showWindow();
+    }
+
+    public void chengePwds(Message message) {
+        if(message != null) {
+            try {
+                Communication.send(message);
+            } catch (Exception e) {
+                new PopUpUI("提示：","更改失败!");
+                e.printStackTrace();
+            }
+        }
     }
 }
