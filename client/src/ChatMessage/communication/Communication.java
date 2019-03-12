@@ -26,11 +26,12 @@ public class Communication implements Runnable {
     public int port;
     public static String username;
     private static String userPassword;
+    private static String userEmail;
     private static ObjectOutputStream oos;
     private InputStream is;
     private ObjectInputStream input;
     private OutputStream outputStream;
-
+    private MessageType messageType = MessageType.CONNECT;
 
     public Communication(String hostname, int port, String username, String picture ,MainUIControl controller, SignUpControl signUpControl) {
         this.hostname = hostname;
@@ -42,6 +43,17 @@ public class Communication implements Runnable {
 
     }
 
+    public void setUserPassword(String password) {
+        userPassword = password;
+    }
+
+    public void setEmail(String email) {
+        userEmail = email;
+    }
+
+    public void setMessageType(MessageType messageType) {
+        this.messageType = messageType;
+    }
 
     @Override
     public void run() {
@@ -59,7 +71,12 @@ public class Communication implements Runnable {
         }
 
         try {
-            connect();
+            if(messageType == MessageType.SIGNUP) {
+                signUpConnect();
+            } else {
+                connect();
+            }
+
             while (socket.isConnected()) {
                 Message message = null;
                 message = (Message) input.readObject();
@@ -96,7 +113,7 @@ public class Communication implements Runnable {
                             signUpControl.loadLogin();
                             break;
                         case SIGNUPFAIL:
-                            LoginControl.getInstance().showDilog("提示：", "注册失败，请重试！");
+                            LoginControl.getInstance().showDilog("提示：", "与已有用户名重复！");
                             break;
                         default:
                             break;
@@ -123,6 +140,13 @@ public class Communication implements Runnable {
         Message message = new Message(username, HASCONNECTED, MessageType.CONNECT);
         message.setHeadPicture(picture);
         message.setPassword(userPassword);
+        oos.writeObject(message);
+    }
+
+    public static void signUpConnect() throws  IOException {
+        Message message = new Message(username, "signUp", MessageType.SIGNUP);
+        message.setPassword(userPassword);
+        message.setEmail(userEmail);
         oos.writeObject(message);
     }
 }

@@ -11,6 +11,7 @@ import ChatMessage.exception.UserNameOrPwdException;
 import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.UserInformation;
+import DB.DBControl;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 /**
@@ -63,12 +64,16 @@ public class ChatServer {
                 output = new ObjectOutputStream(os);
 
                 Message firstMessage = (Message)input.readObject();
-                checkUserNameAndPwd(firstMessage);
-                writers.add(output);
-                sendDesignatedUser.put(firstMessage.getName(), output);
-                sendType(firstMessage, output,MessageType.SUCCESS);
-                addToList();
-
+                System.out.println(firstMessage.getTYPE());
+                if(firstMessage.getTYPE() == MessageType.SIGNUP) {
+                    signUp(firstMessage, output);
+                } else {
+                    checkUserNameAndPwd(firstMessage);
+                    writers.add(output);
+                    sendDesignatedUser.put(firstMessage.getName(), output);
+                    sendType(firstMessage, output,MessageType.SUCCESS);
+                    addToList();
+                }
                 while (socket.isConnected()) {
                     Message inputMessage = (Message)input.readObject();
                     if(inputMessage != null) {
@@ -84,7 +89,7 @@ public class ChatServer {
                             case CONNECT:
                                 addToList();
                             case SIGNUP:
-                                signUp(inputMessage);
+                                signUp(inputMessage, output);
                                 break;
                             default:
                                 break;
@@ -104,7 +109,8 @@ public class ChatServer {
         }
 
         private synchronized void checkUserNameAndPwd(Message firstMessage) throws UserNameOrPwdException {
-            if(!names.containsKey(firstMessage.getName())) {
+            String sql = "select * from User where Name = " + "'" + firstMessage.getName() + "'";
+            if(!names.containsKey(firstMessage.getName()) && DBControl.checkUserNameAndPwd(sql, firstMessage)) {
                 this.name = firstMessage.getName();
                 user = new UserInformation(firstMessage.getEmail(),firstMessage.getName(),firstMessage.getPassword());
                 user.setUserPicture(firstMessage.getHeadPicture());
@@ -112,7 +118,7 @@ public class ChatServer {
                 names.put(name, user);
 
             } else {
-                throw new UserNameOrPwdException("密码错误！");
+                throw new UserNameOrPwdException("密码或用户名错误！");
             }
         }
 
@@ -197,7 +203,18 @@ public class ChatServer {
             return msg;
         }
 
-        private void signUp(Message message) {
+        private void signUp(Message message, ObjectOutputStream output) {
+            try {
+                if(DBControl.signUp(message)) {
+                    sendType(new Message("SERVER","SignUp Success",MessageType.SIGNUPSUCCESS),output,MessageType.SIGNUPSUCCESS);
+                    System.out.println("用户：" + message.getName() + " 注册成功");
+                } else {
+                    sendType(new Message("SERVER","SignUp Fail",MessageType.SIGNUPFAIL),output,MessageType.SIGNUPFAIL);
+                    System.out.println("用户：" + message.getName() + " 注册失败");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
     }

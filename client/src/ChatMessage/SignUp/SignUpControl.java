@@ -3,6 +3,7 @@ package ChatMessage.SignUp;
 import ChatMessage.Login.LoginMain;
 import ChatMessage.Main.MainUIControl;
 import ChatMessage.communication.Communication;
+import ChatMessage.user.MessageType;
 import ChatMessage.user.SaveUser;
 import ChatMessage.user.ServerIP;
 import ChatMessage.user.UserInformation;
@@ -58,7 +59,10 @@ public class SignUpControl {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            communication = new Communication(ServerIP.IP,ServerIP.port,userName.getText(),"/resources/images/508035880.jpg", mainUIControl, signUpControl);
+            communication = new Communication(ServerIP.IP,ServerIP.port,userName.getText(),"/resources/images/508035880.jpg", mainUIControl, this);
+            communication.setUserPassword(userPassword.getText());
+            communication.setEmail(userEmail.getText());
+            communication.setMessageType(MessageType.SIGNUP);
             Thread x = new Thread(communication);
             x.start();
         } else {
@@ -112,13 +116,15 @@ public class SignUpControl {
     }
 
     public void loadLogin() {
-        try {
-            new PopUpUI("提示：", "注册成功！");
-            loginMain.showWindow();
-            Stage thisStage = (Stage) signInStage.getScene().getWindow();
-            thisStage.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        Platform.runLater(()-> {
+            try {
+                new PopUpUI("提示：", "注册成功！");
+                loginMain.showWindow();
+                Stage thisStage = (Stage) signInStage.getScene().getWindow();
+                thisStage.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        });
     }
 }

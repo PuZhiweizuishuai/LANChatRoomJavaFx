@@ -101,6 +101,8 @@ public class LoginControl implements Initializable {
             SaveUser.saveLoginUserName(name);
             // 多线程，处理登陆
             communication = new Communication(ServerIP.IP,ServerIP.port,name,"/resources/images/508035880.jpg", mainUIControl, signUpControl);
+            communication.setUserPassword(pwd);
+            communication.setMessageType(MessageType.CONNECT);
             Thread x = new Thread(communication);
             x.start();
         } else {
