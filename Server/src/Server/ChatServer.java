@@ -72,6 +72,7 @@ public class ChatServer {
                     writers.add(output);
                     sendDesignatedUser.put(firstMessage.getName(), output);
                     sendType(firstMessage, output,MessageType.SUCCESS);
+                    sendNotification(firstMessage);
                     addToList();
                 }
                 while (socket.isConnected()) {
@@ -156,6 +157,14 @@ public class ChatServer {
                 writer.writeObject(message);
                 writer.reset();
             }
+        }
+
+
+        private Message sendNotification(Message firstMessage) throws IOException {
+            Message msg = new Message(firstMessage.getName(),"上线了",MessageType.NOTIFICATION);
+            msg.setHeadPicture(firstMessage.getHeadPicture());
+            writeGroup(msg);
+            return msg;
         }
 
         /**

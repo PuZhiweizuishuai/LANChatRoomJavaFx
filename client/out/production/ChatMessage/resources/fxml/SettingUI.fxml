@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootBox" prefHeight="540.0" prefWidth="960.0" style="-fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.Setting.SettingUiControl">
+   <children>
+      <JFXButton fx:id="closeButton" buttonType="RAISED" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="60.0" layoutY="45.0" prefHeight="50.0" prefWidth="100.0" text="设置" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="25.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="userMessageButton" layoutX="50.0" layoutY="144.0" onAction="#clickUserMessageButton" prefHeight="50.0" prefWidth="100.0" text="账号信息" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0">
+          <font>
+              <Font name="Microsoft YaHei" size="18.0" />
+          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="settingButton" onAction="#clickSettingButton" prefHeight="50.0" prefWidth="100.0" text="通用设置" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="50.0">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="aboutMeButton" onAction="#clickAboutMeButton" prefHeight="50.0" prefWidth="100.0" text="关于我们" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="50.0">
+         <font>
+            <Font name="Microsoft YaHei" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <AnchorPane fx:id="message" layoutX="216.0" layoutY="40.0" prefHeight="439.0" prefWidth="690.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <ImageView fx:id="headImage" fitHeight="150.0" fitWidth="150.0" layoutX="280.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="namelable" layoutX="305.0" layoutY="170.0" prefHeight="50.0" prefWidth="100.0" text="Label">
+               <font>
+                  <Font name="Microsoft YaHei" size="20.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="oldPassword" layoutX="180.0" layoutY="241.0" prefHeight="40.0" prefWidth="350.0" promptText="原密码" style="-fx-background-radius: 20px;" />
+            <PasswordField fx:id="newPassword" layoutX="180.0" layoutY="299.0" prefHeight="40.0" prefWidth="350.0" promptText="新密码" style="-fx-background-radius: 20px;" />
+            <JFXButton fx:id="changePwdBtn" buttonType="RAISED" layoutX="305.0" layoutY="362.0" prefHeight="50.0" prefWidth="100.0" text="修改密码">
+               <font>
+                  <Font name="Microsoft YaHei" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="settingPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Label layoutX="175.0" layoutY="127.0" prefHeight="50.0" prefWidth="150.0" text="用户上线提醒：" AnchorPane.leftAnchor="150.0">
+               <font>
+                  <Font name="Microsoft YaHei" size="18.0" />
+               </font>
+            </Label>
+            <Label prefHeight="50.0" prefWidth="150.0" text="消息提示音：" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
+               <font>
+                  <Font name="Microsoft YaHei" size="18.0" />
+               </font>
+            </Label>
+            <JFXToggleButton fx:id="onLineButton" layoutX="289.0" layoutY="122.0" selected="true" text="开">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXToggleButton>
+            <JFXToggleButton fx:id="promptToneButton" layoutX="289.0" layoutY="195.0" selected="true" text="开">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXToggleButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="aboutMePane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Label layoutX="164.0" layoutY="113.0" prefHeight="50.0" prefWidth="300.0" text="版本信息：v1.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="100.0">
+               <font>
+                  <Font name="Microsoft YaHei" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="150.0" layoutY="170.0" prefHeight="50.0" prefWidth="300.0" text="程序设计：蒲致威" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0">
+               <font>
+                  <Font name="Microsoft YaHei" size="18.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

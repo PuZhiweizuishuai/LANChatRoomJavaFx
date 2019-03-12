@@ -59,7 +59,7 @@ public class SignUpControl {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            communication = new Communication(ServerIP.IP,ServerIP.port,userName.getText(),"/resources/images/508035880.jpg", mainUIControl, this);
+            communication = new Communication(ServerIP.IP,ServerIP.port,userName.getText(),"/resources/images/defaultHead.png", mainUIControl, this);
             communication.setUserPassword(userPassword.getText());
             communication.setEmail(userEmail.getText());
             communication.setMessageType(MessageType.SIGNUP);

@@ -6,6 +6,7 @@ import java.io.*;
 public class SaveUser {
     private static String userName = "";
     private static String userPassword = "";
+    private static String picPath = "/resources/images/defaultHead.png";
     /**
      * 对象序列化，保存用户信息
      * */
@@ -54,5 +55,13 @@ public class SaveUser {
 
     public static String getUserPassword() {
         return  userPassword;
+    }
+
+    public static void setPicPath(String userPicPath) {
+        picPath = userPicPath;
+    }
+
+    public static String getPicPath() {
+        return picPath;
     }
 }

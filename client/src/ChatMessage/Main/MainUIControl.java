@@ -4,6 +4,8 @@ import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.traynotifications.animations.AnimationType;
+import com.traynotifications.notification.TrayNotification;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -32,13 +34,17 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javafx.event.ActionEvent;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import jdk.nashorn.internal.ir.ReturnNode;
 import mycontrol.chatbox.MyChatBox;
 import mycontrol.chatbox.OtherChatBox;
 import mycontrol.popup.PopUpUI;
 import mycontrol.userlist.UserListUI;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 
 /**
@@ -53,6 +59,9 @@ public class MainUIControl implements Initializable {
 
     @FXML
     private JFXButton minimizeButton;
+
+    @FXML
+    private JFXButton settingButton;
 
     /**
      * 外部界面
@@ -232,8 +241,9 @@ public class MainUIControl implements Initializable {
         // 按钮
         closeButton.setLayoutY(buttonHight);
         minimizeButton.setLayoutY(buttonHight);
+        settingButton.setLayoutY(buttonHight);
 
-        lefttMyHead.setImage(new Image("/resources/images/508035880.jpg"));
+        lefttMyHead.setImage(new Image(SaveUser.getPicPath()));
         leftNameLabel.setText(SaveUser.getLoginUserName());
         System.out.println(SaveUser.getLoginUserName());
     }
@@ -293,7 +303,7 @@ public class MainUIControl implements Initializable {
             MyChatBox myChatBox = new MyChatBox();
             myChatBox.setMessage(myMessage);
             myChatBox.setHeightAndWidth(height,width);
-            myChatBox.setHeadImageView("/resources/images/508035880.jpg");
+            myChatBox.setHeadImageView(SaveUser.getPicPath());
             chatBoxList.getItems().add(myChatBox);
             inputText.setText("");
         });
@@ -329,7 +339,7 @@ public class MainUIControl implements Initializable {
             otherChatBox.setMessage(otherMessage);
             otherChatBox.setNameLabel(message.getName());
             otherChatBox.setHeightAndWidth(height, width);
-            otherChatBox.setHeadImageView("/resources/images/508035880.jpg");
+            otherChatBox.setHeadImageView(message.getHeadPicture());
             chatBoxList.setNodeOrientation(NodeOrientation.valueOf("LEFT_TO_RIGHT"));
             chatBoxList.getItems().add(otherChatBox);
         });
@@ -351,6 +361,7 @@ public class MainUIControl implements Initializable {
      * 收到消息后设置消息提示并在点击用户名后显示相应的消息
      * */
     public void addOtherMessage(Message message) {
+        sound("/resources/sounds/NewMessage.wav");
         UserListUI userListUI = contactsHashMap.get(message.getName());
         if(ChatObject.equals(message.getName())) {
             showOtherMessage(message);
@@ -365,6 +376,7 @@ public class MainUIControl implements Initializable {
      * 显示群消息
      * */
     public void addGroupMessage(Message message) {
+        sound("/resources/sounds/NewMessage.wav");
         UserListUI userListUI = contactsHashMap.get("群聊");
         if(ChatObject.equals("群聊")) {
             showOtherMessage(message);
@@ -428,7 +440,7 @@ public class MainUIControl implements Initializable {
         if(!myMessage.isEmpty()) {
             Message message = new Message(SaveUser.getLoginUserName(),myMessage,MessageType.GROUPSMS);
             message.setTo(ChatObject);
-            message.setHeadPicture("/resources/images/508035880.jpg");
+            message.setHeadPicture(SaveUser.getPicPath());
             if(!ChatObject.equals("群聊")) {
                 message.setTYPE(MessageType.MSG);
             }
@@ -543,6 +555,30 @@ public class MainUIControl implements Initializable {
     }
 
     public void newUserNotification(Message message) {
-        //TODO 添加具体功能
+        if(message.getName().equals(SaveUser.getLoginUserName())) {
+            return;
+        }
+        Platform.runLater(()->{
+            Image porofileImg = new Image(message.getHeadPicture(),50,50,false,false);
+            TrayNotification tray = new TrayNotification();
+            tray.setTitle("新用户上线");
+            tray.setMessage("用户" + message.getName() + "加入了聊天");
+            tray.setRectangleFill(Paint.valueOf("#2C3E50"));
+            tray.setAnimationType(AnimationType.POPUP);
+            tray.setImage(porofileImg);
+            tray.showAndDismiss(Duration.seconds(5));
+            sound("/resources/sounds/notification.wav");
+        });
+    }
+
+    public void sound(String path) {
+        try {
+            String s = MainUIControl.class.getResource(path).toString();
+            Media hit = new Media(s);
+            MediaPlayer mediaPlayer = new MediaPlayer(hit);
+            mediaPlayer.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -82,6 +82,14 @@
                         <Font name="Microsoft YaHei Bold" size="20.0" />
                      </font>
                   </Label>
+                  <JFXButton fx:id="settingButton" buttonType="RAISED" layoutX="622.0" layoutY="25.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #6fc155; -fx-background-radius: 90px; -fx-background-image: url(/resources/images/setting.png) " textFill="WHITE" AnchorPane.rightAnchor="160.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="Microsoft YaHei Bold" size="20.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </AnchorPane>
             <JFXListView fx:id="contactsList" depth="10" onMouseClicked="#handleMouseClickContactsList" styleClass="custom-jfx-list-view1" GridPane.rowIndex="1">
@@ -112,8 +120,8 @@
             </GridPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <ImageView fx:id="lefttMyHead" fitHeight="100.0" fitWidth="100.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" />
-                  <Label fx:id="leftNameLabel" layoutX="224.0" layoutY="100.0" text="Label" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="170.0">
+                  <ImageView fx:id="lefttMyHead" fitHeight="100.0" fitWidth="100.0" layoutX="32.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
+                  <Label fx:id="leftNameLabel" layoutX="224.0" layoutY="100.0" text="Label" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="170.0">
                      <font>
                         <Font name="Microsoft YaHei Bold" size="30.0" />
                      </font>

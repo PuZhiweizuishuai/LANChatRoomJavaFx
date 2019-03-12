@@ -57,6 +57,9 @@ public class LoginControl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        int i = (int)(1+Math.random()*(21-1+1));
+        String picPath = "/resources/images/head/" + i + ".jpg";
+        SaveUser.setPicPath(picPath);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/MainUI.fxml"));
         FXMLLoader fxmlSignIn = new FXMLLoader(getClass().getResource("/resources/fxml/SignUpUI.fxml"));
         try {
@@ -100,7 +103,7 @@ public class LoginControl implements Initializable {
         if(checkUpNameAndPwd(name, pwd)) {
             SaveUser.saveLoginUserName(name);
             // 多线程，处理登陆
-            communication = new Communication(ServerIP.IP,ServerIP.port,name,"/resources/images/508035880.jpg", mainUIControl, signUpControl);
+            communication = new Communication(ServerIP.IP,ServerIP.port,name,SaveUser.getPicPath(), mainUIControl, signUpControl);
             communication.setUserPassword(pwd);
             communication.setMessageType(MessageType.CONNECT);
             Thread x = new Thread(communication);
