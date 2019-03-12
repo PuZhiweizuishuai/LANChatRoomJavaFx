@@ -1,5 +1,6 @@
 package ChatMessage.Setting;
 
+import ChatMessage.user.SaveSetting;
 import ChatMessage.user.SaveUser;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXToggleButton;
@@ -61,6 +62,20 @@ public class SettingUiControl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        if(SaveSetting.isOnLinePrompt) {
+            onLineButton.setSelected(true);
+            onLineButton.setText("开");
+        } else {
+            onLineButton.setSelected(false);
+            onLineButton.setText("关");
+        }
+        if(SaveSetting.isPromptSound) {
+            promptToneButton.setSelected(true);
+            promptToneButton.setText("开");
+        } else {
+            promptToneButton.setSelected(false);
+            promptToneButton.setText("关");
+        }
         namelable.setText(SaveUser.getLoginUserName());
         Image head = new Image(SaveUser.getPicPath());
         headImage.setImage(head);
@@ -88,12 +103,24 @@ public class SettingUiControl implements Initializable {
 
 
     public void clickOnLine() {
-
+        if(onLineButton.isSelected()) {
+            onLineButton.setText("开");
+            SaveSetting.isOnLinePrompt = true;
+        } else {
+            SaveSetting.isOnLinePrompt = false;
+            onLineButton.setText("关");
+        }
     }
 
 
     public void clickpromptTone() {
-
+        if(promptToneButton.isSelected()) {
+            SaveSetting.isPromptSound = true;
+            promptToneButton.setText("开");
+        } else {
+            SaveSetting.isPromptSound = false;
+            promptToneButton.setText("关");
+        }
     }
 
     public void close(ActionEvent event) {

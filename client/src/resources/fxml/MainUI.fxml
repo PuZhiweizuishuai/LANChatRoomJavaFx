@@ -82,7 +82,7 @@
                         <Font name="Microsoft YaHei Bold" size="20.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="settingButton" buttonType="RAISED" layoutX="622.0" layoutY="25.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #6fc155; -fx-background-radius: 90px; -fx-background-image: url(/resources/images/setting.png) " textFill="WHITE" AnchorPane.rightAnchor="160.0">
+                  <JFXButton onAction="#setting" fx:id="settingButton" buttonType="RAISED" layoutX="622.0" layoutY="25.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #6fc155; -fx-background-radius: 90px; -fx-background-image: url(/resources/images/setting.png) " textFill="WHITE" AnchorPane.rightAnchor="160.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

@@ -2,94 +2,23 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Server:jar" />
+      <artifact name="ChatMessage:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/defaultHead.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/16.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/17.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/18.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/19.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/20.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/21.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/images/head/9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ChatMessage/Setting/SettingUIMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ChatMessage/Setting/SettingUiControl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/animations/AnimationProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/animations/AnimationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/animations/FadeAnimation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/animations/PopupAnimation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/animations/SlideAnimation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/animations/TrayAnimation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/models/CustomStage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/models/Location.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/notification/NotificationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/notification/TrayNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/resources/arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/resources/error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/resources/info.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/resources/notice.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/resources/success.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/traynotifications/resources/warning.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/fxml/SettingUI.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/defaultHead.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/14.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/15.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/16.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/17.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/18.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/19.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/20.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/21.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/images/head/9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/resources/sounds/notification.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/DB/DBControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/DB/DBControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/Server/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/Server/ChatServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ChatMessage_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ChatMessage/user/SaveSetting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/Login/LoginControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/Login/LoginControl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/Main/MainUIControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/Main/MainUIControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/SignUp/SignUpControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/SignUp/SignUpControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/user/SaveUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/user/SaveUser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/Data/UserInformation.dat" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/Data/UserInformation.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/Setting/SettingUiControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/Setting/SettingUiControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/user/ServerIP.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/ChatMessage/user/ServerIP.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/resources/fxml/MainUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/fxml/MainUI.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Server/DB/DBControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Server/DB/DBControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/ChatServer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Server/Server/ChatServer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/ChatServer$Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Server/Server/ChatServer$Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Server/Server/ChatServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Server/Server/ChatServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/Login/LoginControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Login/LoginControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ChatMessage/resources/fxml/SettingUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChatMessage/resources/fxml/SettingUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/SignUp/SignUpControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/SignUp/SignUpControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChatMessage/user/SaveUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/user/SaveUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatMessage/Setting/SettingUiControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/Setting/SettingUiControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatMessage/user/ServerIP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatMessage/user/ServerIP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/resources/fxml/MainUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/MainUI.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -159,12 +88,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="SettingUI.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DBControl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Server/src/DB/DBControl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SettingUI.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/resources/fxml/SettingUI.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="384">
-              <caret line="76" column="56" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
+              <caret line="79" column="42" lean-forward="true" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Server/src/Server/ChatServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="22" column="57" lean-forward="true" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -172,11 +122,32 @@
       <file leaf-file-name="SettingUiControl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChatMessage/Setting/SettingUiControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="31" />
+            <state relative-caret-position="936">
+              <caret line="66" column="38" lean-forward="true" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainUIControl.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="563" column="19" lean-forward="true" selection-start-line="563" selection-start-column="19" selection-end-line="563" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerIP.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ChatMessage/user/ServerIP.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -209,7 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/mycontrol/chatbox/OtherChatBox.java" />
         <option value="$PROJECT_DIR$/src/mycontrol/chatbox/OtherChatBoxUI.fxml" />
         <option value="$PROJECT_DIR$/src/ChatMessage/Main/ListViewStyle.css" />
         <option value="$PROJECT_DIR$/src/mycontrol/kongjian/kong.java" />
@@ -239,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/ChatMessage/App.java" />
         <option value="$PROJECT_DIR$/src/ChatMessage/SignUp/SignUp.java" />
         <option value="$PROJECT_DIR$/../Server/src/DB/DBMap.java" />
-        <option value="$PROJECT_DIR$/src/ChatMessage/user/ServerIP.java" />
         <option value="$PROJECT_DIR$/../Server/src/DB/DbText.java" />
         <option value="$PROJECT_DIR$/src/ChatMessage/communication/Communication.java" />
         <option value="$PROJECT_DIR$/../Server/src/DB/DBControl.java" />
@@ -255,11 +224,13 @@
         <option value="$PROJECT_DIR$/src/com/traynotifications/notification/TrayNotification.java" />
         <option value="$PROJECT_DIR$/src/ChatMessage/Login/LoginControl.java" />
         <option value="$PROJECT_DIR$/src/App.java" />
-        <option value="$PROJECT_DIR$/src/resources/fxml/MainUI.fxml" />
-        <option value="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" />
         <option value="$PROJECT_DIR$/src/ChatMessage/Setting/SettingUIMain.java" />
-        <option value="$PROJECT_DIR$/src/ChatMessage/Setting/SettingUiControl.java" />
         <option value="$PROJECT_DIR$/src/resources/fxml/SettingUI.fxml" />
+        <option value="$PROJECT_DIR$/src/ChatMessage/user/SaveSetting.java" />
+        <option value="$PROJECT_DIR$/src/resources/fxml/MainUI.fxml" />
+        <option value="$PROJECT_DIR$/src/ChatMessage/Setting/SettingUiControl.java" />
+        <option value="$PROJECT_DIR$/src/ChatMessage/user/ServerIP.java" />
+        <option value="$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java" />
       </list>
     </option>
   </component>
@@ -273,7 +244,7 @@
     <packageJsonPaths />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="8" />
     <option name="y" value="27" />
     <option name="width" value="1841" />
@@ -302,67 +273,24 @@
             </path>
             <path>
               <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
+              <item name="DB" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="Main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChatMessage" type="462c0819:PsiDirectoryNode" />
-              <item name="Setting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mycontrol" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mycontrol" type="462c0819:PsiDirectoryNode" />
-              <item name="popup" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="client" type="b2602c69:ProjectViewProjectNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -384,7 +312,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Server/src/lib/mysql-connector-java-5.1.47-bin.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -419,7 +347,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SettingUIMain">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method>
@@ -592,12 +520,12 @@
       <workItem from="1552053165248" duration="7925000" />
       <workItem from="1552106590265" duration="28724000" />
       <workItem from="1552144716364" duration="1267000" />
-      <workItem from="1552378959355" duration="19588000" />
+      <workItem from="1552378959355" duration="21713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152316000" />
+    <option name="totallyTimeSpent" value="154441000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -673,14 +601,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mycontrol/userlist/UserListUI.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatMessage/communication/TextComm.java" />
     <entry file="file://$PROJECT_DIR$/../Server/src/ChatMessage/exception.java" />
     <entry file="file://$PROJECT_DIR$/../Server/src/ChatMessage/user/MessageType.java">
@@ -792,13 +712,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Server/src/DB/DBMap.java" />
-    <entry file="file://$PROJECT_DIR$/src/ChatMessage/user/ServerIP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Server/src/ChatMessage/exception/UserNameOrPwdException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -807,13 +720,6 @@
             <element signature="e#137#138#0" expanded="true" />
             <element signature="e#167#168#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/DB/DBControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -896,13 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Server/src/Server/ChatServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3">
-          <caret line="74" column="20" selection-start-line="74" selection-start-column="20" selection-end-line="74" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatMessage/communication/Communication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -927,14 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/fxml/MainUI.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="70" column="123" selection-start-line="70" selection-start-column="103" selection-end-line="70" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/fxml/LoginUI.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
@@ -947,16 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="272" column="24" lean-forward="true" selection-start-line="272" selection-start-column="24" selection-end-line="272" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -989,21 +870,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/fxml/SettingUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="79" column="42" lean-forward="true" selection-start-line="79" selection-start-column="42" selection-end-line="79" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/fxml/MainUI.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="84" column="48" selection-start-line="84" selection-start-column="48" selection-end-line="84" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatMessage/user/SaveSetting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="47" selection-start-line="4" selection-start-column="47" selection-end-line="4" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChatMessage/Setting/SettingUiControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="94" column="31" lean-forward="true" selection-start-line="94" selection-start-column="16" selection-end-line="94" selection-end-column="31" />
+        <state relative-caret-position="936">
+          <caret line="66" column="38" lean-forward="true" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/fxml/SettingUI.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    <entry file="file://$PROJECT_DIR$/../Server/src/Server/ChatServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="76" column="56" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
+        <state relative-caret-position="240">
+          <caret line="22" column="57" lean-forward="true" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Server/src/DB/DBControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatMessage/user/ServerIP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChatMessage/Main/MainUIControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="563" column="19" lean-forward="true" selection-start-line="563" selection-start-column="19" selection-end-line="563" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1013,11 +943,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>Server:jar</last-edited>
+          <last-edited>ChatMessage:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

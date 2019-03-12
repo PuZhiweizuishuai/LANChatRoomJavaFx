@@ -12,14 +12,6 @@
 
 <AnchorPane fx:id="rootBox" prefHeight="540.0" prefWidth="960.0" style="-fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.Setting.SettingUiControl">
    <children>
-      <JFXButton fx:id="closeButton" buttonType="RAISED" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font name="Microsoft YaHei Bold" size="20.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
       <Label layoutX="60.0" layoutY="45.0" prefHeight="50.0" prefWidth="100.0" text="设置" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font name="Microsoft YaHei Bold" size="25.0" />
@@ -78,11 +70,11 @@
                   <Font name="Microsoft YaHei" size="18.0" />
                </font>
             </Label>
-            <JFXToggleButton fx:id="onLineButton" layoutX="289.0" layoutY="122.0" selected="true" text="开">
+            <JFXToggleButton onAction="#clickOnLine" fx:id="onLineButton" layoutX="289.0" layoutY="122.0" selected="true" text="开">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXToggleButton>
-            <JFXToggleButton fx:id="promptToneButton" layoutX="289.0" layoutY="195.0" selected="true" text="开">
+            <JFXToggleButton onAction="#clickpromptTone" fx:id="promptToneButton" layoutX="289.0" layoutY="195.0" selected="true" text="开">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXToggleButton>
@@ -101,5 +93,13 @@
                </font></Label>
          </children>
       </AnchorPane>
+      <JFXButton fx:id="closeButton" buttonType="RAISED" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="Microsoft YaHei Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

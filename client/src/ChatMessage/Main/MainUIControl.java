@@ -1,5 +1,6 @@
 package ChatMessage.Main;
 
+import ChatMessage.Setting.SettingUIMain;
 import ChatMessage.communication.Communication;
 import ChatMessage.user.*;
 import com.jfoenix.controls.JFXButton;
@@ -361,7 +362,9 @@ public class MainUIControl implements Initializable {
      * 收到消息后设置消息提示并在点击用户名后显示相应的消息
      * */
     public void addOtherMessage(Message message) {
-        sound("/resources/sounds/NewMessage.wav");
+        if(SaveSetting.isPromptSound) {
+            sound("/resources/sounds/NewMessage.wav");
+        }
         UserListUI userListUI = contactsHashMap.get(message.getName());
         if(ChatObject.equals(message.getName())) {
             showOtherMessage(message);
@@ -376,7 +379,9 @@ public class MainUIControl implements Initializable {
      * 显示群消息
      * */
     public void addGroupMessage(Message message) {
-        sound("/resources/sounds/NewMessage.wav");
+        if(SaveSetting.isPromptSound) {
+            sound("/resources/sounds/NewMessage.wav");
+        }
         UserListUI userListUI = contactsHashMap.get("群聊");
         if(ChatObject.equals("群聊")) {
             showOtherMessage(message);
@@ -555,7 +560,7 @@ public class MainUIControl implements Initializable {
     }
 
     public void newUserNotification(Message message) {
-        if(message.getName().equals(SaveUser.getLoginUserName())) {
+        if(message.getName().equals(SaveUser.getLoginUserName()) || SaveSetting.isOnLinePrompt == false) {
             return;
         }
         Platform.runLater(()->{
@@ -580,5 +585,10 @@ public class MainUIControl implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setting() {
+        SettingUIMain settingUIMain = new SettingUIMain();
+        settingUIMain.showWindow();
     }
 }
