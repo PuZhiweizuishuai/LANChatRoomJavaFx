@@ -85,6 +85,10 @@
       </AnchorPane>
       <AnchorPane fx:id="aboutMePane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
+            <JFXButton fx:id="githubButton" buttonType="RAISED" layoutX="150.0" layoutY="322.0" onAction="#clickGithub" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 90px; -fx-background-image: url(/resources/images/GitHub.png);" AnchorPane.leftAnchor="150.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
             <Label layoutX="164.0" layoutY="113.0" prefHeight="50.0" prefWidth="300.0" text="版本信息：v1.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="100.0">
                <font>
                   <Font name="Microsoft YaHei" size="18.0" />
@@ -94,6 +98,15 @@
                <font>
                   <Font name="Microsoft YaHei" size="18.0" />
                </font></Label>
+            <Label layoutX="150.0" layoutY="242.0" prefHeight="50.0" prefWidth="387.0" text="联系我们：puzhiweipuzhiwei@foxmail.com" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="242.0">
+               <font>
+                  <Font name="Microsoft YaHei" size="18.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="weiboButton" buttonType="RAISED" layoutX="304.0" layoutY="322.0" onAction="#clickWeibo" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 90px; -fx-background-image: url(/resources/images/weibo.png);" AnchorPane.leftAnchor="304.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
          </children>
       </AnchorPane>
       <JFXButton fx:id="closeButton" buttonType="RAISED" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">

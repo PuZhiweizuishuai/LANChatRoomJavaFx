@@ -19,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import mycontrol.popup.PopUpUI;
 
+import java.awt.*;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -160,6 +162,22 @@ public class SettingUiControl implements Initializable {
         } else {
             new PopUpUI("提示：","请输出密码！");
 
+        }
+    }
+
+    public void clickGithub() {
+        try {
+            Desktop.getDesktop().browse(new URI("https://github.com/PuZhiweizuishuai"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clickWeibo() {
+        try {
+            Desktop.getDesktop().browse(new URI("https://weibo.com/puzhiwei"));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
