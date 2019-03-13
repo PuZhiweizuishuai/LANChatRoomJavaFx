@@ -107,10 +107,11 @@ public class DBControl {
                 pwd = rs.getString("Password");
             }
             if(pwd.equals(message.getMessage())) {
-                sql = "update User set Password = " + message.getPassword() +
-                        "where Name " + "''" + message.getName() + "''";
+                sql = "UPDATE User SET Password="+"'"+message.getPassword() + "'"
+                        + " where Name=" + "'" + message.getName() + "'";
                 PreparedStatement insert = con.prepareStatement(sql);
                 insert.executeUpdate();
+                System.out.println("修改成功！");
                 con.close();
                 return true;
             }

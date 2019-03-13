@@ -98,6 +98,7 @@ public class Communication implements Runnable {
                             controller.SaveMessage(message);
                             controller.setContactMessageNumber(message.getName());
                             controller.addOtherMessage(message);
+                            break;
                         case NOTIFICATION:
                             controller.newUserNotification(message);
                             break;

@@ -67,9 +67,6 @@ public class ChatServer {
                 System.out.println(firstMessage.getTYPE());
                 if(firstMessage.getTYPE() == MessageType.SIGNUP) {
                     signUp(firstMessage, output);
-                } else if(firstMessage.getTYPE() == MessageType.CHANGEPWD) {
-                    System.out.println("123");
-                    changePassword(firstMessage, output);
                 } else {
                     checkUserNameAndPwd(firstMessage);
                     writers.add(output);
@@ -81,8 +78,7 @@ public class ChatServer {
                 while (socket.isConnected()) {
                     Message inputMessage = (Message)input.readObject();
                     if(inputMessage != null) {
-                        System.out.println("消息类型：" + inputMessage.getTYPE());
-                        System.out.println("用户" +inputMessage.getName() + "说："+ inputMessage.getMessage());
+                        System.out.println("用户" +inputMessage.getName() +  "消息类型：" + inputMessage.getTYPE());
                         switch (inputMessage.getTYPE()) {
                             case GROUPSMS:
                                 writeGroup(inputMessage);
