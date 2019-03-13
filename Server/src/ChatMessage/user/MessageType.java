@@ -18,5 +18,8 @@ public enum  MessageType {
     GROUPSMS,
     CHANGEPWD,
     CHANGESUCCESS,
-    CHANGEFAIL
+    CHANGEFAIL,
+    HISTORY,
+    HISTORYSUCCESS,
+    HISTORYFAIL
 }

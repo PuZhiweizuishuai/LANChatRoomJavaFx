@@ -118,7 +118,7 @@ public class Communication implements Runnable {
                             controller.setUserList(message);
                             break;
                         case SIGNUPSUCCESS:
-                            signUpControl.loadLogin();
+                            signUpControl.loadLogin(1);
                             break;
                         case SIGNUPFAIL:
                             LoginControl.getInstance().showDilog("提示：", "与已有用户名重复！");
@@ -128,6 +128,12 @@ public class Communication implements Runnable {
                             break;
                         case CHANGEFAIL:
                             LoginControl.getInstance().showDilog("提示：", "请检查现密码！");
+                            break;
+                        case HISTORYSUCCESS:
+                            controller.showHistoryMessage(message);
+                            break;
+                        case HISTORYFAIL:
+                            LoginControl.getInstance().showDilog("提示：", "查找失败，请检查用户名");
                             break;
                         default:
                             break;

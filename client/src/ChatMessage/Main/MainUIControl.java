@@ -1,24 +1,23 @@
 package ChatMessage.Main;
 
+import ChatMessage.Login.DragUtil;
 import ChatMessage.Setting.SettingUIMain;
 import ChatMessage.Setting.SettingUiControl;
 import ChatMessage.communication.Communication;
+import ChatMessage.history.HistoryControl;
+import ChatMessage.history.HistoryMain;
 import ChatMessage.user.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.sun.org.apache.bcel.internal.generic.POP;
 import com.traynotifications.animations.AnimationType;
 import com.traynotifications.notification.TrayNotification;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.concurrent.Worker;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -31,18 +30,16 @@ import javafx.scene.layout.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.*;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import javafx.event.ActionEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import jdk.nashorn.internal.ir.ReturnNode;
 import mycontrol.chatbox.MyChatBox;
 import mycontrol.chatbox.OtherChatBox;
 import mycontrol.popup.PopUpUI;
@@ -52,6 +49,7 @@ import javafx.scene.media.MediaPlayer;
 
 
 /**
+ * 聊天主界面控制
  * @author PuZhiwei
  * */
 public class MainUIControl implements Initializable {
@@ -195,22 +193,37 @@ public class MainUIControl implements Initializable {
     private double sceneWidth = sceneSize.width * 0.8;
     private double sceneHeight = sceneSize.height * 0.8;
 
+    private SettingUIMain settingUIMain;
+    private HistoryMain historyMain;
     private SettingUiControl settingUiControl;
+    private HistoryControl historyControl;
+    private Stage stageSetting = new Stage();
+    private Stage stageHistory = new Stage();
     private Parent settingRoot;
     private FXMLLoader fxmlLoader;
+    private Parent historyRoot;
+    private FXMLLoader historyLoader;
     /**
      * 初始化
      */
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         fxmlLoader = new FXMLLoader(getClass().getResource("/resources/fxml/SettingUI.fxml"));
+        historyLoader = new FXMLLoader(getClass().getResource("/resources/fxml/HistoryUI.fxml"));
         try {
             settingRoot = fxmlLoader.load();
+            historyRoot = historyLoader.load();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // 加载与注入控制器
         settingUiControl= fxmlLoader.getController();
         settingUiControl.setMainUIControl(this);
+        historyControl = historyLoader.getController();
+        historyControl.setMainUIControl(this);
+        historyMain = new HistoryMain(historyLoader, historyRoot, historyControl);
+        settingUIMain = new SettingUIMain(fxmlLoader, settingRoot);
+
         // 外部界面大小
         rootPane.setPrefWidth(sceneWidth);
         rootPane.setPrefHeight(sceneHeight);
@@ -260,6 +273,8 @@ public class MainUIControl implements Initializable {
 
     public void setLeftNameLabel(String name) {
         leftNameLabel.setText(name);
+        settingUiControl.setNamelable(name);
+        historyControl.setGetNameField(ChatObject);
     }
 
     /**
@@ -283,7 +298,6 @@ public class MainUIControl implements Initializable {
 
     @FXML
     private void close() {
-        //TODO
         Platform.exit();
         System.exit(0);
     }
@@ -436,11 +450,13 @@ public class MainUIControl implements Initializable {
         if(userListUI.getName().equals("群聊")) {
             nameLabelTop.setText("群聊中：");
             ChatObject = "群聊";
+            historyControl.setGetNameField(ChatObject);
             userListUI.closeMessageNumber();
             switchGroup();
         } else {
             nameLabelTop.setText("与 " + userListUI.getName() + " 聊天中！");
             ChatObject = userListUI.getName();
+            historyControl.setGetNameField(ChatObject);
             userListUI.closeMessageNumber();
             switchChatUser();
         }
@@ -476,6 +492,9 @@ public class MainUIControl implements Initializable {
         }
     }
 
+    /**
+     * 设置用户列表
+     * */
     public void setUserList(Message message) {
         Platform.runLater(()->{
             ArrayList<UserInformation> uifs = message.getUserList();
@@ -572,6 +591,9 @@ public class MainUIControl implements Initializable {
         }
     }
 
+    /**
+     * 用户上线提醒
+     * */
     public void newUserNotification(Message message) {
         if(message.getName().equals(SaveUser.getLoginUserName()) || SaveSetting.isOnLinePrompt == false) {
             return;
@@ -589,6 +611,9 @@ public class MainUIControl implements Initializable {
         });
     }
 
+    /**
+     * 播放声音
+     * */
     public void sound(String path) {
         try {
             String s = MainUIControl.class.getResource(path).toString();
@@ -600,11 +625,17 @@ public class MainUIControl implements Initializable {
         }
     }
 
+    /**
+     * 打开设置面板
+     * */
     public void setting() {
-        SettingUIMain settingUIMain = new SettingUIMain(fxmlLoader, settingRoot);
-        settingUIMain.showWindow();
+        settingUIMain.showWindow(stageSetting);
     }
 
+
+    /**
+     * 发送改密命令
+     * */
     public void chengePwds(Message message) {
         if(message != null) {
             try {
@@ -614,5 +645,30 @@ public class MainUIControl implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * 打开历史消息面板
+     * */
+    public void chatHistory() {
+        historyMain.showWindow(stageHistory);
+    }
+
+    /**
+     * 发送查找历史消息的命令
+     * */
+    public void sendLookUpHistory(String name) {
+        Message message = new Message(SaveUser.getLoginUserName(), "LookUpHistory", MessageType.HISTORY);
+        message.setTo(name);
+        try {
+            Communication.send(message);
+        } catch (Exception e) {
+            new PopUpUI("提示：","查找失败!");
+            e.printStackTrace();
+        }
+    }
+
+    public void showHistoryMessage(Message message) {
+        historyControl.show(message);
     }
 }

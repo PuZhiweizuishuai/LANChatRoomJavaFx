@@ -14,6 +14,9 @@ public class DBControl {
     private static String password = "123456";
     private static Connection con;
 
+    /**
+     * 连接数据库
+     * */
     private static void connect() {
         try {
             Class.forName(driver);
@@ -94,6 +97,9 @@ public class DBControl {
         return false;
     }
 
+    /**
+     * 修改密码
+     * */
     public static boolean changePwd(Message message) {
         connect();
         try {
@@ -123,6 +129,14 @@ public class DBControl {
         }
     }
 
+
+    /**
+     * 存储消息
+     * */
+    public static void saveMessage(Message message) {
+        //TODO 待添加
+
+    }
 
     public static void main(String[] args) {
         //checkUserNameAndPwd();

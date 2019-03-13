@@ -41,10 +41,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <AnchorPane fx:id="message" layoutX="216.0" layoutY="40.0" prefHeight="439.0" prefWidth="690.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane fx:id="message" layoutX="216.0" layoutY="40.0" prefHeight="439.0" prefWidth="690.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <ImageView fx:id="headImage" fitHeight="150.0" fitWidth="150.0" layoutX="280.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="namelable" layoutX="305.0" layoutY="170.0" prefHeight="50.0" prefWidth="100.0" text="Label">
+            <Label fx:id="namelable" layoutX="246.0" layoutY="170.0" prefHeight="50.0" prefWidth="219.0" text="用户名：">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>
@@ -83,27 +83,27 @@
                </cursor></JFXToggleButton>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="aboutMePane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane fx:id="aboutMePane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <JFXButton fx:id="githubButton" buttonType="RAISED" layoutX="150.0" layoutY="322.0" onAction="#clickGithub" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 90px; -fx-background-image: url(/resources/images/GitHub.png);" AnchorPane.leftAnchor="150.0">
+            <JFXButton fx:id="githubButton" buttonType="RAISED" layoutX="148.0" layoutY="291.0" onAction="#clickGithub" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 90px; -fx-background-image: url(/resources/images/GitHub.png);" AnchorPane.leftAnchor="148.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <Label layoutX="164.0" layoutY="113.0" prefHeight="50.0" prefWidth="300.0" text="版本信息：v1.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="100.0">
+            <Label layoutX="148.0" layoutY="69.0" prefHeight="50.0" prefWidth="300.0" text="版本信息：v1.0" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="69.0">
                <font>
                   <Font name="Microsoft YaHei" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="150.0" layoutY="170.0" prefHeight="50.0" prefWidth="300.0" text="程序设计：蒲致威" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0">
+            <Label layoutX="148.0" layoutY="139.0" prefHeight="50.0" prefWidth="300.0" text="程序设计：蒲致威" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="139.0">
                <font>
                   <Font name="Microsoft YaHei" size="18.0" />
                </font></Label>
-            <Label layoutX="150.0" layoutY="242.0" prefHeight="50.0" prefWidth="387.0" text="联系我们：puzhiweipuzhiwei@foxmail.com" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="242.0">
+            <Label layoutX="148.0" layoutY="211.0" prefHeight="50.0" prefWidth="387.0" text="联系我们：puzhiweipuzhiwei@foxmail.com" AnchorPane.leftAnchor="148.0" AnchorPane.topAnchor="211.0">
                <font>
                   <Font name="Microsoft YaHei" size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="weiboButton" buttonType="RAISED" layoutX="304.0" layoutY="322.0" onAction="#clickWeibo" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 90px; -fx-background-image: url(/resources/images/weibo.png);" AnchorPane.leftAnchor="304.0">
+            <JFXButton fx:id="weiboButton" buttonType="RAISED" layoutX="302.0" layoutY="291.0" onAction="#clickWeibo" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 90px; -fx-background-image: url(/resources/images/weibo.png);" AnchorPane.leftAnchor="302.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>

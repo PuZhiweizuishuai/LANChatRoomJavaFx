@@ -44,7 +44,7 @@
       <AnchorPane fx:id="message" layoutX="216.0" layoutY="40.0" prefHeight="439.0" prefWidth="690.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <ImageView fx:id="headImage" fitHeight="150.0" fitWidth="150.0" layoutX="280.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="namelable" layoutX="305.0" layoutY="170.0" prefHeight="50.0" prefWidth="100.0" text="Label">
+            <Label fx:id="namelable" layoutX="246.0" layoutY="170.0" prefHeight="50.0" prefWidth="219.0" text="用户名：">
                <font>
                   <Font name="Microsoft YaHei" size="20.0" />
                </font>

@@ -94,6 +94,9 @@ public class ChatServer {
                             case CHANGEPWD:
                                 changePassword(inputMessage, output);
                                 break;
+                            case HISTORY:
+                                lookUpHistoryMessage(inputMessage, output);
+                                break;
                             default:
                                 break;
                         }
@@ -162,6 +165,9 @@ public class ChatServer {
         }
 
 
+        /**
+         * 发送用户上线通知
+         * */
         private Message sendNotification(Message firstMessage) throws IOException {
             Message msg = new Message(firstMessage.getName(),"上线了",MessageType.NOTIFICATION);
             msg.setHeadPicture(firstMessage.getHeadPicture());
@@ -207,6 +213,9 @@ public class ChatServer {
             }
         }
 
+        /**
+         * 移除下线用户
+         * */
         private Message removeFromList() throws IOException {
             Message msg = new Message("SERVER","has left the chat", MessageType.DISCONNECT);
             msg.setUserList(names);
@@ -214,6 +223,9 @@ public class ChatServer {
             return msg;
         }
 
+        /**
+         * 返回注册结果
+         * */
         private void signUp(Message message, ObjectOutputStream output) {
             try {
                 if(DBControl.signUp(message)) {
@@ -229,9 +241,11 @@ public class ChatServer {
 
         }
 
+        /**
+         * 返回密码修改结果
+         * */
         private void changePassword(Message message, ObjectOutputStream output) {
             try {
-                System.out.println("gaimmima");
                 if(DBControl.changePwd(message)) {
                     sendType(new Message("SERVER","Change Success",MessageType.CHANGESUCCESS),output,MessageType.CHANGESUCCESS);
                 } else {
@@ -240,6 +254,10 @@ public class ChatServer {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+
+        private void lookUpHistoryMessage(Message message, ObjectOutputStream output) {
+            //TODO 待添加
         }
     }
 

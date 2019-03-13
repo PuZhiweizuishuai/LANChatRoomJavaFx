@@ -72,7 +72,8 @@ public class SignUpControl {
 
     @FXML
     public void backButtion(ActionEvent event) {
-        loadLogin();
+        int i = 0;
+        loadLogin(i);
     }
 
     /**
@@ -115,10 +116,12 @@ public class SignUpControl {
         return true;
     }
 
-    public void loadLogin() {
+    public void loadLogin(int i) {
         Platform.runLater(()-> {
             try {
-                new PopUpUI("提示：", "注册成功！");
+                if(i == 1) {
+                    new PopUpUI("提示：", "注册成功！");
+                }
                 loginMain.showWindow();
                 Stage thisStage = (Stage) signInStage.getScene().getWindow();
                 thisStage.close();

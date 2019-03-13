@@ -24,6 +24,10 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * 设置界面控制模块
+ * @author Pu Zhiwei
+ * */
 public class SettingUiControl implements Initializable {
     @FXML
     private AnchorPane rootBox;
@@ -87,11 +91,13 @@ public class SettingUiControl implements Initializable {
             promptToneButton.setSelected(false);
             promptToneButton.setText("关");
         }
-        namelable.setText(SaveUser.getLoginUserName());
         Image head = new Image(SaveUser.getPicPath());
         headImage.setImage(head);
     }
 
+    public void setNamelable(String name) {
+        namelable.setText("用户名："+name);
+    }
 
     public void clickUserMessageButton(ActionEvent event) {
         userMessageButton.setStyle("-fx-background-color: #3fcb48;");
