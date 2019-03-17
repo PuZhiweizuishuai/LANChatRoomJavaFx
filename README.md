@@ -45,6 +45,7 @@ Server                 服务器主程序
 <img src="https://github.com/PuZhiweizuishuai/LAN-Chat-Room/blob/master/img/2.png">
 <img src="https://github.com/PuZhiweizuishuai/LAN-Chat-Room/blob/master/img/3.png">
 <img src="https://github.com/PuZhiweizuishuai/LAN-Chat-Room/blob/master/img/4.png">
+
 ## 已知问题
 服务器端的一键创建数据库无法使用
 聊天界面性能有待提升
