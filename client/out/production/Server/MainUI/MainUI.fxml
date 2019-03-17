@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootBox" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainUI.MainUIControll">
+   <children>
+      <JFXButton fx:id="moveButton" buttonType="RAISED" layoutX="35.0" layoutY="42.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #767676;-fx-background-radius: 90px; " text="+" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="857.0" layoutY="30.0" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f;-fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="minButton" buttonType="RAISED" layoutX="780.0" layoutY="30.0" onAction="#min" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #41caf6;-fx-background-radius: 90px;" text="-" textFill="WHITE" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TextField fx:id="mysqlIP" layoutX="174.0" layoutY="94.0" prefHeight="50.0" prefWidth="400.0" promptText="请输入数据库IP" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0" />
+      <TextField fx:id="mysqlPort" layoutX="495.0" layoutY="110.0" prefHeight="50.0" prefWidth="100.0" promptText="端口号" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="470.0" AnchorPane.topAnchor="100.0" />
+      <JFXButton fx:id="mysqlOK" buttonType="RAISED" layoutX="385.0" layoutY="160.0" onAction="#setMysqlAndCheck" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 20px; -fx-background-color: #3688ff;" text="确认" textFill="WHITE" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="160.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="132.0" layoutY="70.0" prefHeight="50.0" prefWidth="200.0" text="请先设置数据库：" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="serverPort" disable="true" layoutX="50.0" layoutY="225.0" prefHeight="50.0" prefWidth="150.0" promptText="服务器端口号" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="225.0" />
+      <JFXButton fx:id="serverOK" buttonType="RAISED" disable="true" layoutX="220.0" layoutY="225.0" onAction="#setServerPort" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 20px; -fx-background-color: #fc56bc;" text="确认" textFill="WHITE" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="225.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="startServer" buttonType="RAISED" disable="true" layoutX="380.0" layoutY="316.0" onAction="#clickStartServer" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 20px; -fx-background-color: #fcdb56;" text="启动服务器" textFill="WHITE" AnchorPane.topAnchor="316.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="bulidMysql" buttonType="RAISED" disable="true" layoutX="675.0" layoutY="160.0" onAction="#foundMysql" prefHeight="50.0" prefWidth="150.0" style="-fx-background-radius: 20px; -fx-background-color: #adf19b;" text="一键生成数据库" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="160.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TextField fx:id="mysqlName" layoutX="611.0" layoutY="100.0" prefHeight="50.0" prefWidth="300.0" promptText="数据库用户名" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="100.0" />
+      <PasswordField fx:id="mysqlPwd" layoutX="50.0" layoutY="165.0" prefHeight="50.0" prefWidth="300.0" promptText="数据库密码" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="160.0" />
+   </children>
+</AnchorPane>

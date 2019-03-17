@@ -41,7 +41,7 @@ public class DbConnect {
     public static boolean fount() {
         connect();
         try {
-            String sql = "CREATE DATABASE ChatMessage;";
+            String sql = "CREATE DATABASE ChatMessag;";
             PreparedStatement insert = con.prepareStatement(sql);
             insert.executeUpdate();
             sql = "USE ChatMessage;";
@@ -62,5 +62,9 @@ public class DbConnect {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        fount();
     }
 }

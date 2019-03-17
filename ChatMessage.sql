@@ -7,10 +7,3 @@ CREATE TABLE User (
 	PRIMARY KEY(Name)  
 );
 
-INSERT INTO User VALUES("PuZhiwei","948805382@qq.com","123456"); 
-SELECT * FROM User
-
-
-CREATE TABLE ChatRecord (
-	
-);
