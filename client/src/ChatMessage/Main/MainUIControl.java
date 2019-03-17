@@ -671,4 +671,8 @@ public class MainUIControl implements Initializable {
     public void showHistoryMessage(Message message) {
         historyControl.show(message);
     }
+
+    public void sendImage() {
+        new PopUpUI("提示：","待更新！");
+    }
 }

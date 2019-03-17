@@ -1,6 +1,10 @@
 package DB;
 
 import ChatMessage.user.Message;
+import MainUI.MainUIControll;
+import Server.SaveServerMessage;
+import Server.ServerMessage;
+
 import java.sql.*;
 
 /**
@@ -9,10 +13,12 @@ import java.sql.*;
  * */
 public class DBControl {
     private static String driver = "com.mysql.jdbc.Driver";
-    private static String url = "jdbc:mysql://192.168.244.129:3306/ChatMessage";
-    private static String user = "root";
-    private static String password = "123456";
+    private static String url = "jdbc:mysql://"+ ServerMessage.MYSSQL + ":" + ServerMessage.MYSQLPORT + "/ChatMessage" ;
+    //+ ServerMessage.MYSSQL + ":" + ServerMessage.MYSQLPORT + "/ChatMessage"
+    private static String user = ServerMessage.mysqlName;
+    private static String password = ServerMessage.mysqlPassword;
     private static Connection con;
+
 
     /**
      * 连接数据库
@@ -137,10 +143,4 @@ public class DBControl {
         //TODO 待添加
 
     }
-
-    public static void main(String[] args) {
-        //checkUserNameAndPwd();
-    }
-
-
 }

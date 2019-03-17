@@ -21,5 +21,7 @@ public enum MessageType {
     CHANGEFAIL,
     HISTORY,
     HISTORYSUCCESS,
-    HISTORYFAIL
+    HISTORYFAIL,
+    PHOTO,
+    FILE
 }

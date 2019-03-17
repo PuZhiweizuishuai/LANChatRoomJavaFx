@@ -64,4 +64,32 @@ public class SaveUser {
     public static String getPicPath() {
         return picPath;
     }
+
+
+    public static void saveServerIP(ServerIP user) throws Exception {
+        File file = new File("src//Data//ServerIP.dat");
+        if(file.exists()) {
+            file.createNewFile();
+        }
+        OutputStream out = new FileOutputStream(file);
+        ObjectOutputStream obj = new ObjectOutputStream(out);
+        obj.writeObject(user);
+        obj.close();
+    }
+
+    /**
+     * 对象反序列化
+     * */
+    public static ServerIP getServerIP() throws Exception {
+        File file = new File("src//Data//ServerIP.dat");
+        InputStream in = new FileInputStream(file);
+        ObjectInputStream ois = new ObjectInputStream(in);
+        ServerIP c = new ServerIP();
+        while (in.available() > 0) {
+            c = (ServerIP) ois.readObject();
+        }
+        ois.close();
+        in.close();
+        return c;
+    }
 }

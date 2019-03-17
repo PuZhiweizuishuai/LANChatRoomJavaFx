@@ -57,6 +57,12 @@ public class LoginControl implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        try {
+            ServerIP serverIP = SaveUser.getServerIP();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(ServerIP.IP);
         int i = (int)(1+Math.random()*(21-1+1));
         String picPath = "/resources/images/head/" + i + ".jpg";
         SaveUser.setPicPath(picPath);

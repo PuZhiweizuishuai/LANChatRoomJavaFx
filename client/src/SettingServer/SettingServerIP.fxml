@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootBox" prefHeight="640.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SettingServer.SettingServerIPCoontroll">
+   <children>
+      <JFXButton buttonType="RAISED" layoutX="584.0" layoutY="130.0" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 90px; -fx-background-color: #FB4F4F;" text="×" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="806.0" layoutY="20.0" onAction="#min" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 90px; -fx-background-color: #41CAF6;" text="-" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="81.0" layoutY="60.0" prefHeight="80.0" prefWidth="280.0" text="配置服务器信息" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ServerIP" layoutX="180.0" layoutY="173.0" prefHeight="50.0" prefWidth="600.0" promptText="服务器IP" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" />
+      <TextField fx:id="ServerPort" layoutX="180.0" layoutY="262.0" prefHeight="50.0" promptText="服务器端口" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" />
+      <TextField fx:id="ServerTime" layoutX="180.0" layoutY="358.0" prefHeight="50.0" promptText="连接延迟" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="180.0" />
+      <JFXButton buttonType="RAISED" layoutX="190.0" layoutY="482.0" onAction="#save" prefHeight="50.0" prefWidth="250.0" style="-fx-background-radius: 20px; -fx-background-color: #51C042;" text="保存设置" textFill="WHITE" AnchorPane.leftAnchor="180.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="580.0" layoutY="482.0" onAction="#saveAndOpen" prefHeight="50.0" prefWidth="250.0" style="-fx-background-radius: 20px; -fx-background-color: #3688FF;" text="保存并打开软件" textFill="WHITE" AnchorPane.rightAnchor="180.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

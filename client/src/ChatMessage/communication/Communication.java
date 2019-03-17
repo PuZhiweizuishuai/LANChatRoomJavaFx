@@ -163,11 +163,21 @@ public class Communication implements Runnable {
         oos.writeObject(message);
     }
 
+    /**
+     * 发送注册消息
+     * */
     public static void signUpConnect() throws  IOException {
         Message message = new Message(username, "signUp", MessageType.SIGNUP);
         message.setPassword(userPassword);
         message.setEmail(userEmail);
         oos.writeObject(message);
+    }
+
+    /**
+     * 发送图片
+     * */
+    public static void sendPhoto(String path) throws  IOException {
+        FileInputStream file = new FileInputStream(path);
     }
 
 }

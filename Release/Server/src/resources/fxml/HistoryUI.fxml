@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 10px;" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatMessage.history.HistoryControl">
+   <children>
+      <TextField fx:id="getNameField" layoutX="255.0" layoutY="64.0" prefHeight="50.0" prefWidth="300.0" promptText="用户名" style="-fx-background-radius: 20px;" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="60.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="155.0" layoutY="64.0" prefHeight="50.0" prefWidth="100.0" text="查找与：" AnchorPane.leftAnchor="155.0" AnchorPane.topAnchor="60.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="567.0" layoutY="64.0" prefHeight="50.0" prefWidth="100.0" text="的聊天记录" AnchorPane.leftAnchor="567.0" AnchorPane.topAnchor="60.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" onAction="#sendLookUpHistory" layoutX="705.0" layoutY="64.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #3688ff; -fx-background-radius: 20px;" text="查询" textFill="WHITE" AnchorPane.leftAnchor="705.0" AnchorPane.topAnchor="60.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <TextArea fx:id="showChatHistoryArea" editable="false" layoutX="55.0" layoutY="144.0" prefHeight="426.0" prefWidth="861.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="140.0" />
+      <JFXButton buttonType="RAISED" layoutX="430.0" layoutY="559.0" prefHeight="50.0" prefWidth="100.0" style="-fx-background-radius: 20px; -fx-background-color: #51c042;" text="导出" textFill="WHITE" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="430.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="closeButton" buttonType="RAISED" layoutX="877.0" layoutY="29.0" onAction="#closeThisWindow" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #fb4f4f; -fx-background-radius: 90px;" text="×" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="20.0" layoutY="550.0" prefHeight="50.0" prefWidth="157.0" text="注：不包含图片信息" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="20.0" />
+      <JFXButton fx:id="movebutton" buttonType="RAISED" layoutX="32.0" layoutY="20.0" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #767676; -fx-background-radius: 90px; -fx-background-image: url(/resources/images/move.png)" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
+      </JFXButton>
+   </children>
+</AnchorPane>

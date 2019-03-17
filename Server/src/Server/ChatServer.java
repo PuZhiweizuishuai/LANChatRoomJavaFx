@@ -12,18 +12,21 @@ import ChatMessage.user.Message;
 import ChatMessage.user.MessageType;
 import ChatMessage.user.UserInformation;
 import DB.DBControl;
+import MainUI.MainUIControll;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import javafx.application.Platform;
 
 /**
  * 服务端
  * @author Pu Zhiwei
  * */
 public class ChatServer {
-    private static final int PORT = 9999;
+    private static int PORT = 9999;
     private static HashSet<ObjectOutputStream> writers = new HashSet<>();
     private static ArrayList<UserInformation> users = new ArrayList<>();
     private static HashMap<String, UserInformation> names = new HashMap<>();
     private static HashMap<String, ObjectOutputStream> sendDesignatedUser = new HashMap<>();
+
     /**
      * 启动监听服务
      * */
@@ -32,6 +35,7 @@ public class ChatServer {
         try {
             while (true) {
                 System.out.println("accept之前");
+
                 // 造成阻塞,等待连接
                 new Handler(server.accept()).start();
             }
@@ -64,7 +68,8 @@ public class ChatServer {
                 output = new ObjectOutputStream(os);
 
                 Message firstMessage = (Message)input.readObject();
-                System.out.println(firstMessage.getTYPE());
+                //System.out.println(firstMessage.getTYPE());
+
                 if(firstMessage.getTYPE() == MessageType.SIGNUP) {
                     signUp(firstMessage, output);
                 } else {
@@ -79,6 +84,7 @@ public class ChatServer {
                     Message inputMessage = (Message)input.readObject();
                     if(inputMessage != null) {
                         System.out.println("用户" +inputMessage.getName() +  "消息类型：" + inputMessage.getTYPE());
+
                         switch (inputMessage.getTYPE()) {
                             case GROUPSMS:
                                 writeGroup(inputMessage);
@@ -148,6 +154,7 @@ public class ChatServer {
         private void write(Message message) throws IOException {
             ObjectOutputStream oos = sendDesignatedUser.get(message.getTo());
             System.out.println("用户：" + message.getName() + " 开始向用户：" + message.getTo() + "发送消息！");
+
             oos.writeObject(message);
             oos.reset();
         }
@@ -265,6 +272,13 @@ public class ChatServer {
 
 
     public static void main(String[] args) throws Exception{
+        try {
+            ServerMessage serverMessage = SaveServerMessage.readMessage();
+            PORT = ServerMessage.PORT;
+            System.out.println(ServerMessage.MYSSQL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         startServer();
     }
 }

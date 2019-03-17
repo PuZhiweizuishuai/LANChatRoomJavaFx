@@ -40,7 +40,7 @@ public class HistoryControl {
     public void sendLookUpHistory() {
         String lookUpName = getNameField.getText();
         if(!lookUpName.equals("")) {
-            // mainUIControl.sendLookUpHistory(lookUpName);
+            new PopUpUI("提示：","待更新！");
         } else {
             new PopUpUI("提示：","请输入要查询的用户名!");
         }
